@@ -42,6 +42,9 @@ public:
                            double delta, double demand_j);
     void applySwap(int j1, int j2, double delta,
                    double demand_j1, double demand_j2);
+
+    // Substitui mediana old_med por new_med no vetor vm_
+    void replaceMedian(int old_med, int new_med);
 };
 
 #endif

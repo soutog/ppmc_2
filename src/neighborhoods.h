@@ -13,6 +13,20 @@ struct MoveM1 {
     bool found;
 };
 
+struct MoveM2 {
+    int old_median;
+    int new_median;
+    double delta;
+    bool found;
+};
+
+struct MoveM3 {
+    int old_median;
+    int new_median;
+    double delta;
+    bool found;
+};
+
 struct MoveM4 {
     int client1;
     int client2;
@@ -20,20 +34,27 @@ struct MoveM4 {
     bool found;
 };
 
-// Best Improvement: varre toda a vizinhanca M1 e retorna o melhor movimento
 MoveM1 bestM1(const Solution& solution,
               const Instance& instance,
               const DistanceMatrix& dm);
 
-// Best Improvement: varre toda a vizinhanca M4 e retorna o melhor movimento
+MoveM2 bestM2(const Solution& solution,
+              const Instance& instance,
+              const DistanceMatrix& dm);
+
+MoveM3 bestM3(const Solution& solution,
+              const Instance& instance,
+              const DistanceMatrix& dm);
+
 MoveM4 bestM4(const Solution& solution,
               const Instance& instance,
               const DistanceMatrix& dm);
 
-// Aplica o movimento M1 na solucao
 void applyMove(Solution& solution, const MoveM1& move, const Instance& instance);
-
-// Aplica o movimento M4 na solucao
+void applyMove(Solution& solution, const MoveM2& move, const Instance& instance,
+               const DistanceMatrix& dm);
+void applyMove(Solution& solution, const MoveM3& move, const Instance& instance,
+               const DistanceMatrix& dm);
 void applyMove(Solution& solution, const MoveM4& move, const Instance& instance);
 
 #endif

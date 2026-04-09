@@ -118,3 +118,12 @@ void Solution::applySwap(int j1, int j2, double delta,
     load_[r2] += demand_j1 - demand_j2;
     cost_ += delta;
 }
+
+void Solution::replaceMedian(int old_med, int new_med) {
+    for (auto& m : vm_) {
+        if (m == old_med) {
+            m = new_med;
+            return;
+        }
+    }
+}

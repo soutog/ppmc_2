@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
     const double grasp_cost = solution.cost();
     std::cout << "\nCusto GRASP: " << grasp_cost << "\n";
 
-    // Busca local VND (M1, M4)
+    // Busca local VND (M1 -> M2 -> M3 -> M4)
     VND vnd(instance, distance_matrix);
     const auto t_vnd_start = std::chrono::steady_clock::now();
     vnd.run(solution);
@@ -76,8 +76,11 @@ int main(int argc, char* argv[]) {
               << ((grasp_cost - vnd_cost) / grasp_cost * 100.0) << "%)\n";
     std::cout << std::setprecision(4);
     std::cout << "Iteracoes M1: " << vnd.iterationsM1()
+              << ", M2: " << vnd.iterationsM2()
+              << ", M3: " << vnd.iterationsM3()
               << ", M4: " << vnd.iterationsM4() << "\n";
-    std::cout << "Solution Feasible: " << (solution.feasible() ? "Sim" : "Nao") << "\n";
+    // solucao final é viável
+    std::cout << "Solucao final: " << (solution.feasible() ? "viavel" : "inviavel") << "\n";
     std::cout << "Tempo VND: " << vnd_secs << "s\n";
 
     // Validacao final
