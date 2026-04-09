@@ -2,7 +2,9 @@
 #include "evaluator.h"
 #include "grasp_constructor.h"
 #include "instance.h"
+#include "vnd.h"
 
+#include <chrono>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -44,32 +46,47 @@ int main(int argc, char* argv[]) {
               << ", construction_max_tries=" << construction_max_tries
               << "\n";
 
-    const Solution solution = grasp.construct();
+    Solution solution = grasp.construct();
 
     std::cout << "\nResumo da LRC\n";
     std::cout << "Candidatos ranqueados: " << grasp.rankedCandidates().size() << "\n";
     std::cout << "Tamanho da LRC: " << grasp.restrictedCandidateList().size() << "\n";
-    std::cout << "Tentativas usadas: " << grasp.lastAttempts() << "\n"; // tentativas usadas na construcao para encontrar a solucao viável
-
-    std::cout << "\nTeste da construcao inicial GRASP\n";
-    solution.printSummary(instance);   
-
-    std::cout << std::fixed << std::setprecision(4);
-    std::cout << "Distancia pre-computada d(0,0): " << distance_matrix.at(0, 0) << "\n";
-    if (instance.numNodes() > 1) {
-        std::cout << "Distancia pre-computada d(0,1): " << distance_matrix.at(0, 1) << "\n";
-    }
+    std::cout << "Tentativas usadas: " << grasp.lastAttempts() << "\n";
 
     if (!solution.feasible()) {
         std::cout << "Erro de construcao: " << grasp.lastError() << "\n";
         return 2;
     }
 
+    std::cout << std::fixed << std::setprecision(4);
+    const double grasp_cost = solution.cost();
+    std::cout << "\nCusto GRASP: " << grasp_cost << "\n";
+
+    // Busca local VND (M1, M4)
+    VND vnd(instance, distance_matrix);
+    const auto t_vnd_start = std::chrono::steady_clock::now();
+    vnd.run(solution);
+    const auto t_vnd_end = std::chrono::steady_clock::now();
+    const double vnd_secs = std::chrono::duration<double>(t_vnd_end - t_vnd_start).count();
+
+    const double vnd_cost = solution.cost();
+    std::cout << "Custo VND:   " << vnd_cost << "\n";
+    std::cout << "Melhoria:    " << (grasp_cost - vnd_cost) << " ("
+              << std::setprecision(2)
+              << ((grasp_cost - vnd_cost) / grasp_cost * 100.0) << "%)\n";
+    std::cout << std::setprecision(4);
+    std::cout << "Iteracoes M1: " << vnd.iterationsM1()
+              << ", M4: " << vnd.iterationsM4() << "\n";
+    std::cout << "Solution Feasible: " << (solution.feasible() ? "Sim" : "Nao") << "\n";
+    std::cout << "Tempo VND: " << vnd_secs << "s\n";
+
+    // Validacao final
     std::string error;
     if (!evaluator.validate(solution, &error)) {
-        std::cout << "Erro de validacao final: " << error << "\n";
+        std::cout << "Erro de validacao pos-VND: " << error << "\n";
         return 3;
     }
+    std::cout << "Validacao pos-VND: OK\n";
 
     return 0;
 }

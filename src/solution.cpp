@@ -99,3 +99,22 @@ void Solution::printSummary(const Instance& instance) const {
         // }
     }
 }
+
+void Solution::applyReallocation(int j, int old_median, int new_median,
+                                 double delta, double demand_j) {
+    va_[j] = new_median;
+    load_[old_median] -= demand_j;
+    load_[new_median] += demand_j;
+    cost_ += delta;
+}
+
+void Solution::applySwap(int j1, int j2, double delta,
+                         double demand_j1, double demand_j2) {
+    const int r1 = va_[j1];
+    const int r2 = va_[j2];
+    va_[j1] = r2;
+    va_[j2] = r1;
+    load_[r1] += demand_j2 - demand_j1;
+    load_[r2] += demand_j1 - demand_j2;
+    cost_ += delta;
+}

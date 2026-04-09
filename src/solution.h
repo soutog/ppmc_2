@@ -36,6 +36,12 @@ public:
 
     bool isMedian(int node) const;
     void printSummary(const Instance& instance) const;
+
+    // Atualizacoes incrementais para busca local
+    void applyReallocation(int j, int old_median, int new_median,
+                           double delta, double demand_j);
+    void applySwap(int j1, int j2, double delta,
+                   double demand_j1, double demand_j2);
 };
 
 #endif
