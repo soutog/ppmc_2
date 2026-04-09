@@ -1,6 +1,7 @@
 #include "distance_matrix.h"
 #include "evaluator.h"
 #include "grasp_constructor.h"
+#include "ils.h"
 #include "instance.h"
 #include "vnd.h"
 
@@ -8,12 +9,14 @@
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <random>
 #include <string>
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
         std::cerr << "Uso: " << argv[0]
-                  << " <arquivo_instancia> [seed] [alpha] [construction_max_tries]\n";
+                  << " <arquivo_instancia> [seed] [alpha] [construction_max_tries]"
+                     " [num_iter_max]\n";
         return 1;
     }
 
@@ -24,6 +27,8 @@ int main(int argc, char* argv[]) {
     const double alpha = (argc >= 4 ? std::strtod(argv[3], nullptr) : 0.6);
     const int construction_max_tries =
         (argc >= 5 ? std::atoi(argv[4]) : 1000);
+    const int num_iter_max =
+        (argc >= 6 ? std::atoi(argv[5]) : 20);
 
     Instance instance;
     if (!instance.read(instance_path)) {
@@ -40,18 +45,17 @@ int main(int argc, char* argv[]) {
                            seed);
 
     instance.printSummary();
-    std::cout << "\nParametros do GRASP\n";
+    std::cout << "\nParametros\n";
     std::cout << "seed=" << seed
               << ", alpha=" << alpha
               << ", construction_max_tries=" << construction_max_tries
+              << ", NumIterMax=" << num_iter_max
               << "\n";
 
-    Solution solution = grasp.construct();
+    const auto t_total_start = std::chrono::steady_clock::now();
 
-    std::cout << "\nResumo da LRC\n";
-    std::cout << "Candidatos ranqueados: " << grasp.rankedCandidates().size() << "\n";
-    std::cout << "Tamanho da LRC: " << grasp.restrictedCandidateList().size() << "\n";
-    std::cout << "Tentativas usadas: " << grasp.lastAttempts() << "\n";
+    // === GRASP ===
+    Solution solution = grasp.construct();
 
     if (!solution.feasible()) {
         std::cout << "Erro de construcao: " << grasp.lastError() << "\n";
@@ -62,7 +66,7 @@ int main(int argc, char* argv[]) {
     const double grasp_cost = solution.cost();
     std::cout << "\nCusto GRASP: " << grasp_cost << "\n";
 
-    // Busca local VND (M1 -> M2 -> M3 -> M4)
+    // === VND inicial ===
     VND vnd(instance, distance_matrix);
     const auto t_vnd_start = std::chrono::steady_clock::now();
     vnd.run(solution);
@@ -79,17 +83,37 @@ int main(int argc, char* argv[]) {
               << ", M2: " << vnd.iterationsM2()
               << ", M3: " << vnd.iterationsM3()
               << ", M4: " << vnd.iterationsM4() << "\n";
-    // solucao final é viável
-    std::cout << "Solucao final: " << (solution.feasible() ? "viavel" : "inviavel") << "\n";
-    std::cout << "Tempo VND: " << vnd_secs << "s\n";
+    std::cout << "Tempo VND inicial: " << vnd_secs << "s\n";
 
-    // Validacao final
+    // === ILS ===
+    std::mt19937 rng(seed);
+    ILS ils(instance, distance_matrix, num_iter_max);
+    const auto t_ils_start = std::chrono::steady_clock::now();
+    Solution best = ils.run(solution, rng);
+    const auto t_ils_end = std::chrono::steady_clock::now();
+    const double ils_secs = std::chrono::duration<double>(t_ils_end - t_ils_start).count();
+
+    const double ils_cost = best.cost();
+    std::cout << "\nCusto ILS:   " << ils_cost << "\n";
+    std::cout << "Melhoria sobre VND: " << (vnd_cost - ils_cost) << " ("
+              << std::setprecision(2)
+              << ((vnd_cost - ils_cost) / vnd_cost * 100.0) << "%)\n";
+    std::cout << std::setprecision(4);
+    std::cout << "Iteracoes ILS: " << ils.totalIterations()
+              << ", melhorias: " << ils.improvements() << "\n";
+    std::cout << "Tempo ILS: " << ils_secs << "s\n";
+
+    const auto t_total_end = std::chrono::steady_clock::now();
+    const double total_secs = std::chrono::duration<double>(t_total_end - t_total_start).count();
+    std::cout << "Tempo total: " << total_secs << "s\n";
+
+    // === Validacao final ===
     std::string error;
-    if (!evaluator.validate(solution, &error)) {
-        std::cout << "Erro de validacao pos-VND: " << error << "\n";
+    if (!evaluator.validate(best, &error)) {
+        std::cout << "Erro de validacao pos-ILS: " << error << "\n";
         return 3;
     }
-    std::cout << "Validacao pos-VND: OK\n";
+    std::cout << "Validacao pos-ILS: OK\n";
 
     return 0;
 }
