@@ -88,14 +88,14 @@ void Solution::printSummary(const Instance& instance) const {
             }
             std::cout << vm_[i];
         }
-        std::cout << "\n";
+        // std::cout << "\n";
 
-        std::cout << "Carga por mediana:\n";
-        for (int median : vm_) {
-            std::cout << "  mediana " << median
-                      << " -> carga=" << load_[median]
-                      << " / capacidade=" << instance.capacity(median)
-                      << "\n";
-        }
+        // std::cout << "Carga por mediana:\n";
+        // for (int median : vm_) {
+        //     std::cout << "  mediana " << median
+        //               << " -> carga=" << load_[median]
+        //               << " / capacidade=" << instance.capacity(median)
+        //               << "\n";
+        // }
     }
 }

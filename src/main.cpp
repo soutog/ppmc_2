@@ -1,19 +1,27 @@
 #include "distance_matrix.h"
 #include "evaluator.h"
+#include "grasp_constructor.h"
 #include "instance.h"
-#include "solution.h"
 
+#include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <string>
-#include <vector>
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cerr << "Uso: " << argv[0] << " <arquivo_instancia>\n";
+        std::cerr << "Uso: " << argv[0]
+                  << " <arquivo_instancia> [seed] [alpha] [construction_max_tries]\n";
         return 1;
     }
 
     const std::string instance_path = argv[1];
+    const unsigned int seed =
+        (argc >= 3 ? static_cast<unsigned int>(std::strtoul(argv[2], nullptr, 10))
+                   : 123456u);
+    const double alpha = (argc >= 4 ? std::strtod(argv[3], nullptr) : 0.6);
+    const int construction_max_tries =
+        (argc >= 5 ? std::atoi(argv[4]) : 1000);
 
     Instance instance;
     if (!instance.read(instance_path)) {
@@ -22,63 +30,45 @@ int main(int argc, char* argv[]) {
 
     DistanceMatrix distance_matrix(instance);
     Evaluator evaluator(instance, distance_matrix);
+    GRASPConstructor grasp(instance,
+                           distance_matrix,
+                           evaluator,
+                           alpha,
+                           construction_max_tries,
+                           seed);
 
     instance.printSummary();
+    std::cout << "\nParametros do GRASP\n";
+    std::cout << "seed=" << seed
+              << ", alpha=" << alpha
+              << ", construction_max_tries=" << construction_max_tries
+              << "\n";
 
-    Solution solution(instance.numNodes());
-    
-    // create a simple solution by opening the first p medians and assigning clients to them in order
-    std::vector<int> medians;
-    medians.reserve(instance.numMedians());
-    for (int i = 0; i < instance.numMedians(); ++i) {
-        medians.push_back(i);
-    }
-    
-    solution.setMedians(medians);
+    const Solution solution = grasp.construct();
 
-    std::vector<int> assignments(instance.numNodes(), -1);
-    std::vector<double> residual_capacity(instance.numNodes(), 0.0);
+    std::cout << "\nResumo da LRC\n";
+    std::cout << "Candidatos ranqueados: " << grasp.rankedCandidates().size() << "\n";
+    std::cout << "Tamanho da LRC: " << grasp.restrictedCandidateList().size() << "\n";
+    std::cout << "Tentativas usadas: " << grasp.lastAttempts() << "\n"; // tentativas usadas na construcao para encontrar a solucao viável
 
-    for (int median : medians) {
-        residual_capacity[median] = instance.capacity(median);
-    }
+    std::cout << "\nTeste da construcao inicial GRASP\n";
+    solution.printSummary(instance);   
 
-    for (int client = 0; client < instance.numNodes(); ++client) {
-        for (int median : medians) {
-            if (residual_capacity[median] >= instance.demand(client)) {
-                assignments[client] = median;
-                residual_capacity[median] -= instance.demand(client);
-                break;
-            }
-        }
-    }
-
-    solution.setAssignments(assignments);
-
-    // print vm and va for debugging
-    // std::cout << "Medianas abertas (vm): ";
-    // for (int m : solution.medians()) {
-    //     std::cout << m << " ";
-    // }
-    // std::cout << "\nAtribuicoes (va): ";
-    // for (int a : solution.assignments()) {
-    //     std::cout << a << " ";
-    // }
-    // std::cout << "\n";
-
-    std::string error;
-    const bool valid = evaluator.evaluate(solution, &error);
-
-    std::cout << "\nTeste minimo com solucao manual usando as primeiras p medianas\n";
-    solution.printSummary(instance);
+    std::cout << std::fixed << std::setprecision(4);
     std::cout << "Distancia pre-computada d(0,0): " << distance_matrix.at(0, 0) << "\n";
     if (instance.numNodes() > 1) {
         std::cout << "Distancia pre-computada d(0,1): " << distance_matrix.at(0, 1) << "\n";
     }
 
-    if (!valid) {
-        std::cout << "Erro de validacao: " << error << "\n";
+    if (!solution.feasible()) {
+        std::cout << "Erro de construcao: " << grasp.lastError() << "\n";
         return 2;
+    }
+
+    std::string error;
+    if (!evaluator.validate(solution, &error)) {
+        std::cout << "Erro de validacao final: " << error << "\n";
+        return 3;
     }
 
     return 0;
