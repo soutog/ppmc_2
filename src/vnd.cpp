@@ -1,6 +1,10 @@
 #include "vnd.h"
 #include "neighborhoods.h"
 
+namespace {
+constexpr double kImprovementEps = 1e-9;
+}  // namespace
+
 VND::VND(const Instance& instance, const DistanceMatrix& distance_matrix)
     : instance_(instance), distance_matrix_(distance_matrix),
       iterations_m1_(0), iterations_m2_(0),
@@ -46,7 +50,7 @@ void VND::run(Solution& solution) {
                 const double cost_before = solution.cost();
                 Solution backup = solution;
                 applyMove(solution, move, instance_, distance_matrix_);
-                if (solution.cost() < cost_before) {
+                if (solution.cost() < cost_before - kImprovementEps) {
                     ++iterations_m3_;
                     k = 0;
                 } else {

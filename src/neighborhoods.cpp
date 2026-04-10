@@ -4,6 +4,10 @@
 #include <limits>
 #include <vector>
 
+namespace {
+constexpr double kImprovementEps = 1e-9;
+}  // namespace
+
 MoveM1 bestM1(const Solution& solution,
               const Instance& instance,
               const DistanceMatrix& dm) {
@@ -31,7 +35,7 @@ MoveM1 bestM1(const Solution& solution,
 
             const double delta = dm(j, r2) - cost_r1;
 
-            if (delta < best.delta) {
+            if (delta < best.delta - kImprovementEps) {
                 best.client = j;
                 best.old_median = r1;
                 best.new_median = r2;
@@ -74,7 +78,7 @@ MoveM4 bestM4(const Solution& solution,
             const double cost_j2 = dm(j2, r2);
             const double delta = dm(j1, r2) + dm(j2, r1) - cost_j1 - cost_j2;
 
-            if (delta < best.delta) {
+            if (delta < best.delta - kImprovementEps) {
                 best.client1 = j1;
                 best.client2 = j2;
                 best.delta = delta;
@@ -132,7 +136,7 @@ MoveM2 bestM2(const Solution& solution,
             }
             const double delta = new_cluster_cost - old_cluster_cost;
 
-            if (delta < best.delta) {
+            if (delta < best.delta - kImprovementEps) {
                 best.old_median = r1;
                 best.new_median = r2;
                 best.delta = delta;
@@ -205,7 +209,7 @@ MoveM3 bestM3(const Solution& solution,
 
             const double delta = new_cost - old_cost - dm(r2, va[r2]);
 
-            if (delta < best.delta) {
+            if (delta < best.delta - kImprovementEps) {
                 best.old_median = r1;
                 best.new_median = r2;
                 best.delta = delta;

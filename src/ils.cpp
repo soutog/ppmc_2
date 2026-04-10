@@ -2,6 +2,10 @@
 #include "perturbation.h"
 #include "vnd.h"
 
+namespace {
+constexpr double kImprovementEps = 1e-9;
+}  // namespace
+
 ILS::ILS(const Instance& instance, const DistanceMatrix& dm, int num_iter_max)
     : instance_(instance), distance_matrix_(dm), num_iter_max_(num_iter_max),
       total_iterations_(0), improvements_(0) {}
@@ -24,9 +28,9 @@ Solution ILS::run(Solution s, std::mt19937& rng) {
 
         ++total_iterations_;
 
-        if (s_prime.cost() < s.cost()) {
+        if (s_prime.cost() < s.cost() - kImprovementEps) {
             s = s_prime;
-            if (s.cost() < best.cost()) {
+            if (s.cost() < best.cost() - kImprovementEps) {
                 best = s;
             }
             iter_without_improvement = 0;
