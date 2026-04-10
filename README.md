@@ -88,9 +88,12 @@ make clean      # limpa binários e temporários
 ./bin/main <instância> [seed] [alpha] [max_tries]
 ```
 
+## Experimentos
+
+10 rodadas, timeout 30min (1800s), 35 instâncias ==> ~10dias (todas as instâncias em cada rodada)
+
 ## Referências
 
 - Freitas, Souza & Sá (2025). *Metaheurística ILS aplicada ao PPMC*. SBPO 2025.
 - Stefanello et al. (2015). Matheuristics para CPMP.
 - Vasconcelos (2023). GVNS para CPMP.
-- Spec de reprodução: [`docs/repro_spec.md`](docs/repro_spec.md)

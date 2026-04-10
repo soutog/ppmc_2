@@ -7,9 +7,8 @@
 
 #include <random>
 
-// Perturbacao: aplica level+1 trocas aleatorias via M4.
-// Em cada passo, sorteia uniformemente uma troca viavel da vizinhanca atual.
-// Se a vizinhanca M4 estiver vazia, encerra por impossibilidade real.
+// Perturbacao: altera a estrutura de medianas abertas e pode combinar com swaps M4.
+// O objetivo eh tirar a busca de uma bacia de atracao antes de aplicar o VND.
 void perturbate(Solution& solution, int level,
                 const Instance& instance, const DistanceMatrix& dm,
                 std::mt19937& rng);
