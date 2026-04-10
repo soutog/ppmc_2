@@ -32,6 +32,8 @@ INSTANCES=(
     "instances/lin318_005.txt lin318 5  180343.00 180281.21"
     "instances/lin318_015.txt lin318 15  89041.59  88901.56"
     "instances/ali535_005.txt ali535 5   10003.21   9956.77"
+    "instances/u724_075.txt   u724 75   54912.78   54735.05"
+    "instances/rl1304_010.txt rl1304 10   2158869.31   2146484.10"
 )
 
 if [[ ! -x "$BIN" ]]; then

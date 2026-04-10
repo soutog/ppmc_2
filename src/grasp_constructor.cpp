@@ -1,9 +1,23 @@
 #include "grasp_constructor.h"
 
 #include <algorithm>
+#include <cmath>
 #include <limits>
 #include <numeric>
 #include <sstream>
+
+namespace {
+constexpr int kConstructionIterationLimit = 10;
+
+struct RegretChoice {
+    int client;
+    int best_median;
+    double best_distance;
+    double regret;
+    double demand;
+    bool has_single_option;
+};
+}  // namespace
 
 GRASPConstructor::GRASPConstructor(const Instance& instance,
                                    const DistanceMatrix& distance_matrix,
@@ -71,50 +85,193 @@ std::vector<int> GRASPConstructor::selectRandomMedians() {
     return selected;
 }
 
-bool GRASPConstructor::assignClientsToNearestMedian(const std::vector<int>& medians,
-                                                    Solution& solution,
-                                                    std::string* error) {
+bool GRASPConstructor::assignClientsByRegret(const std::vector<int>& medians,
+                                             std::vector<int>& assignments,
+                                             std::string* error) {
     const int n = instance_.numNodes();
-    std::vector<int> assignments(n, -1);
     std::vector<double> residual_capacity(n, 0.0);
-    std::vector<int> clients(n);
+    std::vector<bool> assigned(n, false);
+    assignments.assign(n, -1);
+    int assigned_count = 0;
 
     for (int median : medians) {
         residual_capacity[median] = instance_.capacity(median);
     }
 
-    std::iota(clients.begin(), clients.end(), 0);
-    std::shuffle(clients.begin(), clients.end(), rng_);
+    while (assigned_count < n) {
+        // Em cada passo, escolhemos o cliente mais "critico" dado o estado atual.
+        RegretChoice selected{-1, -1, 0.0, 0.0, 0.0, false};
+        bool found_candidate = false;
 
-    for (int client : clients) {
-        int best_median = -1;
-        double best_distance = std::numeric_limits<double>::infinity();
-
-        for (int median : medians) {
-            if (residual_capacity[median] < instance_.demand(client)) {
+        for (int client = 0; client < n; ++client) {
+            if (assigned[client]) {
                 continue;
             }
 
-            const double distance = distance_matrix_.at(client, median);
-            if (distance < best_distance ||
-                (distance == best_distance && median < best_median)) {
-                best_distance = distance;
-                best_median = median;
+            int best_median = -1;
+            double best_distance = std::numeric_limits<double>::infinity();
+            double second_best_distance = std::numeric_limits<double>::infinity();
+            int feasible_count = 0;
+
+            for (int median : medians) {
+                if (residual_capacity[median] + 1e-9 < instance_.demand(client)) {
+                    continue;
+                }
+
+                ++feasible_count;
+                const double distance = distance_matrix_.at(client, median);
+
+                if (distance < best_distance ||
+                    (distance == best_distance && median < best_median)) {
+                    second_best_distance = best_distance;
+                    best_distance = distance;
+                    best_median = median;
+                } else if (distance < second_best_distance) {
+                    second_best_distance = distance;
+                }
+            }
+
+            if (best_median < 0) {
+                if (error != nullptr) {
+                    std::ostringstream oss;
+                    oss << "Falha de alocacao para o cliente " << client
+                        << " durante a construcao inicial por regret.";
+                    *error = oss.str();
+                }
+                return false;
+            }
+
+            RegretChoice current{
+                client,
+                best_median,
+                best_distance,
+                // Regret alto indica que o cliente perdera muito se nao pegar a melhor opcao agora.
+                (feasible_count == 1
+                     ? std::numeric_limits<double>::infinity()
+                     : second_best_distance - best_distance),
+                instance_.demand(client),
+                feasible_count == 1};
+
+            bool better_choice = false;
+            if (!found_candidate) {
+                better_choice = true;
+            } else if (current.has_single_option != selected.has_single_option) {
+                better_choice = current.has_single_option;
+            } else if (current.regret > selected.regret + 1e-9) {
+                better_choice = true;
+            } else if (std::abs(current.regret - selected.regret) <= 1e-9 &&
+                       current.demand > selected.demand + 1e-9) {
+                better_choice = true;
+            } else if (std::abs(current.regret - selected.regret) <= 1e-9 &&
+                       std::abs(current.demand - selected.demand) <= 1e-9 &&
+                       current.best_distance < selected.best_distance - 1e-9) {
+                better_choice = true;
+            } else if (std::abs(current.regret - selected.regret) <= 1e-9 &&
+                       std::abs(current.demand - selected.demand) <= 1e-9 &&
+                       std::abs(current.best_distance - selected.best_distance) <= 1e-9 &&
+                       current.client < selected.client) {
+                better_choice = true;
+            }
+
+            if (better_choice) {
+                selected = current;
+                found_candidate = true;
             }
         }
 
-        if (best_median < 0) {
-            if (error != nullptr) {
-                std::ostringstream oss;
-                oss << "Falha de alocacao para o cliente " << client
-                    << " durante a construcao inicial.";
-                *error = oss.str();
+        assignments[selected.client] = selected.best_median;
+        assigned[selected.client] = true;
+        residual_capacity[selected.best_median] -= instance_.demand(selected.client);
+        ++assigned_count;
+    }
+
+    if (error != nullptr) {
+        error->clear();
+    }
+
+    return true;
+}
+
+std::vector<int> GRASPConstructor::recomputeClusterMedians(
+    const std::vector<int>& medians,
+    const std::vector<int>& assignments) const {
+    const int n = instance_.numNodes();
+    std::vector<std::vector<int>> clusters(n);
+    for (int client = 0; client < n; ++client) {
+        const int median = assignments[client];
+        if (median >= 0) {
+            clusters[median].push_back(client);
+        }
+    }
+
+    std::vector<int> recomputed = medians;
+    for (std::size_t idx = 0; idx < medians.size(); ++idx) {
+        const int current_median = medians[idx];
+        const std::vector<int>& cluster = clusters[current_median];
+        if (cluster.empty()) {
+            continue;
+        }
+
+        double cluster_load = 0.0;
+        for (int client : cluster) {
+            cluster_load += instance_.demand(client);
+        }
+
+        int best_candidate = current_median;
+        double best_cost = std::numeric_limits<double>::infinity();
+        // A nova mediana precisa ser interna ao cluster e suportar toda a carga atual.
+        for (int candidate : cluster) {
+            if (instance_.capacity(candidate) + 1e-9 < cluster_load) {
+                continue;
             }
+
+            double total_distance = 0.0;
+            for (int client : cluster) {
+                total_distance += distance_matrix_.at(client, candidate);
+            }
+
+            if (total_distance < best_cost ||
+                (total_distance == best_cost && candidate < best_candidate)) {
+                best_cost = total_distance;
+                best_candidate = candidate;
+            }
+        }
+
+        recomputed[idx] = best_candidate;
+    }
+
+    return recomputed;
+}
+
+bool GRASPConstructor::buildIterativeSolution(const std::vector<int>& initial_medians,
+                                              Solution& solution,
+                                              std::string* error) {
+    const int n = instance_.numNodes();
+    std::vector<int> medians = initial_medians;
+    std::vector<int> assignments(n, -1);
+
+    for (int iteration = 0; iteration < kConstructionIterationLimit; ++iteration) {
+        // Primeiro alocamos com base em regret; depois tentamos melhorar as medianas dos clusters.
+        if (!assignClientsByRegret(medians, assignments, error)) {
             return false;
         }
 
-        assignments[client] = best_median;
-        residual_capacity[best_median] -= instance_.demand(client);
+        const std::vector<int> recomputed_medians =
+            recomputeClusterMedians(medians, assignments);
+
+        if (recomputed_medians == medians) {
+            solution.reset(n);
+            solution.setMedians(medians);
+            solution.setAssignments(assignments);
+            return evaluator_.evaluate(solution, error);
+        }
+
+        medians = recomputed_medians;
+    }
+
+    // Se nao estabilizar cedo, validamos a melhor configuracao obtida no limite de iteracoes.
+    if (!assignClientsByRegret(medians, assignments, error)) {
+        return false;
     }
 
     solution.reset(n);
@@ -139,7 +296,7 @@ Solution GRASPConstructor::construct() {
         const std::vector<int> medians = selectRandomMedians();
 
         std::string error;
-        if (assignClientsToNearestMedian(medians, solution, &error)) {
+        if (buildIterativeSolution(medians, solution, &error)) {
             last_error_.clear();
             return solution;
         }

@@ -27,9 +27,17 @@ private:
     void buildRestrictedCandidateList();
 
     std::vector<int> selectRandomMedians();
-    bool assignClientsToNearestMedian(const std::vector<int>& medians,
-                                      Solution& solution,
-                                      std::string* error);
+    // Construcao gulosa por regret: aloca primeiro os clientes com menos alternativas.
+    bool assignClientsByRegret(const std::vector<int>& medians,
+                               std::vector<int>& assignments,
+                               std::string* error);
+    // Reposiciona cada mediana para o melhor no do proprio cluster.
+    std::vector<int> recomputeClusterMedians(const std::vector<int>& medians,
+                                             const std::vector<int>& assignments) const;
+    // Alterna atribuicao por regret e recomputacao de medianas ate estabilizar.
+    bool buildIterativeSolution(const std::vector<int>& initial_medians,
+                                Solution& solution,
+                                std::string* error);
 
 public:
     GRASPConstructor(const Instance& instance,
