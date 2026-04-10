@@ -3,6 +3,7 @@
 #include "grasp_constructor.h"
 #include "ils.h"
 #include "instance.h"
+#include "partial_optimizer.h"
 #include "vnd.h"
 
 #include <chrono>
@@ -102,6 +103,23 @@ int main(int argc, char* argv[]) {
     std::cout << "Iteracoes ILS: " << ils.totalIterations()
               << ", melhorias: " << ils.improvements() << "\n";
     std::cout << "Tempo ILS: " << ils_secs << "s\n";
+
+    // === Partial Optimizer ===
+    PartialOptimizer partial_optimizer(instance, distance_matrix, evaluator);
+    const auto t_po_start = std::chrono::steady_clock::now();
+    const bool po_improved = partial_optimizer.optimize(best);
+    const auto t_po_end = std::chrono::steady_clock::now();
+    const double po_secs =
+        std::chrono::duration<double>(t_po_end - t_po_start).count();
+
+    const double post_po_cost = best.cost();
+    std::cout << "\nCusto pos-PartialOpt: " << post_po_cost << "\n";
+    std::cout << "Melhoria sobre ILS:   " << (ils_cost - post_po_cost) << " ("
+              << std::setprecision(2)
+              << ((ils_cost - post_po_cost) / ils_cost * 100.0) << "%)\n";
+    std::cout << std::setprecision(4);
+    std::cout << "PartialOpt melhorou: " << (po_improved ? "sim" : "nao") << "\n";
+    std::cout << "Tempo PartialOpt: " << po_secs << "s\n";
 
     const auto t_total_end = std::chrono::steady_clock::now();
     const double total_secs = std::chrono::duration<double>(t_total_end - t_total_start).count();
