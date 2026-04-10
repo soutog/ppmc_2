@@ -6,6 +6,111 @@
 
 namespace {
 constexpr double kImprovementEps = 1e-9;
+
+bool evaluateExactM3Move(const Solution& solution,
+                         int old_median,
+                         int new_median,
+                         const Instance& instance,
+                         const DistanceMatrix& dm,
+                         double* delta_out) {
+    const int n = instance.numNodes();
+    const int old_cluster_of_new = solution.assignments()[new_median];
+    const std::vector<int>& medians = solution.medians();
+    const std::vector<int>& assignments = solution.assignments();
+
+    std::vector<double> load = solution.load();
+    load[old_cluster_of_new] -= instance.demand(new_median);
+    load[new_median] += instance.demand(new_median);
+
+    double delta = -dm(new_median, old_cluster_of_new);
+
+    for (int j = 0; j < n; ++j) {
+        if (assignments[j] != old_median) continue;
+
+        double best_distance = std::numeric_limits<double>::max();
+        int best_median = -1;
+
+        for (int median : medians) {
+            const int candidate_median = (median == old_median ? new_median : median);
+            if (load[candidate_median] + instance.demand(j) > instance.capacity(candidate_median)) {
+                continue;
+            }
+
+            const double distance = dm(j, candidate_median);
+            if (distance < best_distance ||
+                (distance == best_distance && candidate_median < best_median)) {
+                best_distance = distance;
+                best_median = candidate_median;
+            }
+        }
+
+        if (best_median < 0) {
+            return false;
+        }
+
+        load[old_median] -= instance.demand(j);
+        load[best_median] += instance.demand(j);
+        delta += best_distance - dm(j, old_median);
+    }
+
+    if (delta_out != nullptr) {
+        *delta_out = delta;
+    }
+
+    return true;
+}
+
+bool applyExactM3Move(Solution& solution,
+                      int old_median,
+                      int new_median,
+                      const Instance& instance,
+                      const DistanceMatrix& dm) {
+    const int n = instance.numNodes();
+    const int old_cluster_of_new = solution.assignments()[new_median];
+
+    solution.applyReallocation(new_median, old_cluster_of_new, new_median,
+                               -dm(new_median, old_cluster_of_new),
+                               instance.demand(new_median));
+    solution.replaceMedian(old_median, new_median);
+
+    const std::vector<int>& assignments = solution.assignments();
+    std::vector<int> orphans;
+    orphans.reserve(n);
+    for (int j = 0; j < n; ++j) {
+        if (assignments[j] == old_median) {
+            orphans.push_back(j);
+        }
+    }
+
+    const std::vector<int>& medians = solution.medians();
+    for (int j : orphans) {
+        double best_distance = std::numeric_limits<double>::max();
+        int best_median = -1;
+
+        for (int median : medians) {
+            if (solution.load()[median] + instance.demand(j) > instance.capacity(median)) {
+                continue;
+            }
+
+            const double distance = dm(j, median);
+            if (distance < best_distance ||
+                (distance == best_distance && median < best_median)) {
+                best_distance = distance;
+                best_median = median;
+            }
+        }
+
+        if (best_median < 0) {
+            return false;
+        }
+
+        solution.applyReallocation(j, old_median, best_median,
+                                   best_distance - dm(j, old_median),
+                                   instance.demand(j));
+    }
+
+    return true;
+}
 }  // namespace
 
 MoveM1 bestM1(const Solution& solution,
@@ -160,54 +265,21 @@ MoveM3 bestM3(const Solution& solution,
     const std::vector<int>& va = solution.assignments();
     const int p = static_cast<int>(medians.size());
 
-    // Construir clusters e marcar medianas
-    std::vector<std::vector<int>> clusters(n);
     std::vector<bool> is_median(n, false);
-    for (int j = 0; j < n; ++j) {
-        clusters[va[j]].push_back(j);
-    }
     for (int k = 0; k < p; ++k) {
         is_median[medians[k]] = true;
     }
 
     for (int ki = 0; ki < p; ++ki) {
         const int r1 = medians[ki];
-        const std::vector<int>& cluster = clusters[r1];
-        const int csize = static_cast<int>(cluster.size());
-
-        // Custo atual do cluster de r1
-        double old_cost = 0.0;
-        for (int j : cluster) {
-            old_cost += dm(j, r1);
-        }
-
-        // Precomputar: para cada orfao, distancia ao mais proximo excluindo r1
-        // Avaliacao sem restricao de capacidade (lower bound no delta real)
-        std::vector<double> nearest_dist(csize);
-        for (int ci = 0; ci < csize; ++ci) {
-            const int j = cluster[ci];
-            double best_d = std::numeric_limits<double>::max();
-            for (int mk = 0; mk < p; ++mk) {
-                const int m = medians[mk];
-                if (m == r1) continue;
-                best_d = std::min(best_d, dm(j, m));
-            }
-            nearest_dist[ci] = best_d;
-        }
-
-        // Testar cada nao-mediana r2 de outro cluster
         for (int r2 = 0; r2 < n; ++r2) {
             if (is_median[r2]) continue;
             if (va[r2] == r1) continue;
 
-            // Delta sem restricao de capacidade:
-            // cada orfao vai ao min(r2, nearest_existing)
-            double new_cost = 0.0;
-            for (int ci = 0; ci < csize; ++ci) {
-                new_cost += std::min(dm(cluster[ci], r2), nearest_dist[ci]);
+            double delta = 0.0;
+            if (!evaluateExactM3Move(solution, r1, r2, instance, dm, &delta)) {
+                continue;
             }
-
-            const double delta = new_cost - old_cost - dm(r2, va[r2]);
 
             if (delta < best.delta - kImprovementEps) {
                 best.old_median = r1;
@@ -250,43 +322,9 @@ void applyMove(Solution& solution, const MoveM2& move, const Instance& instance,
 
 void applyMove(Solution& solution, const MoveM3& move, const Instance& instance,
                const DistanceMatrix& dm) {
-    const int r1 = move.old_median;
-    const int r2 = move.new_median;
-    const int n = instance.numNodes();
-    const int r_old = solution.assignments()[r2];
-
-    // 1. Remover r2 do cluster antigo
-    solution.applyReallocation(r2, r_old, r2,
-                               -dm(r2, r_old), instance.demand(r2));
-
-    // 2. Substituir r1 por r2 no vetor de medianas
-    solution.replaceMedian(r1, r2);
-
-    // 3. Cada orfao vai ao mais proximo viavel (incluindo r2)
-    const std::vector<int>& va = solution.assignments();
-    std::vector<int> orphans;
-    for (int j = 0; j < n; ++j) {
-        if (va[j] == r1) orphans.push_back(j);
-    }
-
-    const std::vector<int>& medians = solution.medians();
-    for (int j : orphans) {
-        const double old_cost_j = dm(j, r1);
-        double best_d = std::numeric_limits<double>::max();
-        int best_m = -1;
-
-        for (int m : medians) {
-            if (solution.load()[m] + instance.demand(j) <= instance.capacity(m)) {
-                const double d = dm(j, m);
-                if (d < best_d || (d == best_d && m < best_m)) {
-                    best_d = d;
-                    best_m = m;
-                }
-            }
-        }
-
-        solution.applyReallocation(j, r1, best_m,
-                                   best_d - old_cost_j, instance.demand(j));
+    Solution backup = solution;
+    if (!applyExactM3Move(solution, move.old_median, move.new_median, instance, dm)) {
+        solution = backup;
     }
 }
 
