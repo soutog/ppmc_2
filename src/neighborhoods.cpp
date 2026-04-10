@@ -1,5 +1,6 @@
 #include "neighborhoods.h"
 
+#include <algorithm>
 #include <limits>
 #include <vector>
 
@@ -18,7 +19,7 @@ MoveM1 bestM1(const Solution& solution,
 
     for (int j = 0; j < n; ++j) {
         const int r1 = va[j];
-        const double cost_r1 = dm.at(j, r1);
+        const double cost_r1 = dm(j, r1);
         const double demand_j = instance.demand(j);
 
         for (int k = 0; k < p; ++k) {
@@ -28,7 +29,7 @@ MoveM1 bestM1(const Solution& solution,
             // Checar capacidade
             if (load[r2] + demand_j > instance.capacity(r2)) continue;
 
-            const double delta = dm.at(j, r2) - cost_r1;
+            const double delta = dm(j, r2) - cost_r1;
 
             if (delta < best.delta) {
                 best.client = j;
@@ -57,7 +58,7 @@ MoveM4 bestM4(const Solution& solution,
     for (int j1 = 0; j1 < n; ++j1) {
         const int r1 = va[j1];
         const double demand_j1 = instance.demand(j1);
-        const double cost_j1 = dm.at(j1, r1);
+        const double cost_j1 = dm(j1, r1);
 
         for (int j2 = j1 + 1; j2 < n; ++j2) {
             const int r2 = va[j2];
@@ -70,8 +71,8 @@ MoveM4 bestM4(const Solution& solution,
             // Checar capacidade de r2 apos trocar j2 por j1
             if (load[r2] - demand_j2 + demand_j1 > instance.capacity(r2)) continue;
 
-            const double cost_j2 = dm.at(j2, r2);
-            const double delta = dm.at(j1, r2) + dm.at(j2, r1) - cost_j1 - cost_j2;
+            const double cost_j2 = dm(j2, r2);
+            const double delta = dm(j1, r2) + dm(j2, r1) - cost_j1 - cost_j2;
 
             if (delta < best.delta) {
                 best.client1 = j1;
@@ -115,7 +116,7 @@ MoveM2 bestM2(const Solution& solution,
         // Custo atual do cluster
         double old_cluster_cost = 0.0;
         for (int j : cluster) {
-            old_cluster_cost += dm.at(j, r1);
+            old_cluster_cost += dm(j, r1);
         }
 
         // Testar cada nao-mediana do mesmo cluster como substituta
@@ -127,7 +128,7 @@ MoveM2 bestM2(const Solution& solution,
 
             double new_cluster_cost = 0.0;
             for (int j : cluster) {
-                new_cluster_cost += dm.at(j, r2);
+                new_cluster_cost += dm(j, r2);
             }
             const double delta = new_cluster_cost - old_cluster_cost;
 
@@ -153,7 +154,6 @@ MoveM3 bestM3(const Solution& solution,
     const int n = instance.numNodes();
     const std::vector<int>& medians = solution.medians();
     const std::vector<int>& va = solution.assignments();
-    const std::vector<double>& load = solution.load();
     const int p = static_cast<int>(medians.size());
 
     // Construir clusters e marcar medianas
@@ -169,29 +169,41 @@ MoveM3 bestM3(const Solution& solution,
     for (int ki = 0; ki < p; ++ki) {
         const int r1 = medians[ki];
         const std::vector<int>& cluster = clusters[r1];
+        const int csize = static_cast<int>(cluster.size());
 
         // Custo atual do cluster de r1
-        double old_cluster_cost = 0.0;
+        double old_cost = 0.0;
         for (int j : cluster) {
-            old_cluster_cost += dm.at(j, r1);
+            old_cost += dm(j, r1);
         }
 
-        // Testar cada nao-mediana de OUTRO cluster como substituta
+        // Precomputar: para cada orfao, distancia ao mais proximo excluindo r1
+        // Avaliacao sem restricao de capacidade (lower bound no delta real)
+        std::vector<double> nearest_dist(csize);
+        for (int ci = 0; ci < csize; ++ci) {
+            const int j = cluster[ci];
+            double best_d = std::numeric_limits<double>::max();
+            for (int mk = 0; mk < p; ++mk) {
+                const int m = medians[mk];
+                if (m == r1) continue;
+                best_d = std::min(best_d, dm(j, m));
+            }
+            nearest_dist[ci] = best_d;
+        }
+
+        // Testar cada nao-mediana r2 de outro cluster
         for (int r2 = 0; r2 < n; ++r2) {
             if (is_median[r2]) continue;
-            if (va[r2] == r1) continue;  // mesmo cluster = M2
+            if (va[r2] == r1) continue;
 
-            // Viabilidade: clientes de r1 + r2 cabem na capacidade de r2
-            if (load[r1] + instance.demand(r2) > instance.capacity(r2)) continue;
-
-            // Delta: clientes de r1 mudam de r1 para r2
-            double new_cluster_cost = 0.0;
-            for (int j : cluster) {
-                new_cluster_cost += dm.at(j, r2);
+            // Delta sem restricao de capacidade:
+            // cada orfao vai ao min(r2, nearest_existing)
+            double new_cost = 0.0;
+            for (int ci = 0; ci < csize; ++ci) {
+                new_cost += std::min(dm(cluster[ci], r2), nearest_dist[ci]);
             }
-            // r2 sai do cluster antigo: perde custo d(r2, r_old)
-            const double delta = new_cluster_cost - old_cluster_cost
-                               - dm.at(r2, va[r2]);
+
+            const double delta = new_cost - old_cost - dm(r2, va[r2]);
 
             if (delta < best.delta) {
                 best.old_median = r1;
@@ -227,7 +239,7 @@ void applyMove(Solution& solution, const MoveM2& move, const Instance& instance,
     }
 
     for (int j : clients) {
-        const double delta_j = dm.at(j, r2) - dm.at(j, r1);
+        const double delta_j = dm(j, r2) - dm(j, r1);
         solution.applyReallocation(j, r1, r2, delta_j, instance.demand(j));
     }
 }
@@ -241,21 +253,36 @@ void applyMove(Solution& solution, const MoveM3& move, const Instance& instance,
 
     // 1. Remover r2 do cluster antigo
     solution.applyReallocation(r2, r_old, r2,
-                               -dm.at(r2, r_old), instance.demand(r2));
+                               -dm(r2, r_old), instance.demand(r2));
 
     // 2. Substituir r1 por r2 no vetor de medianas
     solution.replaceMedian(r1, r2);
 
-    // 3. Mover todos os clientes de r1 para r2 (mesma logica do M2)
+    // 3. Cada orfao vai ao mais proximo viavel (incluindo r2)
     const std::vector<int>& va = solution.assignments();
-    std::vector<int> clients;
+    std::vector<int> orphans;
     for (int j = 0; j < n; ++j) {
-        if (va[j] == r1) clients.push_back(j);
+        if (va[j] == r1) orphans.push_back(j);
     }
 
-    for (int j : clients) {
-        const double delta_j = dm.at(j, r2) - dm.at(j, r1);
-        solution.applyReallocation(j, r1, r2, delta_j, instance.demand(j));
+    const std::vector<int>& medians = solution.medians();
+    for (int j : orphans) {
+        const double old_cost_j = dm(j, r1);
+        double best_d = std::numeric_limits<double>::max();
+        int best_m = -1;
+
+        for (int m : medians) {
+            if (solution.load()[m] + instance.demand(j) <= instance.capacity(m)) {
+                const double d = dm(j, m);
+                if (d < best_d || (d == best_d && m < best_m)) {
+                    best_d = d;
+                    best_m = m;
+                }
+            }
+        }
+
+        solution.applyReallocation(j, r1, best_m,
+                                   best_d - old_cost_j, instance.demand(j));
     }
 }
 

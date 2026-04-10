@@ -33,8 +33,8 @@ void perturbate(Solution& solution, int level,
             if (solution.load()[r2] - demand_j2 + demand_j1 > instance.capacity(r2))
                 continue;
 
-            const double delta = dm.at(j1, r2) + dm.at(j2, r1)
-                               - dm.at(j1, r1) - dm.at(j2, r2);
+            const double delta = dm(j1, r2) + dm(j2, r1)
+                               - dm(j1, r1) - dm(j2, r2);
             solution.applySwap(j1, j2, delta, demand_j1, demand_j2);
 
             found = true;

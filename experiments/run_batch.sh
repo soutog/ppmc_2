@@ -10,7 +10,7 @@ INSTANCE_DIR="./instances/sample_instance"
 RESULT_DIR="./experiments/results"
 
 NUM_RUNS=5
-SEED_BASE=42
+SEED_BASE=10
 ALPHA=0.6
 NUM_ITER_MAX=20
 CONSTRUCTION_MAX_TRIES=1000

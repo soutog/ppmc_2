@@ -1,0 +1,129 @@
+===========================================================================
+  IDEIAS DE MELHORIA PARA A HEURISTICA PPMC
+  Baseadas no artigo: Stefanello et al. (2014) - IRMA
+  Matheuristics for the capacitated p-median problem
+  Intl. Trans. in Op. Res. 22, 149-167
+===========================================================================
+
+Estado atual da implementacao:
+  GRASP (construcao) -> VND (M1, M2, M3, M4) -> ILS (perturbacao M4)
+
+---------------------------------------------------------------------------
+1. MULTI-START GRASP
+---------------------------------------------------------------------------
+Impacto: ALTO | Esforco: BAIXO | Prioridade: FAZER PRIMEIRO
+
+Hoje: uma unica construcao GRASP -> VND -> ILS.
+O artigo usa 1000 iteracoes na Fase 1 de construcao.
+
+Proposta:
+  - Rodar N construcoes GRASP + VND (ex: 10 a 50)
+  - Guardar a melhor solucao
+  - Aplicar ILS apenas sobre a melhor
+  - O ILS parte de um ponto muito melhor, o que melhora o resultado final
+
+Implementacao:
+  No main.cpp, fazer um loop de N construcoes variando a seed,
+  guardar a melhor solucao pos-VND, e so entao chamar o ILS.
+
+---------------------------------------------------------------------------
+2. CONSTRUCAO COM REGRET (Mulvey & Beck, 1984)
+---------------------------------------------------------------------------
+Impacto: MEDIO-ALTO | Esforco: MEDIO | Prioridade: FAZER SEGUNDO
+
+Hoje: clientes sao alocados em ordem aleatoria ao mediano mais proximo
+viavel (funcao assignClientsToNearestMedian em grasp_constructor.cpp).
+
+Proposta:
+  - Calcular o "regret" de cada cliente:
+      regret(j) = d(j, 2o_mediano_mais_proximo) - d(j, 1o_mediano_mais_proximo)
+  - Ordenar clientes por regret decrescente
+  - Alocar primeiro os clientes com ALTO regret (pouca alternativa)
+  - Clientes com baixo regret tem varias opcoes boas, podem esperar
+
+Beneficios:
+  - Reduz infactibilidades durante a construcao
+  - Melhora a qualidade media das solucoes construidas
+  - Complementa bem o multi-start (item 1)
+
+---------------------------------------------------------------------------
+3. PERTURBACAO COM TROCA DE MEDIANAS
+---------------------------------------------------------------------------
+Impacto: MEDIO-ALTO | Esforco: MEDIO | Prioridade: FAZER TERCEIRO
+
+Hoje: perturbacao do ILS so faz swaps aleatorios de clientes (M4).
+Isso nunca muda QUAIS nos sao medianas, limitando a diversificacao.
+
+Proposta:
+  Adicionar perturbacao que troca medianas:
+  1. Escolher aleatoriamente k medianas (1 ou 2)
+  2. Remove-las e substituir por nos aleatorios nao-medianas
+  3. Reassociar os clientes orfaos ao mediano viavel mais proximo
+
+Pseudocodigo:
+  para i = 1 ate k:
+      r_old = mediana aleatoria
+      r_new = no aleatorio nao-mediana
+      substituir r_old por r_new no vetor de medianas
+      para cada cliente j de r_old:
+          atribuir j ao mediano viavel mais proximo
+  recalcular custo
+
+Beneficio: permite ao ILS explorar regioes do espaco de solucoes
+que swaps M4 nunca alcancariam.
+
+---------------------------------------------------------------------------
+4. LARGE NEIGHBORHOOD SEARCH (LNS) - Inspirado na Fase 3 do IRMA
+---------------------------------------------------------------------------
+Impacto: ALTO | Esforco: ALTO | Prioridade: AVALIAR DEPOIS
+
+Observacao central do artigo: em solucoes boas, a maioria dos clusters
+NAO MUDA. Entao, faz sentido fixar a maior parte da solucao e
+re-otimizar apenas uma sub-regiao.
+
+O IRMA faz isso com CPLEX. A traducao heuristica seria:
+  1. Selecionar k clusters vizinhos (ex: 3-5 clusters proximos)
+  2. "Liberar" todos os clientes desses clusters
+  3. Re-otimizar apenas essa sub-regiao com VND completo
+     (ou heuristica gulosa + VND)
+  4. Manter o restante da solucao fixo
+
+Implementacao:
+  - Calcular distancia entre clusters (ex: distancia entre medianas)
+  - Selecionar um cluster de referencia e seus k vizinhos mais proximos
+  - Criar uma sub-instancia com apenas esses nos
+  - Aplicar construcao gulosa + VND na sub-instancia
+  - Reinserir a sub-solucao na solucao global
+
+Isso e o componente mais diferenciador do IRMA. Vale a pena se quiser
+competir com resultados de matheuristicas sem ter um solver MIP.
+
+---------------------------------------------------------------------------
+5. ALPHA REATIVO NO GRASP
+---------------------------------------------------------------------------
+Impacto: BAIXO-MEDIO | Esforco: BAIXO | Prioridade: BONUS FACIL
+
+Hoje: alpha fixo em 0.6.
+
+Proposta:
+  - No multi-start (item 1), variar alpha entre construcoes
+  - Valores menores (0.3): solucoes mais gulosas, melhores mas menos diversas
+  - Valores maiores (0.8-0.9): mais diversidade
+  - Usar um conjunto discreto: {0.3, 0.4, 0.5, 0.6, 0.7, 0.8}
+  - Sortear ou alternar entre eles a cada construcao
+
+Beneficio: diversifica o pool de solucoes iniciais sem custo extra.
+
+===========================================================================
+  RESUMO
+===========================================================================
+
+  #  | Ideia                          | Impacto     | Esforco | Prioridade
+  ---|--------------------------------|-------------|---------|------------
+  1  | Multi-start GRASP              | Alto        | Baixo   | 1o
+  2  | Construcao com regret          | Medio-alto  | Medio   | 2o
+  3  | Perturbacao troca de medianas  | Medio-alto  | Medio   | 3o
+  4  | LNS (sub-regiao)              | Alto        | Alto    | Avaliar
+  5  | Alpha reativo                  | Baixo-medio | Baixo   | Bonus
+
+===========================================================================

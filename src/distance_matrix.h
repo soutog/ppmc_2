@@ -18,6 +18,7 @@ public:
 
     int size() const;
     double at(int i, int j) const;
+    double operator()(int i, int j) const { return distances_[i * n_ + j]; }
 };
 
 #endif

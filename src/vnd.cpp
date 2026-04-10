@@ -41,9 +41,18 @@ void VND::run(Solution& solution) {
         case 2: {
             const MoveM3 move = bestM3(solution, instance_, distance_matrix_);
             if (move.found) {
+                // bestM3 avalia sem capacidade; aplicar com capacidade
+                // pode dar resultado diferente. Backup para restaurar se nao melhorar.
+                const double cost_before = solution.cost();
+                Solution backup = solution;
                 applyMove(solution, move, instance_, distance_matrix_);
-                ++iterations_m3_;
-                k = 0;
+                if (solution.cost() < cost_before) {
+                    ++iterations_m3_;
+                    k = 0;
+                } else {
+                    solution = backup;
+                    k = 3;
+                }
             } else {
                 k = 3;
             }
