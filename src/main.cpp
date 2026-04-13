@@ -5,6 +5,7 @@
 #include "ils.h"
 #include "instance.h"
 #include "partial_optimizer.h"
+#include "reduction.h"
 #include "vnd.h"
 
 #include <chrono>
@@ -41,6 +42,7 @@ int main(int argc, char* argv[]) {
 
     DistanceMatrix distance_matrix(instance);
     Evaluator evaluator(instance, distance_matrix);
+    R1Filter r1_filter(instance, distance_matrix, 2.0);
 
     GRASPConstructor grasp(instance,
                            distance_matrix,
@@ -69,6 +71,8 @@ int main(int argc, char* argv[]) {
               << ", alpha=" << alpha
               << ", construction_max_tries=" << construction_max_tries
               << ", NumIterMax=" << num_iter_max
+              << ", PO_R1_alpha=" << r1_filter.alpha()
+              << ", PO_R2_beta=10"
               << ", time_limit_s=" << time_limit_s
               << "\n";
 
@@ -108,7 +112,8 @@ int main(int argc, char* argv[]) {
     // === ILS ===
     std::mt19937 rng(seed);
     // === Partial Optimizer ===
-    PartialOptimizer partial_optimizer(instance, distance_matrix, evaluator);
+    PartialOptimizer partial_optimizer(instance, distance_matrix, evaluator,
+                                       &r1_filter);
     ClusteringSearch clustering_search(instance,
                                        distance_matrix,
                                        evaluator,

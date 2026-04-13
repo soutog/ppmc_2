@@ -42,20 +42,28 @@ std::string cplexStatusToString(IloAlgorithm::Status status) {
 PartialOptimizer::PartialOptimizer(const Instance& instance,
                                    const DistanceMatrix& dm,
                                    const Evaluator& evaluator,
+                                   const R1Filter* r1_filter,
                                    int omega,
                                    int min_clusters,
                                    int max_clusters_free,
                                    double time_limit_s,
+                                   int beta_r2,
+                                   int r2_min_nodes,
+                                   double r2_min_ratio,
                                    int max_calls,
                                    int max_no_improve,
                                    double total_time_budget_s)
     : instance_(instance),
       dm_(dm),
       evaluator_(evaluator),
+      r1_filter_(r1_filter),
       omega_(omega),
       min_clusters_(min_clusters),
       max_clusters_free_(max_clusters_free),
       time_limit_s_(time_limit_s),
+      beta_r2_(beta_r2),
+      r2_min_nodes_(r2_min_nodes),
+      r2_min_ratio_(r2_min_ratio),
       max_calls_(max_calls),
       max_no_improve_(max_no_improve),
       total_time_budget_s_(total_time_budget_s) {}
@@ -169,17 +177,34 @@ std::vector<int> PartialOptimizer::collectFreeNodes(
     return free_nodes;
 }
 
-std::vector<std::vector<int>> PartialOptimizer::buildDenseCandidateLists(
-    const std::vector<int>& free_nodes) const {
+std::vector<std::vector<int>> PartialOptimizer::buildReducedCandidateLists(
+    const std::vector<int>& free_nodes,
+    const std::vector<char>& allowed_open_mask) const {
     std::vector<std::vector<int>> candidate_lists(free_nodes.size());
     for (int i_idx = 0; i_idx < static_cast<int>(free_nodes.size()); ++i_idx) {
-        candidate_lists[i_idx].reserve(free_nodes.size());
+        const int client = free_nodes[i_idx];
         for (int j_idx = 0; j_idx < static_cast<int>(free_nodes.size()); ++j_idx) {
+            if (allowed_open_mask[j_idx] == 0) {
+                continue;
+            }
+
+            const int candidate = free_nodes[j_idx];
+            if (r1_filter_ != nullptr && !r1_filter_->keepsX(client, candidate)) {
+                continue;
+            }
+
             candidate_lists[i_idx].push_back(j_idx);
         }
     }
 
     return candidate_lists;
+}
+
+bool PartialOptimizer::useR2() const {
+    return instance_.numNodes() > r2_min_nodes_ &&
+           static_cast<double>(instance_.numNodes()) /
+                   std::max(1, instance_.numMedians()) >
+               r2_min_ratio_;
 }
 
 bool PartialOptimizer::solveSubproblem(Solution& solution,
@@ -193,8 +218,38 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
     const double objective_before = solution.cost();
     const int p_sub = static_cast<int>(free_medians.size());
     const int candidate_count = static_cast<int>(free_nodes.size());
+    std::vector<char> allowed_open_mask(candidate_count, 1);
+    if (useR2()) {
+        allowed_open_mask = R2Filter::allowedOpenMaskForSubproblem(
+            solution, free_nodes, free_medians, dm_, beta_r2_);
+    }
+
+    int allowed_open_count = 0;
+    for (char allowed : allowed_open_mask) {
+        allowed_open_count += (allowed != 0 ? 1 : 0);
+    }
+    if (allowed_open_count < p_sub) {
+        std::cout << "[PARTIAL_OPT] skipped reason=r2_open_lt_psub"
+                  << " ref_cluster=" << ref_median
+                  << " free_clusters=" << free_medians.size()
+                  << " free_nodes=" << free_nodes.size()
+                  << " r2_candidates=" << allowed_open_count
+                  << " p_sub=" << p_sub << "\n";
+        return false;
+    }
+
     const std::vector<std::vector<int>> candidate_lists =
-        buildDenseCandidateLists(free_nodes);
+        buildReducedCandidateLists(free_nodes, allowed_open_mask);
+    for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
+        if (candidate_lists[i_idx].empty()) {
+            std::cout << "[PARTIAL_OPT] skipped reason=r1_empty_assignment"
+                      << " ref_cluster=" << ref_median
+                      << " client=" << free_nodes[i_idx]
+                      << " free_nodes=" << free_nodes.size()
+                      << " r2_candidates=" << allowed_open_count << "\n";
+            return false;
+        }
+    }
 
     // Mapeamento reverso: para cada candidato j, os pares (i_idx, k_local)
     // de clientes que podem ser atribuidos a ele. Isso elimina o std::find
@@ -224,11 +279,13 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
             std::ostringstream name;
             name << "y_" << free_nodes[j_idx];
             y[j_idx].setName(name.str().c_str());
+            if (allowed_open_mask[j_idx] == 0) {
+                model.add(y[j_idx] == 0);
+            }
         }
 
-        // Modelo denso na subregiao livre: cada cliente pode ser atribuido a
-        // qualquer candidato da subregiao. Os filtros R1/R2 verdadeiros serao
-        // aplicados depois, explicitamente, e nao via esta lista ad hoc.
+        // R2 restringe quais nos livres podem abrir mediana (y_j) e R1
+        // restringe as atribuicoes x_ij por cliente da subregiao.
         IloArray<IloBoolVarArray> x(env, candidate_count);
         for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
             const int lsize = static_cast<int>(candidate_lists[i_idx].size());
@@ -297,8 +354,7 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
         cplex.setWarning(env.getNullStream());
         cplex.setParam(IloCplex::Param::TimeLimit, time_limit_s_);
 
-        // Warm start: como a subregiao agora e densa, a solucao corrente e
-        // sempre representavel no subproblema.
+        // Warm start apenas quando a solucao corrente cabe no modelo reduzido.
         {
             std::vector<int> global_to_local(instance_.numNodes(), -1);
             for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
@@ -309,32 +365,59 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
                 is_currently_free_median[m] = true;
             }
 
-            IloNumVarArray start_vars(env);
-            IloNumArray start_vals(env);
-
-            for (int j_idx = 0; j_idx < candidate_count; ++j_idx) {
-                start_vars.add(y[j_idx]);
-                start_vals.add(is_currently_free_median[free_nodes[j_idx]] ? 1.0 : 0.0);
-            }
-
             const std::vector<int>& current_assignments = solution.assignments();
+            bool warm_start_representable = true;
             for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
                 const int client = free_nodes[i_idx];
                 const int current_med_global = current_assignments[client];
                 const int current_med_local = global_to_local[current_med_global];
-                const int lsize = static_cast<int>(candidate_lists[i_idx].size());
-                for (int k = 0; k < lsize; ++k) {
-                    start_vars.add(x[i_idx][k]);
-                    const double v =
-                        (candidate_lists[i_idx][k] == current_med_local) ? 1.0 : 0.0;
-                    start_vals.add(v);
+                if (current_med_local < 0 ||
+                    allowed_open_mask[current_med_local] == 0 ||
+                    !std::binary_search(candidate_lists[i_idx].begin(),
+                                        candidate_lists[i_idx].end(),
+                                        current_med_local)) {
+                    warm_start_representable = false;
+                    break;
                 }
             }
 
-            cplex.addMIPStart(start_vars, start_vals,
-                              IloCplex::MIPStartCheckFeas);
-            start_vals.end();
-            start_vars.end();
+            for (int median : free_medians) {
+                const int local_idx = global_to_local[median];
+                if (local_idx < 0 || allowed_open_mask[local_idx] == 0) {
+                    warm_start_representable = false;
+                    break;
+                }
+            }
+
+            if (warm_start_representable) {
+                IloNumVarArray start_vars(env);
+                IloNumArray start_vals(env);
+
+                for (int j_idx = 0; j_idx < candidate_count; ++j_idx) {
+                    start_vars.add(y[j_idx]);
+                    start_vals.add(is_currently_free_median[free_nodes[j_idx]] ? 1.0
+                                                                               : 0.0);
+                }
+
+                for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
+                    const int client = free_nodes[i_idx];
+                    const int current_med_global = current_assignments[client];
+                    const int current_med_local = global_to_local[current_med_global];
+                    const int lsize = static_cast<int>(candidate_lists[i_idx].size());
+                    for (int k = 0; k < lsize; ++k) {
+                        start_vars.add(x[i_idx][k]);
+                        const double v =
+                            (candidate_lists[i_idx][k] == current_med_local) ? 1.0
+                                                                             : 0.0;
+                        start_vals.add(v);
+                    }
+                }
+
+                cplex.addMIPStart(start_vars, start_vals,
+                                  IloCplex::MIPStartCheckFeas);
+                start_vals.end();
+                start_vars.end();
+            }
         }
 
         const bool solved = cplex.solve();
@@ -398,7 +481,7 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
                   << "[PARTIAL_OPT] ref_cluster=" << ref_median
                   << " | free_clusters=" << free_medians.size()
                   << " | free_nodes=" << free_nodes.size()
-                  << " | candidate_medians=" << candidate_count
+                  << " | candidate_medians=" << allowed_open_count
                   << " | vars_x=" << vars_x
                   << " | fo_before=" << objective_before
                   << " | fo_after=" << objective_after

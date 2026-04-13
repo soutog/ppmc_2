@@ -1,6 +1,6 @@
 temp/partial_optimizer.o: src/partial_optimizer.cpp \
  src/partial_optimizer.h src/distance_matrix.h src/instance.h \
- src/evaluator.h src/solution.h \
+ src/evaluator.h src/solution.h src/reduction.h \
  /opt/ibm/ILOG/CPLEX_Studio2211/cplex/include/ilcplex/ilocplex.h \
  /opt/ibm/ILOG/CPLEX_Studio2211/concert/include/ilconcert/ilomodel.h \
  /opt/ibm/ILOG/CPLEX_Studio2211/concert/include/ilconcert/iloalg.h \
@@ -54,6 +54,7 @@ src/distance_matrix.h:
 src/instance.h:
 src/evaluator.h:
 src/solution.h:
+src/reduction.h:
 /opt/ibm/ILOG/CPLEX_Studio2211/cplex/include/ilcplex/ilocplex.h:
 /opt/ibm/ILOG/CPLEX_Studio2211/concert/include/ilconcert/ilomodel.h:
 /opt/ibm/ILOG/CPLEX_Studio2211/concert/include/ilconcert/iloalg.h:
