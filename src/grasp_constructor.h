@@ -49,6 +49,15 @@ public:
 
     Solution construct();
 
+    // Reconstroi uma solucao a partir de um conjunto de p medianas fornecido.
+    // Usado pelo destroy/repair do ClusteringSearch: preserva p-k medianas
+    // sobreviventes e sobrepoe k medianas novas antes de chamar o pipeline
+    // iterativo (regret + recompute). Retorna true se a solucao resultante
+    // for viavel.
+    bool reconstructFromMedians(const std::vector<int>& medians,
+                                Solution& solution,
+                                std::string* error = nullptr);
+
     double alpha() const;
     int maxTries() const;
     int lastAttempts() const;

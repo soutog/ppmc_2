@@ -1,4 +1,5 @@
 #include "candidate_lists.h"
+#include "clustering_search.h"
 #include "distance_matrix.h"
 #include "evaluator.h"
 #include "grasp_constructor.h"
@@ -18,19 +19,21 @@ int main(int argc, char* argv[]) {
     if (argc < 2) {
         std::cerr << "Uso: " << argv[0]
                   << " <arquivo_instancia> [seed] [alpha] [construction_max_tries]"
-                     " [num_iter_max]\n";
+                     " [num_iter_max] [time_limit_s]\n";
         return 1;
     }
 
     const std::string instance_path = argv[1];
     const unsigned int seed =
         (argc >= 3 ? static_cast<unsigned int>(std::strtoul(argv[2], nullptr, 10))
-                   : 123456u);
+                   : 42u);
     const double alpha = (argc >= 4 ? std::strtod(argv[3], nullptr) : 0.6);
     const int construction_max_tries =
         (argc >= 5 ? std::atoi(argv[4]) : 1000);
     const int num_iter_max =
-        (argc >= 6 ? std::atoi(argv[5]) : 20);
+        (argc >= 6 ? std::atoi(argv[5]) : 60);
+    const double cli_time_limit_s =
+        (argc >= 7 ? std::strtod(argv[6], nullptr) : -1.0);
 
     Instance instance;
     if (!instance.read(instance_path)) {
@@ -40,16 +43,15 @@ int main(int argc, char* argv[]) {
     DistanceMatrix distance_matrix(instance);
     Evaluator evaluator(instance, distance_matrix);
 
-    // R1 estatico: top-t nos mais proximos por no, usado como filtro de
-    // M1/M3 no VND/ILS. Mesmo criterio de R1 adotado no PartialOptimizer,
-    // agora transversal ao metodo (coerencia metodologica IRMA).
-    // Escala com n: clusters grandes (instancias grandes) precisam de pool
-    // maior para que M3 encontre candidatos internos ao cluster, mas ainda
-    // muito menor que n (reduz o laco externo de M3 de n para top_t).
+    // R1 desativado nesta fase para que o VND explore todo o espaco de busca.
+    // O objeto CandidateLists permanece disponivel para retomada futura, mas
+    // nao e passado a VND/ILS/CS — todos recebem nullptr como filtro.
     const int vnd_top_t =
         std::min(instance.numNodes() - 1, std::max(50, instance.numNodes() / 5));
     CandidateLists candidate_lists(instance, distance_matrix, vnd_top_t);
-    std::cout << "CandidateLists top_t=" << vnd_top_t << "\n";
+    const CandidateLists* r1_filter = nullptr;
+    std::cout << "CandidateLists top_t=" << vnd_top_t
+              << " (inativo, VND/ILS/CS recebem nullptr)\n";
 
     GRASPConstructor grasp(instance,
                            distance_matrix,
@@ -58,12 +60,27 @@ int main(int argc, char* argv[]) {
                            construction_max_tries,
                            seed);
 
+    // Orcamento de tempo por default depende do tamanho da instancia;
+    // pode ser sobrescrito pela CLI. num_iter_max continua valendo como
+    // segundo criterio (o que primeiro atingir encerra o ILS).
+    double time_limit_s;
+    if (cli_time_limit_s >= 0.0) {
+        time_limit_s = cli_time_limit_s;
+    } else {
+        const int n = instance.numNodes();
+        if (n <= 200) time_limit_s = 30.0;
+        else if (n <= 500) time_limit_s = 60.0;
+        else if (n <= 1000) time_limit_s = 120.0;
+        else time_limit_s = 300.0;
+    }
+
     instance.printSummary();
     std::cout << "\nParametros\n";
     std::cout << "seed=" << seed
               << ", alpha=" << alpha
               << ", construction_max_tries=" << construction_max_tries
               << ", NumIterMax=" << num_iter_max
+              << ", time_limit_s=" << time_limit_s
               << "\n";
 
     const auto t_total_start = std::chrono::steady_clock::now();
@@ -81,7 +98,7 @@ int main(int argc, char* argv[]) {
     std::cout << "\nCusto GRASP: " << grasp_cost << "\n";
 
     // === VND inicial ===
-    VND vnd(instance, distance_matrix, &candidate_lists);
+    VND vnd(instance, distance_matrix, r1_filter);
     const auto t_vnd_start = std::chrono::steady_clock::now();
     vnd.run(solution);
     const auto t_vnd_end = std::chrono::steady_clock::now();
@@ -101,41 +118,40 @@ int main(int argc, char* argv[]) {
 
     // === ILS ===
     std::mt19937 rng(seed);
-    ILS ils(instance, distance_matrix, num_iter_max, &candidate_lists);
+    // === Partial Optimizer ===
+    PartialOptimizer partial_optimizer(instance, distance_matrix, evaluator);
+    ClusteringSearch clustering_search(instance,
+                                       distance_matrix,
+                                       evaluator,
+                                       r1_filter,
+                                       &partial_optimizer,
+                                       &grasp);
+    ILS ils(instance, distance_matrix, num_iter_max, r1_filter, time_limit_s);
     const auto t_ils_start = std::chrono::steady_clock::now();
-    Solution best = ils.run(solution, rng);
+    Solution best = ils.run(solution, rng, &clustering_search);
     const auto t_ils_end = std::chrono::steady_clock::now();
     const double ils_secs = std::chrono::duration<double>(t_ils_end - t_ils_start).count();
 
-    const double ils_cost = best.cost();
-    std::cout << "\nCusto ILS:   " << ils_cost << "\n";
-    std::cout << "Melhoria sobre VND: " << (vnd_cost - ils_cost) << " ("
+    const double final_cost = best.cost();
+    std::cout << "\nCusto FINAL: " << final_cost << "\n";
+    std::cout << "Melhoria sobre VND: " << (vnd_cost - final_cost) << " ("
               << std::setprecision(2)
-              << ((vnd_cost - ils_cost) / vnd_cost * 100.0) << "%)\n";
+              << ((vnd_cost - final_cost) / vnd_cost * 100.0) << "%)\n";
     std::cout << std::setprecision(4);
     std::cout << "Iteracoes ILS: " << ils.totalIterations()
               << ", melhorias: " << ils.improvements() << "\n";
+    const ClusteringSearchStats& cs_stats = clustering_search.stats();
+    std::cout << "CS observacoes: " << cs_stats.observations
+              << ", clusters ativos: " << cs_stats.active_clusters
+              << ", novos clusters: " << cs_stats.new_clusters
+              << ", updates de centro: " << cs_stats.center_updates << "\n";
+    std::cout << "CS gatilhos PO: " << cs_stats.po_triggers
+              << ", melhorias PO: " << cs_stats.po_improvements
+              << ", ganho total PO: " << cs_stats.po_total_gain << "\n";
+    std::cout << "CS destroy/repair: " << cs_stats.destroy_repair_calls
+              << ", com melhoria: " << cs_stats.destroy_repair_improvements
+              << ", promocoes ILS: " << cs_stats.ils_current_promotions << "\n";
     std::cout << "Tempo ILS: " << ils_secs << "s\n";
-
-    // === Partial Optimizer ===
-    PartialOptimizer partial_optimizer(instance, distance_matrix, evaluator);
-    const auto t_po_start = std::chrono::steady_clock::now();
-    const PartialOptimizerStats po_stats = partial_optimizer.run(best);
-    const auto t_po_end = std::chrono::steady_clock::now();
-    const double po_secs =
-        std::chrono::duration<double>(t_po_end - t_po_start).count();
-
-    const double post_po_cost = best.cost();
-    std::cout << "\nCusto pos-PartialOpt: " << post_po_cost << "\n";
-    std::cout << "Melhoria sobre ILS:   " << (ils_cost - post_po_cost) << " ("
-              << std::setprecision(2)
-              << ((ils_cost - post_po_cost) / ils_cost * 100.0) << "%)\n";
-    std::cout << std::setprecision(4);
-    std::cout << "PartialOpt melhorou: " << (po_stats.improved ? "sim" : "nao") << "\n";
-    std::cout << "PartialOpt chamadas: " << po_stats.calls
-              << ", melhorias: " << po_stats.improving_calls
-              << ", skips: " << po_stats.skipped_calls << "\n";
-    std::cout << "Tempo PartialOpt: " << po_secs << "s\n";
 
     const auto t_total_end = std::chrono::steady_clock::now();
     const double total_secs = std::chrono::duration<double>(t_total_end - t_total_start).count();
@@ -144,10 +160,10 @@ int main(int argc, char* argv[]) {
     // === Validacao final ===
     std::string error;
     if (!evaluator.validate(best, &error)) {
-        std::cout << "Erro de validacao pos-ILS: " << error << "\n";
+        std::cout << "Erro de validacao final: " << error << "\n";
         return 3;
     }
-    std::cout << "Validacao pos-ILS: OK\n";
+    std::cout << "Validacao final: OK\n";
 
     return 0;
 }

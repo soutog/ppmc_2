@@ -9,12 +9,15 @@
 #include <array>
 #include <random>
 
+class ClusteringSearch;
+
 class ILS {
 private:
     const Instance& instance_;
     const DistanceMatrix& distance_matrix_;
     const CandidateLists* r1_filter_;
     int num_iter_max_;
+    double time_limit_s_;
 
     // Estatisticas
     int total_iterations_;
@@ -29,10 +32,11 @@ public:
     ILS(const Instance& instance,
         const DistanceMatrix& dm,
         int num_iter_max,
-        const CandidateLists* r1_filter = nullptr);
+        const CandidateLists* r1_filter = nullptr,
+        double time_limit_s = 0.0);
 
     // Recebe solucao ja refinada por VND. Retorna a melhor encontrada.
-    Solution run(Solution s, std::mt19937& rng);
+    Solution run(Solution s, std::mt19937& rng, ClusteringSearch* cs = nullptr);
 
     int totalIterations() const;
     int improvements() const;

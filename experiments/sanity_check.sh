@@ -1,7 +1,11 @@
 #!/bin/bash
-# Sanity check: 3 instancias pequenas (p <= 15), 5 seeds cada.
-# Nessas instancias o CPLEX e o ILS do paper batem o otimo exato.
-# Se aqui nao bater, e bug de implementacao, nao variancia.
+# Sanity check da arquitetura atual:
+#   GRASP -> VND -> ILS + Clustering Search
+# onde o Partial Optimizer e disparado dentro do CS.
+#
+# As instancias pequenas continuam servindo como teste de consistencia:
+# se houver degradacao grande nelas, o problema tende a ser de implementacao,
+# e nao apenas variancia estocastica.
 #
 # Uso:
 #   make && ./experiments/sanity_check.sh
@@ -25,9 +29,9 @@ RUN_TIMEOUT=600s
 
 mkdir -p "$RESULT_DIR"
 OUTFILE="$RESULT_DIR/sanity_$(date +%Y%m%d_%H%M%S).csv"
-echo "instance,group,p,run,seed,grasp_cost,vnd_cost,ils_cost,partial_opt_cost,partial_opt_improved,ils_iterations,ils_improvements,time_partial_opt_s,time_total_s,status" > "$OUTFILE"
+echo "instance,group,p,run,seed,grasp_cost,vnd_cost,final_cost,ils_iterations,ils_improvements,cs_observations,cs_active_clusters,cs_new_clusters,cs_center_updates,cs_po_triggers,cs_po_improvements,cs_po_total_gain,time_ils_s,time_total_s,status" > "$OUTFILE"
 
-# instancia  grupo  p  referencia_ILS  referencia_CPLEX
+# instancia  grupo  p  referencia_ILS_paper  referencia_CPLEX
 INSTANCES=(
     "instances/lin318_005.txt lin318 5  180343.00 180281.21"
     "instances/lin318_015.txt lin318 15  89041.59  88901.56"
@@ -41,8 +45,8 @@ if [[ ! -x "$BIN" ]]; then
     exit 1
 fi
 
-printf "%-22s %-6s %4s %6s %12s %12s %10s %10s %9s %8s\n" \
-    "instancia" "seed" "p" "run" "ILS" "FINAL" "gap_FINAL%" "gap_CPX%" "dPO" "tempo"
+printf "%-22s %-6s %4s %6s %12s %10s %10s %9s %8s\n" \
+    "instancia" "seed" "p" "run" "FINAL" "gap_ILS%" "gap_CPX%" "CS_PO" "tempo"
 echo "-------------------------------------------------------------------------------------------------------"
 
 for row in "${INSTANCES[@]}"; do
@@ -69,44 +73,50 @@ for row in "${INSTANCES[@]}"; do
 
         GRASP_COST=$(echo "$OUTPUT" | grep "Custo GRASP:" | awk '{print $NF}')
         VND_COST=$(echo   "$OUTPUT" | grep "Custo VND:"   | awk '{print $NF}')
-        ILS_COST=$(echo   "$OUTPUT" | grep "Custo ILS:"   | awk '{print $NF}')
-        PO_COST=$(echo    "$OUTPUT" | grep "Custo pos-PartialOpt:" | awk '{print $NF}')
-        PO_IMPROVED=$(echo "$OUTPUT" | grep "PartialOpt melhorou:" | awk '{print $NF}')
+        FINAL_COST=$(echo "$OUTPUT" | grep "Custo FINAL:" | awk '{print $NF}')
         ILS_ITER=$(echo   "$OUTPUT" | grep "Iteracoes ILS:" | sed -E 's/.*Iteracoes ILS: ([0-9]+).*/\1/')
         ILS_IMPR=$(echo   "$OUTPUT" | grep "melhorias:"     | sed -E 's/.*melhorias: ([0-9]+).*/\1/')
-        T_PO=$(echo       "$OUTPUT" | grep "Tempo PartialOpt:" | awk '{print $NF}' | tr -d 's')
+        CS_OBS=$(echo "$OUTPUT" | grep "CS observacoes:" | sed -E 's/.*CS observacoes: ([0-9]+).*/\1/')
+        CS_ACTIVE=$(echo "$OUTPUT" | grep "CS observacoes:" | sed -E 's/.*clusters ativos: ([0-9]+).*/\1/')
+        CS_NEW=$(echo "$OUTPUT" | grep "CS observacoes:" | sed -E 's/.*novos clusters: ([0-9]+).*/\1/')
+        CS_UPD=$(echo "$OUTPUT" | grep "CS observacoes:" | sed -E 's/.*updates de centro: ([0-9]+).*/\1/')
+        CS_PO_TRIG=$(echo "$OUTPUT" | grep "CS gatilhos PO:" | sed -E 's/.*CS gatilhos PO: ([0-9]+).*/\1/')
+        CS_PO_IMPR=$(echo "$OUTPUT" | grep "CS gatilhos PO:" | sed -E 's/.*melhorias PO: ([0-9]+).*/\1/')
+        CS_PO_GAIN=$(echo "$OUTPUT" | grep "CS gatilhos PO:" | sed -E 's/.*ganho total PO: ([0-9.]+).*/\1/')
+        T_ILS=$(echo "$OUTPUT" | grep "Tempo ILS:" | awk '{print $NF}' | tr -d 's')
         T_TOT=$(echo      "$OUTPUT" | grep "Tempo total:"  | awk '{print $NF}' | tr -d 's')
 
-        if [[ -z "$PO_COST" ]]; then
-            PO_COST="$ILS_COST"
+        if [[ -z "$FINAL_COST" ]]; then
+            printf "%-22s %-6s %4s %6s  ERRO (sem custo final)\n" "$FNAME" "$SEED" "$P_VAL" "$((r+1))"
+            continue
         fi
-        if [[ -z "$PO_IMPROVED" ]]; then
-            PO_IMPROVED="nao"
-        fi
-        if [[ -z "$T_PO" ]]; then
-            T_PO="0"
-        fi
+        if [[ -z "$CS_OBS" ]]; then CS_OBS="0"; fi
+        if [[ -z "$CS_ACTIVE" ]]; then CS_ACTIVE="0"; fi
+        if [[ -z "$CS_NEW" ]]; then CS_NEW="0"; fi
+        if [[ -z "$CS_UPD" ]]; then CS_UPD="0"; fi
+        if [[ -z "$CS_PO_TRIG" ]]; then CS_PO_TRIG="0"; fi
+        if [[ -z "$CS_PO_IMPR" ]]; then CS_PO_IMPR="0"; fi
+        if [[ -z "$CS_PO_GAIN" ]]; then CS_PO_GAIN="0"; fi
+        if [[ -z "$T_ILS" ]]; then T_ILS="0"; fi
 
-        if echo "$OUTPUT" | grep -q "Validacao pos-ILS: OK"; then
+        if echo "$OUTPUT" | grep -q "Validacao final: OK"; then
             STATUS="OK"
         else
             STATUS="FAIL"
         fi
 
-        GAP_FINAL=$(awk -v v="$PO_COST" -v r="$REF_ILS" 'BEGIN{printf "%.3f", (v-r)/r*100}')
-        GAP_CPX=$(awk -v v="$PO_COST" -v r="$REF_CPX" 'BEGIN{printf "%.3f", (v-r)/r*100}')
-        DELTA_PO=$(awk -v a="$ILS_COST" -v b="$PO_COST" 'BEGIN{printf "%.2f", a-b}')
+        GAP_FINAL=$(awk -v v="$FINAL_COST" -v r="$REF_ILS" 'BEGIN{printf "%.3f", (v-r)/r*100}')
+        GAP_CPX=$(awk -v v="$FINAL_COST" -v r="$REF_CPX" 'BEGIN{printf "%.3f", (v-r)/r*100}')
 
-        printf "%-22s %-6s %4s %6s %12.2f %12.2f %10s %10s %9s %8ss %s\n" \
-            "$FNAME" "$SEED" "$P_VAL" "$((r+1))" "$ILS_COST" "$PO_COST" "$GAP_FINAL" "$GAP_CPX" "$DELTA_PO" "$T_TOT" "$STATUS"
+        printf "%-22s %-6s %4s %6s %12.2f %10s %10s %9s %8ss %s\n" \
+            "$FNAME" "$SEED" "$P_VAL" "$((r+1))" "$FINAL_COST" "$GAP_FINAL" "$GAP_CPX" "$CS_PO_TRIG/$CS_PO_IMPR" "$T_TOT" "$STATUS"
 
-        echo "$FNAME,$GROUP,$P_VAL,$((r+1)),$SEED,$GRASP_COST,$VND_COST,$ILS_COST,$PO_COST,$PO_IMPROVED,$ILS_ITER,$ILS_IMPR,$T_PO,$T_TOT,$STATUS" >> "$OUTFILE"
+        echo "$FNAME,$GROUP,$P_VAL,$((r+1)),$SEED,$GRASP_COST,$VND_COST,$FINAL_COST,$ILS_ITER,$ILS_IMPR,$CS_OBS,$CS_ACTIVE,$CS_NEW,$CS_UPD,$CS_PO_TRIG,$CS_PO_IMPR,$CS_PO_GAIN,$T_ILS,$T_TOT,$STATUS" >> "$OUTFILE"
 
-        # best e mean do algoritmo final (apos PartialOpt).
-        if [[ -z "$BEST_FINAL" ]] || awk -v a="$PO_COST" -v b="$BEST_FINAL" 'BEGIN{exit !(a<b)}'; then
-            BEST_FINAL="$PO_COST"
+        if [[ -z "$BEST_FINAL" ]] || awk -v a="$FINAL_COST" -v b="$BEST_FINAL" 'BEGIN{exit !(a<b)}'; then
+            BEST_FINAL="$FINAL_COST"
         fi
-        SUM_FINAL=$(awk -v s="$SUM_FINAL" -v v="$PO_COST" 'BEGIN{printf "%.6f", s+v}')
+        SUM_FINAL=$(awk -v s="$SUM_FINAL" -v v="$FINAL_COST" 'BEGIN{printf "%.6f", s+v}')
         COUNT=$((COUNT+1))
     done
 

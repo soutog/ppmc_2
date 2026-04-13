@@ -308,6 +308,18 @@ Solution GRASPConstructor::construct() {
     return solution;
 }
 
+bool GRASPConstructor::reconstructFromMedians(const std::vector<int>& medians,
+                                               Solution& solution,
+                                               std::string* error) {
+    if (static_cast<int>(medians.size()) != instance_.numMedians()) {
+        if (error != nullptr) {
+            *error = "reconstructFromMedians: tamanho do conjunto diferente de p.";
+        }
+        return false;
+    }
+    return buildIterativeSolution(medians, solution, error);
+}
+
 double GRASPConstructor::alpha() const {
     return alpha_;
 }
