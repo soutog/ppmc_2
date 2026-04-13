@@ -1,7 +1,6 @@
 #ifndef NEIGHBORHOODS_H
 #define NEIGHBORHOODS_H
 
-#include "candidate_lists.h"
 #include "distance_matrix.h"
 #include "instance.h"
 #include "solution.h"
@@ -37,8 +36,7 @@ struct MoveM4 {
 
 MoveM1 bestM1(const Solution& solution,
               const Instance& instance,
-              const DistanceMatrix& dm,
-              const CandidateLists* r1 = nullptr);
+              const DistanceMatrix& dm);
 
 MoveM2 bestM2(const Solution& solution,
               const Instance& instance,
@@ -46,8 +44,7 @@ MoveM2 bestM2(const Solution& solution,
 
 MoveM3 bestM3(const Solution& solution,
               const Instance& instance,
-              const DistanceMatrix& dm,
-              const CandidateLists* r1 = nullptr);
+              const DistanceMatrix& dm);
 
 MoveM4 bestM4(const Solution& solution,
               const Instance& instance,

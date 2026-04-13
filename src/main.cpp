@@ -1,4 +1,3 @@
-#include "candidate_lists.h"
 #include "clustering_search.h"
 #include "distance_matrix.h"
 #include "evaluator.h"
@@ -42,16 +41,6 @@ int main(int argc, char* argv[]) {
 
     DistanceMatrix distance_matrix(instance);
     Evaluator evaluator(instance, distance_matrix);
-
-    // R1 desativado nesta fase para que o VND explore todo o espaco de busca.
-    // O objeto CandidateLists permanece disponivel para retomada futura, mas
-    // nao e passado a VND/ILS/CS — todos recebem nullptr como filtro.
-    const int vnd_top_t =
-        std::min(instance.numNodes() - 1, std::max(50, instance.numNodes() / 5));
-    CandidateLists candidate_lists(instance, distance_matrix, vnd_top_t);
-    const CandidateLists* r1_filter = nullptr;
-    std::cout << "CandidateLists top_t=" << vnd_top_t
-              << " (inativo, VND/ILS/CS recebem nullptr)\n";
 
     GRASPConstructor grasp(instance,
                            distance_matrix,
@@ -98,7 +87,7 @@ int main(int argc, char* argv[]) {
     std::cout << "\nCusto GRASP: " << grasp_cost << "\n";
 
     // === VND inicial ===
-    VND vnd(instance, distance_matrix, r1_filter);
+    VND vnd(instance, distance_matrix);
     const auto t_vnd_start = std::chrono::steady_clock::now();
     vnd.run(solution);
     const auto t_vnd_end = std::chrono::steady_clock::now();
@@ -123,10 +112,9 @@ int main(int argc, char* argv[]) {
     ClusteringSearch clustering_search(instance,
                                        distance_matrix,
                                        evaluator,
-                                       r1_filter,
                                        &partial_optimizer,
                                        &grasp);
-    ILS ils(instance, distance_matrix, num_iter_max, r1_filter, time_limit_s);
+    ILS ils(instance, distance_matrix, num_iter_max, time_limit_s);
     const auto t_ils_start = std::chrono::steady_clock::now();
     Solution best = ils.run(solution, rng, &clustering_search);
     const auto t_ils_end = std::chrono::steady_clock::now();

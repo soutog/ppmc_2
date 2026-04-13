@@ -9,7 +9,6 @@
 ClusteringSearch::ClusteringSearch(const Instance& instance,
                                    const DistanceMatrix& dm,
                                    const Evaluator& evaluator,
-                                   const CandidateLists* r1_filter,
                                    PartialOptimizer* partial_optimizer,
                                    GRASPConstructor* grasp,
                                    int gamma,
@@ -20,7 +19,6 @@ ClusteringSearch::ClusteringSearch(const Instance& instance,
     : instance_(instance),
       dm_(dm),
       evaluator_(evaluator),
-      r1_filter_(r1_filter),
       partial_optimizer_(partial_optimizer),
       grasp_(grasp),
       gamma_(std::max(1, gamma)),
@@ -144,7 +142,7 @@ void ClusteringSearch::intensifyCluster(ClusterInfo& cluster,
     const double center_before = cluster.center.cost();
 
     partial_optimizer_->run(candidate);
-    VND vnd(instance_, dm_, r1_filter_);
+    VND vnd(instance_, dm_);
     vnd.run(candidate);
 
     std::string error;

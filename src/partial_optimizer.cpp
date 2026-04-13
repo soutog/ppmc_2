@@ -10,7 +10,6 @@
 #include <limits>
 #include <numeric>
 #include <sstream>
-#include <unordered_map>
 
 ILOSTLBEGIN
 
@@ -47,8 +46,6 @@ PartialOptimizer::PartialOptimizer(const Instance& instance,
                                    int min_clusters,
                                    int max_clusters_free,
                                    double time_limit_s,
-                                   double alpha_r1,
-                                   int top_t,
                                    int max_calls,
                                    int max_no_improve,
                                    double total_time_budget_s)
@@ -59,8 +56,6 @@ PartialOptimizer::PartialOptimizer(const Instance& instance,
       min_clusters_(min_clusters),
       max_clusters_free_(max_clusters_free),
       time_limit_s_(time_limit_s),
-      alpha_r1_(alpha_r1),
-      top_t_(top_t),
       max_calls_(max_calls),
       max_no_improve_(max_no_improve),
       total_time_budget_s_(total_time_budget_s) {}
@@ -174,67 +169,13 @@ std::vector<int> PartialOptimizer::collectFreeNodes(
     return free_nodes;
 }
 
-std::vector<std::vector<int>> PartialOptimizer::buildCandidateLists(
-    const Solution& solution, const std::vector<int>& free_nodes) const {
-    std::unordered_map<int, int> node_to_local;
-    node_to_local.reserve(free_nodes.size());
-    for (int idx = 0; idx < static_cast<int>(free_nodes.size()); ++idx) {
-        node_to_local[free_nodes[idx]] = idx;
-    }
-
+std::vector<std::vector<int>> PartialOptimizer::buildDenseCandidateLists(
+    const std::vector<int>& free_nodes) const {
     std::vector<std::vector<int>> candidate_lists(free_nodes.size());
     for (int i_idx = 0; i_idx < static_cast<int>(free_nodes.size()); ++i_idx) {
-        const int client = free_nodes[i_idx];
-        std::vector<std::pair<double, int>> ordered;
-        ordered.reserve(free_nodes.size());
-
+        candidate_lists[i_idx].reserve(free_nodes.size());
         for (int j_idx = 0; j_idx < static_cast<int>(free_nodes.size()); ++j_idx) {
-            ordered.push_back({dm_.at(client, free_nodes[j_idx]), j_idx});
-        }
-
-        std::sort(ordered.begin(), ordered.end(),
-                  [](const std::pair<double, int>& lhs,
-                     const std::pair<double, int>& rhs) {
-                      if (lhs.first != rhs.first) {
-                          return lhs.first < rhs.first;
-                      }
-                      return lhs.second < rhs.second;
-                  });
-
-        // R1 combinado: top-t simplificado intersectado com o filtro de
-        // capacidade acumulada inspirado no Stefanello. Top-t garante tamanho
-        // maximo do modelo; alpha_r1 garante que candidatos saturados saiam.
-        const int effective_top =
-            std::min(top_t_, static_cast<int>(ordered.size()));
-        double accumulated_demand = instance_.demand(client);
-        candidate_lists[i_idx].reserve(effective_top);
-        int taken = 0;
-        for (const auto& [distance, j_idx] : ordered) {
-            (void)distance;
-            if (taken >= effective_top) {
-                break;
-            }
-            const int candidate = free_nodes[j_idx];
-            if (accumulated_demand <= alpha_r1_ * instance_.capacity(candidate) + 1e-9) {
-                candidate_lists[i_idx].push_back(j_idx);
-                ++taken;
-            }
-            accumulated_demand += instance_.demand(candidate);
-        }
-
-        // Preserva a mediana atual do cliente se ela estiver na subregiao fechada.
-        const int current_median = solution.assignments()[client];
-        auto current_it = node_to_local.find(current_median);
-        if (current_it != node_to_local.end() &&
-            std::find(candidate_lists[i_idx].begin(),
-                      candidate_lists[i_idx].end(),
-                      current_it->second) == candidate_lists[i_idx].end()) {
-            candidate_lists[i_idx].push_back(current_it->second);
-        }
-
-        // Garante pelo menos um candidato mesmo se o filtro por capacidade for agressivo.
-        if (candidate_lists[i_idx].empty() && !ordered.empty()) {
-            candidate_lists[i_idx].push_back(ordered.front().second);
+            candidate_lists[i_idx].push_back(j_idx);
         }
     }
 
@@ -253,7 +194,7 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
     const int p_sub = static_cast<int>(free_medians.size());
     const int candidate_count = static_cast<int>(free_nodes.size());
     const std::vector<std::vector<int>> candidate_lists =
-        buildCandidateLists(solution, free_nodes);
+        buildDenseCandidateLists(free_nodes);
 
     // Mapeamento reverso: para cada candidato j, os pares (i_idx, k_local)
     // de clientes que podem ser atribuidos a ele. Isso elimina o std::find
@@ -285,9 +226,9 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
             y[j_idx].setName(name.str().c_str());
         }
 
-        // Modelo esparso: x[i_idx] tem apenas |candidate_lists[i_idx]|
-        // variaveis, indexadas por k local. O j_idx global esta em
-        // candidate_lists[i_idx][k]. Essa e a reducao efetiva de R1.
+        // Modelo denso na subregiao livre: cada cliente pode ser atribuido a
+        // qualquer candidato da subregiao. Os filtros R1/R2 verdadeiros serao
+        // aplicados depois, explicitamente, e nao via esta lista ad hoc.
         IloArray<IloBoolVarArray> x(env, candidate_count);
         for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
             const int lsize = static_cast<int>(candidate_lists[i_idx].size());
@@ -356,9 +297,8 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
         cplex.setWarning(env.getNullStream());
         cplex.setParam(IloCplex::Param::TimeLimit, time_limit_s_);
 
-        // Warm start: a solucao atual eh viavel para o subproblema por
-        // construcao (buildCandidateLists preserva a mediana atual na lista).
-        // Passar ela como MIP start tipicamente acelera a prova de otimalidade.
+        // Warm start: como a subregiao agora e densa, a solucao corrente e
+        // sempre representavel no subproblema.
         {
             std::vector<int> global_to_local(instance_.numNodes(), -1);
             for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {

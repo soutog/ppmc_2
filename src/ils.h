@@ -1,7 +1,6 @@
 #ifndef ILS_H
 #define ILS_H
 
-#include "candidate_lists.h"
 #include "distance_matrix.h"
 #include "instance.h"
 #include "solution.h"
@@ -15,7 +14,6 @@ class ILS {
 private:
     const Instance& instance_;
     const DistanceMatrix& distance_matrix_;
-    const CandidateLists* r1_filter_;
     int num_iter_max_;
     double time_limit_s_;
 
@@ -32,7 +30,6 @@ public:
     ILS(const Instance& instance,
         const DistanceMatrix& dm,
         int num_iter_max,
-        const CandidateLists* r1_filter = nullptr,
         double time_limit_s = 0.0);
 
     // Recebe solucao ja refinada por VND. Retorna a melhor encontrada.

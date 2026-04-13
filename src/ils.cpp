@@ -12,10 +12,8 @@ constexpr double kImprovementEps = 1e-9;
 ILS::ILS(const Instance& instance,
          const DistanceMatrix& dm,
          int num_iter_max,
-         const CandidateLists* r1_filter,
          double time_limit_s)
     : instance_(instance), distance_matrix_(dm),
-      r1_filter_(r1_filter),
       num_iter_max_(num_iter_max),
       time_limit_s_(time_limit_s),
       total_iterations_(0), improvements_(0) {}
@@ -46,7 +44,7 @@ Solution ILS::run(Solution s, std::mt19937& rng, ClusteringSearch* cs) {
         perturbate(s_prime, level, instance_, distance_matrix_, rng);
 
         // Busca local VND
-        VND vnd(instance_, distance_matrix_, r1_filter_);
+        VND vnd(instance_, distance_matrix_);
         vnd.run(s_prime);
 
         ++total_iterations_;

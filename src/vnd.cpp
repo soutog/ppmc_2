@@ -6,10 +6,8 @@ constexpr double kImprovementEps = 1e-9;
 }  // namespace
 
 VND::VND(const Instance& instance,
-         const DistanceMatrix& distance_matrix,
-         const CandidateLists* r1_filter)
+         const DistanceMatrix& distance_matrix)
     : instance_(instance), distance_matrix_(distance_matrix),
-      r1_filter_(r1_filter),
       iterations_m1_(0), iterations_m2_(0),
       iterations_m3_(0), iterations_m4_(0) {}
 
@@ -24,8 +22,7 @@ void VND::run(Solution& solution) {
     while (k < 4) {
         switch (k) {
         case 0: {
-            const MoveM1 move =
-                bestM1(solution, instance_, distance_matrix_, r1_filter_);
+            const MoveM1 move = bestM1(solution, instance_, distance_matrix_);
             if (move.found) {
                 applyMove(solution, move, instance_);
                 ++iterations_m1_;
@@ -47,8 +44,7 @@ void VND::run(Solution& solution) {
             break;
         }
         case 2: {
-            const MoveM3 move =
-                bestM3(solution, instance_, distance_matrix_, r1_filter_);
+            const MoveM3 move = bestM3(solution, instance_, distance_matrix_);
             if (move.found) {
                 applyMove(solution, move, instance_, distance_matrix_);
                 if (move.delta < -kImprovementEps) {

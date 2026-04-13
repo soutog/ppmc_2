@@ -1,7 +1,6 @@
 #ifndef CLUSTERING_SEARCH_H
 #define CLUSTERING_SEARCH_H
 
-#include "candidate_lists.h"
 #include "distance_matrix.h"
 #include "evaluator.h"
 #include "grasp_constructor.h"
@@ -42,7 +41,6 @@ private:
     const Instance& instance_;
     const DistanceMatrix& dm_;
     const Evaluator& evaluator_;
-    const CandidateLists* r1_filter_;
     PartialOptimizer* partial_optimizer_;
     GRASPConstructor* grasp_;
     int gamma_;
@@ -67,7 +65,6 @@ public:
     ClusteringSearch(const Instance& instance,
                      const DistanceMatrix& dm,
                      const Evaluator& evaluator,
-                     const CandidateLists* r1_filter,
                      PartialOptimizer* partial_optimizer,
                      GRASPConstructor* grasp,
                      int gamma = 12,

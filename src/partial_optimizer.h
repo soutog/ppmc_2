@@ -29,8 +29,6 @@ private:
     int min_clusters_;
     int max_clusters_free_;
     double time_limit_s_;
-    double alpha_r1_;
-    int top_t_;
     int max_calls_;
     int max_no_improve_;
     double total_time_budget_s_;
@@ -42,8 +40,7 @@ private:
                                                 int effective_max_clusters) const;
     std::vector<int> collectFreeNodes(const Solution& solution,
                                       const std::vector<int>& free_medians) const;
-    std::vector<std::vector<int>> buildCandidateLists(
-        const Solution& solution,
+    std::vector<std::vector<int>> buildDenseCandidateLists(
         const std::vector<int>& free_nodes) const;
     bool solveSubproblem(Solution& solution,
                          int ref_median,
@@ -58,8 +55,6 @@ public:
                      int min_clusters = 5,
                      int max_clusters_free = 8,
                      double time_limit_s = 30.0,
-                     double alpha_r1 = 2.0,
-                     int top_t = 15,
                      int max_calls = 3,
                      int max_no_improve = 2,
                      double total_time_budget_s = 10.0);
