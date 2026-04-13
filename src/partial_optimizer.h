@@ -22,7 +22,9 @@ private:
 
     int selectReferenceCluster(const Solution& solution) const;
     std::vector<int> selectNeighborhoodClusters(const Solution& solution,
-                                                int ref_median) const;
+                                                int ref_median,
+                                                int effective_min_clusters,
+                                                int effective_max_clusters) const;
     std::vector<int> collectFreeNodes(const Solution& solution,
                                       const std::vector<int>& free_medians) const;
     std::vector<std::vector<int>> buildCandidateLists(

@@ -115,7 +115,8 @@ bool applyExactM3Move(Solution& solution,
 
 MoveM1 bestM1(const Solution& solution,
               const Instance& instance,
-              const DistanceMatrix& dm) {
+              const DistanceMatrix& dm,
+              const CandidateLists* r1_filter) {
     MoveM1 best{};
     best.delta = 0.0;
     best.found = false;
@@ -126,26 +127,53 @@ MoveM1 bestM1(const Solution& solution,
     const std::vector<double>& load = solution.load();
     const int p = static_cast<int>(medians.size());
 
+    std::vector<bool> is_median(n, false);
+    if (r1_filter != nullptr) {
+        for (int m : medians) is_median[m] = true;
+    }
+
     for (int j = 0; j < n; ++j) {
         const int r1 = va[j];
         const double cost_r1 = dm(j, r1);
         const double demand_j = instance.demand(j);
 
-        for (int k = 0; k < p; ++k) {
-            const int r2 = medians[k];
-            if (r2 == r1) continue;
+        // Com R1: percorre apenas os top-t nos mais proximos de j que sao
+        // medianas abertas. Qualquer melhora para j vai usar uma mediana mais
+        // proxima, entao filtrar por proximidade nao descarta movimentos uteis
+        // desde que top_t >= posto da mediana atual de j. Sem R1: laco
+        // completo sobre todas as medianas abertas.
+        if (r1_filter != nullptr) {
+            const std::vector<int>& near = r1_filter->nearest(j);
+            for (int r2 : near) {
+                if (!is_median[r2]) continue;
+                if (r2 == r1) continue;
+                if (load[r2] + demand_j > instance.capacity(r2)) continue;
 
-            // Checar capacidade
-            if (load[r2] + demand_j > instance.capacity(r2)) continue;
+                const double delta = dm(j, r2) - cost_r1;
+                if (delta < best.delta - kImprovementEps) {
+                    best.client = j;
+                    best.old_median = r1;
+                    best.new_median = r2;
+                    best.delta = delta;
+                    best.found = true;
+                }
+            }
+        } else {
+            for (int k = 0; k < p; ++k) {
+                const int r2 = medians[k];
+                if (r2 == r1) continue;
 
-            const double delta = dm(j, r2) - cost_r1;
+                if (load[r2] + demand_j > instance.capacity(r2)) continue;
 
-            if (delta < best.delta - kImprovementEps) {
-                best.client = j;
-                best.old_median = r1;
-                best.new_median = r2;
-                best.delta = delta;
-                best.found = true;
+                const double delta = dm(j, r2) - cost_r1;
+
+                if (delta < best.delta - kImprovementEps) {
+                    best.client = j;
+                    best.old_median = r1;
+                    best.new_median = r2;
+                    best.delta = delta;
+                    best.found = true;
+                }
             }
         }
     }
@@ -255,7 +283,8 @@ MoveM2 bestM2(const Solution& solution,
 
 MoveM3 bestM3(const Solution& solution,
               const Instance& instance,
-              const DistanceMatrix& dm) {
+              const DistanceMatrix& dm,
+              const CandidateLists* r1_filter) {
     MoveM3 best{};
     best.delta = 0.0;
     best.found = false;
@@ -270,15 +299,21 @@ MoveM3 bestM3(const Solution& solution,
         is_median[medians[k]] = true;
     }
 
+    // M3 eh o vizinhanca mais cara: para cada mediana aberta r1, percorre
+    // todos os n candidatos e roda evaluateExactM3Move. Com R1 o laco externo
+    // cai de n para top_t, quebrando o gargalo em instancias grandes. O
+    // evaluateExactM3Move interno nao eh filtrado (precisa de qualquer
+    // mediana viavel para realocar os orfaos de r1).
     for (int ki = 0; ki < p; ++ki) {
         const int r1 = medians[ki];
-        for (int r2 = 0; r2 < n; ++r2) {
-            if (is_median[r2]) continue;
-            if (va[r2] == r1) continue;
+
+        auto consider = [&](int r2) {
+            if (is_median[r2]) return;
+            if (va[r2] == r1) return;
 
             double delta = 0.0;
             if (!evaluateExactM3Move(solution, r1, r2, instance, dm, &delta)) {
-                continue;
+                return;
             }
 
             if (delta < best.delta - kImprovementEps) {
@@ -286,6 +321,16 @@ MoveM3 bestM3(const Solution& solution,
                 best.new_median = r2;
                 best.delta = delta;
                 best.found = true;
+            }
+        };
+
+        if (r1_filter != nullptr) {
+            for (int r2 : r1_filter->nearest(r1)) {
+                consider(r2);
+            }
+        } else {
+            for (int r2 = 0; r2 < n; ++r2) {
+                consider(r2);
             }
         }
     }

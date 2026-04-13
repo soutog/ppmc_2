@@ -1,6 +1,7 @@
 #ifndef ILS_H
 #define ILS_H
 
+#include "candidate_lists.h"
 #include "distance_matrix.h"
 #include "instance.h"
 #include "solution.h"
@@ -12,6 +13,7 @@ class ILS {
 private:
     const Instance& instance_;
     const DistanceMatrix& distance_matrix_;
+    const CandidateLists* r1_filter_;
     int num_iter_max_;
 
     // Estatisticas
@@ -24,7 +26,10 @@ private:
     std::array<int, 3> improvements_per_level_;
 
 public:
-    ILS(const Instance& instance, const DistanceMatrix& dm, int num_iter_max);
+    ILS(const Instance& instance,
+        const DistanceMatrix& dm,
+        int num_iter_max,
+        const CandidateLists* r1_filter = nullptr);
 
     // Recebe solucao ja refinada por VND. Retorna a melhor encontrada.
     Solution run(Solution s, std::mt19937& rng);

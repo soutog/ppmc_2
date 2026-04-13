@@ -93,8 +93,11 @@ int PartialOptimizer::selectReferenceCluster(const Solution& solution) const {
     return best_median;
 }
 
-std::vector<int> PartialOptimizer::selectNeighborhoodClusters(const Solution& solution,
-                                                              int ref_median) const {
+std::vector<int> PartialOptimizer::selectNeighborhoodClusters(
+    const Solution& solution,
+    int ref_median,
+    int effective_min_clusters,
+    int effective_max_clusters) const {
     const std::vector<int>& medians = solution.medians();
     const int n = instance_.numNodes();
 
@@ -122,10 +125,10 @@ std::vector<int> PartialOptimizer::selectNeighborhoodClusters(const Solution& so
     std::vector<int> selected;
     selected.reserve(medians.size());
     int accumulated_nodes = 0;
-    const int effective_min_clusters =
-        std::min(std::max(1, min_clusters_), static_cast<int>(medians.size()));
-    const int effective_max_clusters =
-        std::min(std::max(effective_min_clusters, max_clusters_free_),
+    effective_min_clusters =
+        std::min(std::max(1, effective_min_clusters), static_cast<int>(medians.size()));
+    effective_max_clusters =
+        std::min(std::max(effective_min_clusters, effective_max_clusters),
                  static_cast<int>(medians.size()));
 
     for (const auto& [distance, median] : ordered) {
@@ -346,8 +349,47 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
         cplex.setOut(env.getNullStream());
         cplex.setWarning(env.getNullStream());
         cplex.setParam(IloCplex::Param::TimeLimit, time_limit_s_);
-        cplex.setParam(IloCplex::Param::Threads, 1);
-        cplex.setParam(IloCplex::Param::MIP::Limits::TreeMemory, 2000);
+
+        // Warm start: a solucao atual eh viavel para o subproblema por
+        // construcao (buildCandidateLists preserva a mediana atual na lista).
+        // Passar ela como MIP start tipicamente acelera a prova de otimalidade.
+        {
+            std::vector<int> global_to_local(instance_.numNodes(), -1);
+            for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
+                global_to_local[free_nodes[i_idx]] = i_idx;
+            }
+            std::vector<bool> is_currently_free_median(instance_.numNodes(), false);
+            for (int m : free_medians) {
+                is_currently_free_median[m] = true;
+            }
+
+            IloNumVarArray start_vars(env);
+            IloNumArray start_vals(env);
+
+            for (int j_idx = 0; j_idx < candidate_count; ++j_idx) {
+                start_vars.add(y[j_idx]);
+                start_vals.add(is_currently_free_median[free_nodes[j_idx]] ? 1.0 : 0.0);
+            }
+
+            const std::vector<int>& current_assignments = solution.assignments();
+            for (int i_idx = 0; i_idx < candidate_count; ++i_idx) {
+                const int client = free_nodes[i_idx];
+                const int current_med_global = current_assignments[client];
+                const int current_med_local = global_to_local[current_med_global];
+                const int lsize = static_cast<int>(candidate_lists[i_idx].size());
+                for (int k = 0; k < lsize; ++k) {
+                    start_vars.add(x[i_idx][k]);
+                    const double v =
+                        (candidate_lists[i_idx][k] == current_med_local) ? 1.0 : 0.0;
+                    start_vals.add(v);
+                }
+            }
+
+            cplex.addMIPStart(start_vars, start_vals,
+                              IloCplex::MIPStartCheckFeas);
+            start_vals.end();
+            start_vars.end();
+        }
 
         const bool solved = cplex.solve();
         status = cplex.getStatus();
@@ -429,12 +471,39 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
 }
 
 bool PartialOptimizer::optimize(Solution& solution) const {
+    const int p = static_cast<int>(solution.medians().size());
+    const int n = instance_.numNodes();
+
     const int ref_median = selectReferenceCluster(solution);
     if (ref_median < 0) {
         return false;
     }
 
-    const std::vector<int> free_medians = selectNeighborhoodClusters(solution, ref_median);
+    // Adaptacao automatica para instancias de p pequeno: evita que a subregiao
+    // colapse para o problema inteiro (visto em lin318_005 / ali535_005 / rl1304_010).
+    const int eff_min =
+        std::min(min_clusters_, std::max(2, p / 3));
+    const int eff_max =
+        std::min(max_clusters_free_, std::max(eff_min, p - 1));
+
+    const std::vector<int> free_medians =
+        selectNeighborhoodClusters(solution, ref_median, eff_min, eff_max);
     const std::vector<int> free_nodes = collectFreeNodes(solution, free_medians);
+
+    // Detecta degeneracao: se a subregiao cobre todas as medianas ou quase
+    // todos os nos, o PO se torna o problema inteiro e nao deve rodar.
+    const bool covers_all_medians = static_cast<int>(free_medians.size()) >= p;
+    const bool covers_too_many_nodes =
+        static_cast<int>(free_nodes.size()) > static_cast<int>(0.8 * n);
+    if (covers_all_medians || covers_too_many_nodes) {
+        std::cout << "[PARTIAL_OPT] skipped reason="
+                  << (covers_all_medians ? "psub_ge_p" : "free_nodes_gt_0.8n")
+                  << " p=" << p
+                  << " free_clusters=" << free_medians.size()
+                  << " free_nodes=" << free_nodes.size()
+                  << " n=" << n << "\n";
+        return false;
+    }
+
     return solveSubproblem(solution, ref_median, free_medians, free_nodes);
 }

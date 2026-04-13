@@ -1,3 +1,4 @@
+#include "candidate_lists.h"
 #include "distance_matrix.h"
 #include "evaluator.h"
 #include "grasp_constructor.h"
@@ -38,6 +39,18 @@ int main(int argc, char* argv[]) {
 
     DistanceMatrix distance_matrix(instance);
     Evaluator evaluator(instance, distance_matrix);
+
+    // R1 estatico: top-t nos mais proximos por no, usado como filtro de
+    // M1/M3 no VND/ILS. Mesmo criterio de R1 adotado no PartialOptimizer,
+    // agora transversal ao metodo (coerencia metodologica IRMA).
+    // Escala com n: clusters grandes (instancias grandes) precisam de pool
+    // maior para que M3 encontre candidatos internos ao cluster, mas ainda
+    // muito menor que n (reduz o laco externo de M3 de n para top_t).
+    const int vnd_top_t =
+        std::min(instance.numNodes() - 1, std::max(50, instance.numNodes() / 5));
+    CandidateLists candidate_lists(instance, distance_matrix, vnd_top_t);
+    std::cout << "CandidateLists top_t=" << vnd_top_t << "\n";
+
     GRASPConstructor grasp(instance,
                            distance_matrix,
                            evaluator,
@@ -68,7 +81,7 @@ int main(int argc, char* argv[]) {
     std::cout << "\nCusto GRASP: " << grasp_cost << "\n";
 
     // === VND inicial ===
-    VND vnd(instance, distance_matrix);
+    VND vnd(instance, distance_matrix, &candidate_lists);
     const auto t_vnd_start = std::chrono::steady_clock::now();
     vnd.run(solution);
     const auto t_vnd_end = std::chrono::steady_clock::now();
@@ -88,7 +101,7 @@ int main(int argc, char* argv[]) {
 
     // === ILS ===
     std::mt19937 rng(seed);
-    ILS ils(instance, distance_matrix, num_iter_max);
+    ILS ils(instance, distance_matrix, num_iter_max, &candidate_lists);
     const auto t_ils_start = std::chrono::steady_clock::now();
     Solution best = ils.run(solution, rng);
     const auto t_ils_end = std::chrono::steady_clock::now();
