@@ -6,7 +6,19 @@
 #include "instance.h"
 #include "solution.h"
 
+#include <string>
 #include <vector>
+
+struct PartialOptimizerStats {
+    int calls = 0;
+    int improving_calls = 0;
+    int skipped_calls = 0;
+    int calls_without_improvement = 0;
+    double total_gain = 0.0;
+    double best_gain = 0.0;
+    double total_time_s = 0.0;
+    bool improved = false;
+};
 
 class PartialOptimizer {
 private:
@@ -19,6 +31,9 @@ private:
     double time_limit_s_;
     double alpha_r1_;
     int top_t_;
+    int max_calls_;
+    int max_no_improve_;
+    double total_time_budget_s_;
 
     int selectReferenceCluster(const Solution& solution) const;
     std::vector<int> selectNeighborhoodClusters(const Solution& solution,
@@ -44,8 +59,12 @@ public:
                      int max_clusters_free = 8,
                      double time_limit_s = 30.0,
                      double alpha_r1 = 2.0,
-                     int top_t = 15);
+                     int top_t = 15,
+                     int max_calls = 3,
+                     int max_no_improve = 2,
+                     double total_time_budget_s = 10.0);
 
+    PartialOptimizerStats run(Solution& solution) const;
     bool optimize(Solution& solution) const;
 };
 

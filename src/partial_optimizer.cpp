@@ -48,7 +48,10 @@ PartialOptimizer::PartialOptimizer(const Instance& instance,
                                    int max_clusters_free,
                                    double time_limit_s,
                                    double alpha_r1,
-                                   int top_t)
+                                   int top_t,
+                                   int max_calls,
+                                   int max_no_improve,
+                                   double total_time_budget_s)
     : instance_(instance),
       dm_(dm),
       evaluator_(evaluator),
@@ -57,7 +60,10 @@ PartialOptimizer::PartialOptimizer(const Instance& instance,
       max_clusters_free_(max_clusters_free),
       time_limit_s_(time_limit_s),
       alpha_r1_(alpha_r1),
-      top_t_(top_t) {}
+      top_t_(top_t),
+      max_calls_(max_calls),
+      max_no_improve_(max_no_improve),
+      total_time_budget_s_(total_time_budget_s) {}
 
 int PartialOptimizer::selectReferenceCluster(const Solution& solution) const {
     const int n = instance_.numNodes();
@@ -471,39 +477,93 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
 }
 
 bool PartialOptimizer::optimize(Solution& solution) const {
+    return run(solution).improved;
+}
+
+PartialOptimizerStats PartialOptimizer::run(Solution& solution) const {
+    PartialOptimizerStats stats;
+    const auto t_phase_start = std::chrono::steady_clock::now();
     const int p = static_cast<int>(solution.medians().size());
     const int n = instance_.numNodes();
 
-    const int ref_median = selectReferenceCluster(solution);
-    if (ref_median < 0) {
-        return false;
+    while (stats.calls < max_calls_) {
+        const auto t_now = std::chrono::steady_clock::now();
+        stats.total_time_s =
+            std::chrono::duration<double>(t_now - t_phase_start).count();
+        if (stats.total_time_s >= total_time_budget_s_) {
+            break;
+        }
+
+        const int ref_median = selectReferenceCluster(solution);
+        if (ref_median < 0) {
+            break;
+        }
+
+        // Adaptacao automatica para instancias de p pequeno: evita que a subregiao
+        // colapse para o problema inteiro (visto em lin318_005 / ali535_005 / rl1304_010).
+        const int eff_min =
+            std::min(min_clusters_, std::max(2, p / 3));
+        const int eff_max =
+            std::min(max_clusters_free_, std::max(eff_min, p - 1));
+
+        const std::vector<int> free_medians =
+            selectNeighborhoodClusters(solution, ref_median, eff_min, eff_max);
+        const std::vector<int> free_nodes = collectFreeNodes(solution, free_medians);
+
+        ++stats.calls;
+
+        // Detecta degeneracao: se a subregiao cobre todas as medianas ou quase
+        // todos os nos, o PO se torna o problema inteiro e nao deve rodar.
+        const bool covers_all_medians = static_cast<int>(free_medians.size()) >= p;
+        const bool covers_too_many_nodes =
+            static_cast<int>(free_nodes.size()) > static_cast<int>(0.8 * n);
+        if (covers_all_medians || covers_too_many_nodes) {
+            ++stats.skipped_calls;
+            ++stats.calls_without_improvement;
+            std::cout << "[PARTIAL_OPT] skipped reason="
+                      << (covers_all_medians ? "psub_ge_p" : "free_nodes_gt_0.8n")
+                      << " p=" << p
+                      << " free_clusters=" << free_medians.size()
+                      << " free_nodes=" << free_nodes.size()
+                      << " n=" << n << "\n";
+            if (stats.calls_without_improvement >= max_no_improve_) {
+                break;
+            }
+            continue;
+        }
+
+        const double objective_before = solution.cost();
+        const bool improved =
+            solveSubproblem(solution, ref_median, free_medians, free_nodes);
+        const double gain = objective_before - solution.cost();
+
+        if (improved) {
+            ++stats.improving_calls;
+            stats.improved = true;
+            stats.total_gain += gain;
+            stats.best_gain = std::max(stats.best_gain, gain);
+            stats.calls_without_improvement = 0;
+        } else {
+            ++stats.calls_without_improvement;
+        }
+
+        if (stats.calls_without_improvement >= max_no_improve_) {
+            break;
+        }
     }
 
-    // Adaptacao automatica para instancias de p pequeno: evita que a subregiao
-    // colapse para o problema inteiro (visto em lin318_005 / ali535_005 / rl1304_010).
-    const int eff_min =
-        std::min(min_clusters_, std::max(2, p / 3));
-    const int eff_max =
-        std::min(max_clusters_free_, std::max(eff_min, p - 1));
+    const auto t_phase_end = std::chrono::steady_clock::now();
+    stats.total_time_s =
+        std::chrono::duration<double>(t_phase_end - t_phase_start).count();
 
-    const std::vector<int> free_medians =
-        selectNeighborhoodClusters(solution, ref_median, eff_min, eff_max);
-    const std::vector<int> free_nodes = collectFreeNodes(solution, free_medians);
+    std::cout << std::fixed << std::setprecision(4)
+              << "[PARTIAL_OPT_SUMMARY] calls=" << stats.calls
+              << " | improving_calls=" << stats.improving_calls
+              << " | skipped_calls=" << stats.skipped_calls
+              << " | no_improve_streak=" << stats.calls_without_improvement
+              << " | total_gain=" << stats.total_gain
+              << " | best_gain=" << stats.best_gain
+              << " | total_time=" << stats.total_time_s << "s\n";
 
-    // Detecta degeneracao: se a subregiao cobre todas as medianas ou quase
-    // todos os nos, o PO se torna o problema inteiro e nao deve rodar.
-    const bool covers_all_medians = static_cast<int>(free_medians.size()) >= p;
-    const bool covers_too_many_nodes =
-        static_cast<int>(free_nodes.size()) > static_cast<int>(0.8 * n);
-    if (covers_all_medians || covers_too_many_nodes) {
-        std::cout << "[PARTIAL_OPT] skipped reason="
-                  << (covers_all_medians ? "psub_ge_p" : "free_nodes_gt_0.8n")
-                  << " p=" << p
-                  << " free_clusters=" << free_medians.size()
-                  << " free_nodes=" << free_nodes.size()
-                  << " n=" << n << "\n";
-        return false;
-    }
-
-    return solveSubproblem(solution, ref_median, free_medians, free_nodes);
+    return stats;
 }

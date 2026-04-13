@@ -120,7 +120,7 @@ int main(int argc, char* argv[]) {
     // === Partial Optimizer ===
     PartialOptimizer partial_optimizer(instance, distance_matrix, evaluator);
     const auto t_po_start = std::chrono::steady_clock::now();
-    const bool po_improved = partial_optimizer.optimize(best);
+    const PartialOptimizerStats po_stats = partial_optimizer.run(best);
     const auto t_po_end = std::chrono::steady_clock::now();
     const double po_secs =
         std::chrono::duration<double>(t_po_end - t_po_start).count();
@@ -131,7 +131,10 @@ int main(int argc, char* argv[]) {
               << std::setprecision(2)
               << ((ils_cost - post_po_cost) / ils_cost * 100.0) << "%)\n";
     std::cout << std::setprecision(4);
-    std::cout << "PartialOpt melhorou: " << (po_improved ? "sim" : "nao") << "\n";
+    std::cout << "PartialOpt melhorou: " << (po_stats.improved ? "sim" : "nao") << "\n";
+    std::cout << "PartialOpt chamadas: " << po_stats.calls
+              << ", melhorias: " << po_stats.improving_calls
+              << ", skips: " << po_stats.skipped_calls << "\n";
     std::cout << "Tempo PartialOpt: " << po_secs << "s\n";
 
     const auto t_total_end = std::chrono::steady_clock::now();
