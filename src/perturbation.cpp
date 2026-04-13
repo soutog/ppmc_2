@@ -212,8 +212,21 @@ bool applyRandomMedianReplacement(Solution& solution,
 void perturbate(Solution& solution, int level,
                 const Instance& instance, const DistanceMatrix& dm,
                 std::mt19937& rng) {
-    const int structural_moves = (level == 1 ? 1 : 2);
-    const int swap_moves = (level == 3 ? 1 : 0);
+    // Escalonamento da perturbacao por nivel:
+    //   1: 1 substituicao estrutural              (intensificacao leve)
+    //   2: 2 substituicoes estruturais            (intensificacao media)
+    //   3: 2 substituicoes + 1 swap M4            (diversificacao)
+    //   4: 3 substituicoes estruturais            (estagnacao profunda)
+    //   5+: 3 substituicoes + 1 swap M4           (diversificacao maxima)
+    int structural_moves;
+    int swap_moves;
+    switch (level) {
+    case 1: structural_moves = 1; swap_moves = 0; break;
+    case 2: structural_moves = 2; swap_moves = 0; break;
+    case 3: structural_moves = 2; swap_moves = 1; break;
+    case 4: structural_moves = 3; swap_moves = 0; break;
+    default: structural_moves = 3; swap_moves = 1; break;
+    }
 
     // A perturbacao estrutural altera as medianas; swaps M4 entram como diversificacao extra.
     for (int move = 0; move < structural_moves; ++move) {

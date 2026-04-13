@@ -7,6 +7,7 @@
 #include "reduction.h"
 #include "solution.h"
 
+#include <random>
 #include <string>
 #include <vector>
 
@@ -37,6 +38,7 @@ private:
     int max_calls_;
     int max_no_improve_;
     double total_time_budget_s_;
+    mutable std::mt19937 rng_;
 
     int selectReferenceCluster(const Solution& solution) const;
     std::vector<int> selectNeighborhoodClusters(const Solution& solution,
@@ -68,7 +70,8 @@ public:
                      double r2_min_ratio = 10.0,
                      int max_calls = 3,
                      int max_no_improve = 2,
-                     double total_time_budget_s = 10.0);
+                     double total_time_budget_s = 10.0,
+                     unsigned int seed = 246813579u);
 
     PartialOptimizerStats run(Solution& solution) const;
     bool optimize(Solution& solution) const;

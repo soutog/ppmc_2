@@ -79,7 +79,16 @@ Solution ILS::run(Solution s, std::mt19937& rng, ClusteringSearch* cs) {
             ++improvements_;
         } else {
             ++iter_without_improvement;
-            if (level < 3) ++level;
+            // Escala normalmente ate o nivel 3 (teto do paper). Alem disso,
+            // so sobe para 4-5 quando a estagnacao passa de metade de
+            // NumIterMax — sinal de que a perturbacao padrao nao esta mais
+            // achando bacias novas.
+            if (level < 3) {
+                ++level;
+            } else if (level < 5 &&
+                       iter_without_improvement > num_iter_max_ / 2) {
+                ++level;
+            }
         }
     }
 

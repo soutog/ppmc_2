@@ -52,7 +52,8 @@ PartialOptimizer::PartialOptimizer(const Instance& instance,
                                    double r2_min_ratio,
                                    int max_calls,
                                    int max_no_improve,
-                                   double total_time_budget_s)
+                                   double total_time_budget_s,
+                                   unsigned int seed)
     : instance_(instance),
       dm_(dm),
       evaluator_(evaluator),
@@ -66,7 +67,8 @@ PartialOptimizer::PartialOptimizer(const Instance& instance,
       r2_min_ratio_(r2_min_ratio),
       max_calls_(max_calls),
       max_no_improve_(max_no_improve),
-      total_time_budget_s_(total_time_budget_s) {}
+      total_time_budget_s_(total_time_budget_s),
+      rng_(seed) {}
 
 int PartialOptimizer::selectReferenceCluster(const Solution& solution) const {
     const int n = instance_.numNodes();
@@ -79,10 +81,11 @@ int PartialOptimizer::selectReferenceCluster(const Solution& solution) const {
         cluster_cost[m] += dm_.at(client, m);
     }
 
-    int best_median = -1;
-    double best_score = -std::numeric_limits<double>::infinity();
-
-    // Score hibrido do plano: 0.7 * custo_total + 0.3 * custo_medio.
+    // Score hibrido: 0.7 * custo_total + 0.3 * custo_medio. Coleta todos os
+    // medianas com score e sorteia entre os top-3 para diversificar chamadas
+    // sucessivas do PO sobre solucoes muito parecidas.
+    std::vector<std::pair<double, int>> scored;
+    scored.reserve(solution.medians().size());
     for (int median : solution.medians()) {
         if (cluster_size[median] == 0) {
             continue;
@@ -90,16 +93,24 @@ int PartialOptimizer::selectReferenceCluster(const Solution& solution) const {
         const double total = cluster_cost[median];
         const double mean = total / static_cast<double>(cluster_size[median]);
         const double score = 0.7 * total + 0.3 * mean;
-
-        if (score > best_score + 1e-9 ||
-            (std::abs(score - best_score) <= 1e-9 &&
-             (best_median < 0 || median < best_median))) {
-            best_score = score;
-            best_median = median;
-        }
+        scored.push_back({score, median});
     }
 
-    return best_median;
+    if (scored.empty()) {
+        return -1;
+    }
+
+    std::sort(scored.begin(), scored.end(),
+              [](const std::pair<double, int>& lhs,
+                 const std::pair<double, int>& rhs) {
+                  if (lhs.first != rhs.first) return lhs.first > rhs.first;
+                  return lhs.second < rhs.second;
+              });
+
+    const int pool_size =
+        std::min(3, static_cast<int>(scored.size()));
+    std::uniform_int_distribution<int> dist(0, pool_size - 1);
+    return scored[dist(rng_)].second;
 }
 
 std::vector<int> PartialOptimizer::selectNeighborhoodClusters(
@@ -509,11 +520,19 @@ PartialOptimizerStats PartialOptimizer::run(Solution& solution) const {
     const int p = static_cast<int>(solution.medians().size());
     const int n = instance_.numNodes();
 
-    while (stats.calls < max_calls_) {
+    // Adaptacao por p: para instancias de p grande aumentamos orcamento e
+    // numero de chamadas porque o PO tem mais margem para achar melhorias
+    // estruturais, e o custo relativo de uma chamada extra eh menor.
+    const int effective_max_calls =
+        (p >= 50 ? std::max(max_calls_, 5) : max_calls_);
+    const double effective_time_budget =
+        (p >= 50 ? std::max(total_time_budget_s_, 30.0) : total_time_budget_s_);
+
+    while (stats.calls < effective_max_calls) {
         const auto t_now = std::chrono::steady_clock::now();
         stats.total_time_s =
             std::chrono::duration<double>(t_now - t_phase_start).count();
-        if (stats.total_time_s >= total_time_budget_s_) {
+        if (stats.total_time_s >= effective_time_budget) {
             break;
         }
 
@@ -522,12 +541,16 @@ PartialOptimizerStats PartialOptimizer::run(Solution& solution) const {
             break;
         }
 
-        // Adaptacao automatica para instancias de p pequeno: evita que a subregiao
-        // colapse para o problema inteiro (visto em lin318_005 / ali535_005 / rl1304_010).
+        // Adaptacao automatica da janela de vizinhanca por p:
+        //  - p pequeno: evita que a subregiao colapse para o problema inteiro
+        //    (visto em lin318_005 / ali535_005 / rl1304_010).
+        //  - p grande: garante cobertura >= 20% de p para diversificar a
+        //    vizinhanca do PO (combate estagnacao em u724_075).
         const int eff_min =
             std::min(min_clusters_, std::max(2, p / 3));
         const int eff_max =
-            std::min(max_clusters_free_, std::max(eff_min, p - 1));
+            std::min(std::max(eff_min, p - 1),
+                     std::max(max_clusters_free_, p / 5));
 
         const std::vector<int> free_medians =
             selectNeighborhoodClusters(solution, ref_median, eff_min, eff_max);
