@@ -1,1 +1,0 @@
-instance,group,p,run,seed,grasp_cost,vnd_cost,final_cost,ils_iterations,ils_improvements,cs_observations,cs_active_clusters,cs_new_clusters,cs_center_updates,cs_po_triggers,cs_po_improvements,cs_po_total_gain,cs_destroy_repair_calls,cs_destroy_repair_improvements,cs_ils_promotions,time_ils_s,time_total_s,status

@@ -14,7 +14,7 @@ INSTANCE_DIR="./instances/sample_instance"
 RESULT_DIR="./experiments/results"
 
 ALPHA=0.6
-NUM_ITER_MAX=20
+NUM_ITER_MAX=60
 CONSTRUCTION_MAX_TRIES=1000
 NUM_RUNS=5
 SEED_BASE=42
@@ -137,7 +137,7 @@ for INST in $INSTANCES; do
             GAP_CPX="-"
         fi
 
-        printf "%-22s %-6s %6s %6s %14.2f %10s %10s %9s %8s %6s %8ss %s\n" \
+        LC_NUMERIC=C printf "%-22s %-6s %6s %6s %14.2f %10s %10s %9s %8s %6s %8ss %s\n" \
             "$FNAME" "$SEED" "$P_VAL" "$((r+1))" "$FINAL_COST" "$GAP_FINAL" "$GAP_CPX" \
             "$CS_PO_TRIG/$CS_PO_IMPR" "$CS_DR_CALLS/$CS_DR_IMPR" "$CS_PROM" "$T_TOT" "$STATUS"
 
