@@ -7,32 +7,45 @@
 namespace {
 constexpr double kImprovementEps = 1e-9;
 
-bool evaluateExactM3Move(const Solution& solution,
-                         int old_median,
-                         int new_median,
-                         const Instance& instance,
-                         const DistanceMatrix& dm,
-                         double* delta_out) {
-    const int n = instance.numNodes();
+// Versao otimizada: recebe o scratch `load_scratch` ja dimensionado a n e
+// reutilizado entre chamadas (evita realocar n doubles por par (r1,r2)), e a
+// lista `clients_of_old` ja filtrada (evita varrer n nos para encontrar os
+// clientes do cluster de old_median). O caller eh responsavel por copiar o
+// load atual em load_scratch antes de chamar.
+bool evaluateExactM3MoveCached(const Solution& solution,
+                               int old_median,
+                               int new_median,
+                               const Instance& instance,
+                               const DistanceMatrix& dm,
+                               const std::vector<int>& clients_of_old,
+                               std::vector<double>& load_scratch,
+                               double* delta_out) {
     const int old_cluster_of_new = solution.assignments()[new_median];
     const std::vector<int>& medians = solution.medians();
-    const std::vector<int>& assignments = solution.assignments();
 
-    std::vector<double> load = solution.load();
-    load[old_cluster_of_new] -= instance.demand(new_median);
-    load[new_median] += instance.demand(new_median);
+    // Reset das 2 celulas modificadas pela abertura/fechamento estrutural.
+    // O caller ja copiou solution.load() em load_scratch, entao basta aplicar
+    // o patch e, ao final, desfazer apenas as celulas que tocamos.
+    load_scratch[old_cluster_of_new] -= instance.demand(new_median);
+    load_scratch[new_median] += instance.demand(new_median);
 
     double delta = -dm(new_median, old_cluster_of_new);
 
-    for (int j = 0; j < n; ++j) {
-        if (assignments[j] != old_median) continue;
+    // Trilha das celulas modificadas alem das 2 iniciais, para reversao O(k).
+    std::vector<int> touched;
+    touched.reserve(clients_of_old.size() * 2 + 2);
+    touched.push_back(old_cluster_of_new);
+    touched.push_back(new_median);
 
+    bool ok = true;
+    for (int j : clients_of_old) {
         double best_distance = std::numeric_limits<double>::max();
         int best_median = -1;
 
         for (int median : medians) {
             const int candidate_median = (median == old_median ? new_median : median);
-            if (load[candidate_median] + instance.demand(j) > instance.capacity(candidate_median)) {
+            if (load_scratch[candidate_median] + instance.demand(j) >
+                instance.capacity(candidate_median)) {
                 continue;
             }
 
@@ -45,19 +58,28 @@ bool evaluateExactM3Move(const Solution& solution,
         }
 
         if (best_median < 0) {
-            return false;
+            ok = false;
+            break;
         }
 
-        load[old_median] -= instance.demand(j);
-        load[best_median] += instance.demand(j);
+        load_scratch[old_median] -= instance.demand(j);
+        load_scratch[best_median] += instance.demand(j);
+        touched.push_back(old_median);
+        touched.push_back(best_median);
         delta += best_distance - dm(j, old_median);
     }
 
-    if (delta_out != nullptr) {
-        *delta_out = delta;
+    // Reverte o scratch: restaura cada celula tocada ao valor original.
+    // Mais barato que recopiar n doubles quando |touched| << n.
+    const std::vector<double>& original_load = solution.load();
+    for (int idx : touched) {
+        load_scratch[idx] = original_load[idx];
     }
 
-    return true;
+    if (ok && delta_out != nullptr) {
+        *delta_out = delta;
+    }
+    return ok;
 }
 
 bool applyExactM3Move(Solution& solution,
@@ -269,15 +291,29 @@ MoveM3 bestM3(const Solution& solution,
         is_median[medians[k]] = true;
     }
 
+    // Cache dos clientes por cluster: antes da dupla (r1, r2) varrer n cada
+    // vez para filtrar clientes de r1, calculamos uma vez so e indexamos.
+    std::vector<std::vector<int>> clients_of(n);
+    for (int j = 0; j < n; ++j) {
+        clients_of[va[j]].push_back(j);
+    }
+
+    // Scratch de load reutilizado por todas as chamadas a
+    // evaluateExactM3MoveCached. Uma unica alocacao por bestM3 em vez de
+    // p*n alocacoes (uma por par r1,r2).
+    std::vector<double> load_scratch = solution.load();
+
     for (int ki = 0; ki < p; ++ki) {
         const int r1 = medians[ki];
+        const std::vector<int>& clients_of_r1 = clients_of[r1];
 
         auto consider = [&](int r2) {
             if (is_median[r2]) return;
             if (va[r2] == r1) return;
 
             double delta = 0.0;
-            if (!evaluateExactM3Move(solution, r1, r2, instance, dm, &delta)) {
+            if (!evaluateExactM3MoveCached(solution, r1, r2, instance, dm,
+                                           clients_of_r1, load_scratch, &delta)) {
                 return;
             }
 

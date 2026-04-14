@@ -22,12 +22,14 @@ struct RegretChoice {
 GRASPConstructor::GRASPConstructor(const Instance& instance,
                                    const DistanceMatrix& distance_matrix,
                                    const Evaluator& evaluator,
+                                   const R1Filter* r1_filter,
                                    double alpha,
                                    int max_tries,
                                    unsigned int seed)
     : instance_(instance),
       distance_matrix_(distance_matrix),
       evaluator_(evaluator),
+      r1_filter_(r1_filter),
       alpha_(alpha),
       max_tries_(max_tries),
       rng_(seed),
@@ -98,6 +100,27 @@ bool GRASPConstructor::assignClientsByRegret(const std::vector<int>& medians,
         residual_capacity[median] = instance_.capacity(median);
     }
 
+    // Poda por R1: para cada cliente, pre-calcula a lista de medianas
+    // correntes que sobrevivem ao filtro R1. Feito uma vez por chamada do
+    // regret (nao por iteracao do while), amortizando o custo O(n*p).
+    // Fallback: se a interseccao ficar vazia, usamos o vetor completo de
+    // medianas (garante correcao em casos extremos).
+    std::vector<std::vector<int>> allowed_medians_per_client(n);
+    if (r1_filter_ != nullptr) {
+        for (int client = 0; client < n; ++client) {
+            allowed_medians_per_client[client].reserve(medians.size());
+            for (int m : medians) {
+                if (r1_filter_->inKi(client, m)) {
+                    allowed_medians_per_client[client].push_back(m);
+                }
+            }
+            if (allowed_medians_per_client[client].empty()) {
+                allowed_medians_per_client[client] = medians;
+            }
+        }
+    }
+    const bool use_prune = (r1_filter_ != nullptr);
+
     while (assigned_count < n) {
         // Em cada passo, escolhemos o cliente mais "critico" dado o estado atual.
         RegretChoice selected{-1, -1, 0.0, 0.0, 0.0, false};
@@ -113,7 +136,10 @@ bool GRASPConstructor::assignClientsByRegret(const std::vector<int>& medians,
             double second_best_distance = std::numeric_limits<double>::infinity();
             int feasible_count = 0;
 
-            for (int median : medians) {
+            const std::vector<int>& candidate_medians =
+                use_prune ? allowed_medians_per_client[client] : medians;
+
+            for (int median : candidate_medians) {
                 if (residual_capacity[median] + 1e-9 < instance_.demand(client)) {
                     continue;
                 }
@@ -128,6 +154,26 @@ bool GRASPConstructor::assignClientsByRegret(const std::vector<int>& medians,
                     best_median = median;
                 } else if (distance < second_best_distance) {
                     second_best_distance = distance;
+                }
+            }
+
+            // Fallback: se a lista podada nao tem viavel mas o conjunto
+            // completo tem, retesta com ele. Evita falha artificial.
+            if (use_prune && best_median < 0) {
+                for (int median : medians) {
+                    if (residual_capacity[median] + 1e-9 < instance_.demand(client)) {
+                        continue;
+                    }
+                    ++feasible_count;
+                    const double distance = distance_matrix_.at(client, median);
+                    if (distance < best_distance ||
+                        (distance == best_distance && median < best_median)) {
+                        second_best_distance = best_distance;
+                        best_distance = distance;
+                        best_median = median;
+                    } else if (distance < second_best_distance) {
+                        second_best_distance = distance;
+                    }
                 }
             }
 
@@ -250,11 +296,34 @@ bool GRASPConstructor::buildIterativeSolution(const std::vector<int>& initial_me
     std::vector<int> medians = initial_medians;
     std::vector<int> assignments(n, -1);
 
+    // Early-stop por custo estavel: na pratica, o loop alterna regret <->
+    // recompute e o conjunto de medianas pode oscilar entre duas configuracoes
+    // equivalentes, nunca disparando a saida por igualdade. Monitoramos o
+    // custo e saimos quando estabiliza (tolerancia relativa 1e-9).
+    double previous_cost = -1.0;
+
     for (int iteration = 0; iteration < kConstructionIterationLimit; ++iteration) {
-        // Primeiro alocamos com base em regret; depois tentamos melhorar as medianas dos clusters.
         if (!assignClientsByRegret(medians, assignments, error)) {
             return false;
         }
+
+        double current_cost = 0.0;
+        for (int client = 0; client < n; ++client) {
+            current_cost += distance_matrix_.at(client, assignments[client]);
+        }
+
+        const bool stable_cost =
+            previous_cost >= 0.0 &&
+            std::abs(current_cost - previous_cost) <
+                1e-9 * std::max(1.0, std::abs(previous_cost));
+
+        if (stable_cost) {
+            solution.reset(n);
+            solution.setMedians(medians);
+            solution.setAssignments(assignments);
+            return evaluator_.evaluate(solution, error);
+        }
+        previous_cost = current_cost;
 
         const std::vector<int> recomputed_medians =
             recomputeClusterMedians(medians, assignments);

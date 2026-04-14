@@ -4,6 +4,7 @@
 #include "distance_matrix.h"
 #include "evaluator.h"
 #include "instance.h"
+#include "reduction.h"
 #include "solution.h"
 
 #include <random>
@@ -15,6 +16,7 @@ private:
     const Instance& instance_;
     const DistanceMatrix& distance_matrix_;
     const Evaluator& evaluator_;
+    const R1Filter* r1_filter_;
     double alpha_;
     int max_tries_;
     std::mt19937 rng_;
@@ -43,6 +45,7 @@ public:
     GRASPConstructor(const Instance& instance,
                      const DistanceMatrix& distance_matrix,
                      const Evaluator& evaluator,
+                     const R1Filter* r1_filter = nullptr,
                      double alpha = 0.6,
                      int max_tries = 1000,
                      unsigned int seed = 123456u);

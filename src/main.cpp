@@ -47,6 +47,7 @@ int main(int argc, char* argv[]) {
     GRASPConstructor grasp(instance,
                            distance_matrix,
                            evaluator,
+                           &r1_filter,
                            alpha,
                            construction_max_tries,
                            seed);
@@ -79,7 +80,11 @@ int main(int argc, char* argv[]) {
     const auto t_total_start = std::chrono::steady_clock::now();
 
     // === GRASP ===
+    const auto t_grasp_start = std::chrono::steady_clock::now();
     Solution solution = grasp.construct();
+    const auto t_grasp_end = std::chrono::steady_clock::now();
+    const double grasp_secs =
+        std::chrono::duration<double>(t_grasp_end - t_grasp_start).count();
 
     if (!solution.feasible()) {
         std::cout << "Erro de construcao: " << grasp.lastError() << "\n";
@@ -88,7 +93,8 @@ int main(int argc, char* argv[]) {
 
     std::cout << std::fixed << std::setprecision(4);
     const double grasp_cost = solution.cost();
-    std::cout << "\nCusto GRASP: " << grasp_cost << "\n";
+    std::cout << "\nCusto GRASP: " << grasp_cost
+              << " (tempo: " << grasp_secs << "s)\n";
 
     // === VND inicial ===
     VND vnd(instance, distance_matrix);
