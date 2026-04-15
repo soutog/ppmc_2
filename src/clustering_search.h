@@ -5,6 +5,7 @@
 #include "evaluator.h"
 #include "grasp_constructor.h"
 #include "instance.h"
+#include "neighborhood_cache.h"
 #include "partial_optimizer.h"
 #include "solution.h"
 
@@ -40,6 +41,7 @@ class ClusteringSearch {
 private:
     const Instance& instance_;
     const DistanceMatrix& dm_;
+    const NeighborhoodCache& nh_cache_;
     const Evaluator& evaluator_;
     PartialOptimizer* partial_optimizer_;
     GRASPConstructor* grasp_;
@@ -64,11 +66,12 @@ private:
 public:
     ClusteringSearch(const Instance& instance,
                      const DistanceMatrix& dm,
+                     const NeighborhoodCache& nh_cache,
                      const Evaluator& evaluator,
                      PartialOptimizer* partial_optimizer,
                      GRASPConstructor* grasp,
                      int gamma = 12,
-                     int max_volume = 5,
+                     int max_volume = 8,
                      int max_inef = 3,
                      int distance_threshold = -1,
                      unsigned int seed = 987654321u);

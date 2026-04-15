@@ -11,11 +11,14 @@ constexpr double kImprovementEps = 1e-9;
 
 ILS::ILS(const Instance& instance,
          const DistanceMatrix& dm,
+         const NeighborhoodCache& nh_cache,
          int num_iter_max,
          double time_limit_s)
     : instance_(instance), distance_matrix_(dm),
+      nh_cache_(nh_cache),
       num_iter_max_(num_iter_max),
       time_limit_s_(time_limit_s),
+      stop_reason_(0),
       total_iterations_(0), improvements_(0) {}
 
 Solution ILS::run(Solution s, std::mt19937& rng, ClusteringSearch* cs) {
@@ -24,6 +27,7 @@ Solution ILS::run(Solution s, std::mt19937& rng, ClusteringSearch* cs) {
     int level = 1;
     total_iterations_ = 0;
     improvements_ = 0;
+    stop_reason_ = 1;  // default: iter_limit
 
     const auto t_start = std::chrono::steady_clock::now();
     const bool has_time_budget = time_limit_s_ > 0.0;
@@ -35,6 +39,7 @@ Solution ILS::run(Solution s, std::mt19937& rng, ClusteringSearch* cs) {
                     std::chrono::steady_clock::now() - t_start)
                     .count();
             if (elapsed >= time_limit_s_) {
+                stop_reason_ = 2;  // time_limit
                 break;
             }
         }
@@ -44,7 +49,7 @@ Solution ILS::run(Solution s, std::mt19937& rng, ClusteringSearch* cs) {
         perturbate(s_prime, level, instance_, distance_matrix_, rng);
 
         // Busca local VND
-        VND vnd(instance_, distance_matrix_);
+        VND vnd(instance_, distance_matrix_, nh_cache_);
         vnd.run(s_prime);
 
         ++total_iterations_;
@@ -97,3 +102,10 @@ Solution ILS::run(Solution s, std::mt19937& rng, ClusteringSearch* cs) {
 
 int ILS::totalIterations() const { return total_iterations_; }
 int ILS::improvements() const { return improvements_; }
+const char* ILS::stopReason() const {
+    switch (stop_reason_) {
+        case 1: return "iter_limit";
+        case 2: return "time_limit";
+        default: return "";
+    }
+}

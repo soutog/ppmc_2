@@ -276,7 +276,8 @@ MoveM2 bestM2(const Solution& solution,
 
 MoveM3 bestM3(const Solution& solution,
               const Instance& instance,
-              const DistanceMatrix& dm) {
+              const DistanceMatrix& dm,
+              const NeighborhoodCache& nh_cache) {
     MoveM3 best{};
     best.delta = 0.0;
     best.found = false;
@@ -303,18 +304,20 @@ MoveM3 bestM3(const Solution& solution,
     // p*n alocacoes (uma por par r1,r2).
     std::vector<double> load_scratch = solution.load();
 
+    const int k_near = nh_cache.kNear();
+
     for (int ki = 0; ki < p; ++ki) {
         const int r1 = medians[ki];
         const std::vector<int>& clients_of_r1 = clients_of[r1];
 
-        auto consider = [&](int r2) {
-            if (is_median[r2]) return;
-            if (va[r2] == r1) return;
+        auto consider = [&](int r2) -> bool {
+            if (is_median[r2]) return false;
+            if (va[r2] == r1) return false;
 
             double delta = 0.0;
             if (!evaluateExactM3MoveCached(solution, r1, r2, instance, dm,
                                            clients_of_r1, load_scratch, &delta)) {
-                return;
+                return true;  // contou como "considerado" mesmo sem melhorar
             }
 
             if (delta < best.delta - kImprovementEps) {
@@ -323,10 +326,16 @@ MoveM3 bestM3(const Solution& solution,
                 best.delta = delta;
                 best.found = true;
             }
+            return true;
         };
 
-        for (int r2 = 0; r2 < n; ++r2) {
-            consider(r2);
+        // B.2: restringe r2 aos k_near nao-medianas mais proximos de r1.
+        // Isso reduz a dupla externa de p*(n-p) para p*k_near.
+        int considered = 0;
+        for (int r2 : nh_cache.nearest(r1)) {
+            if (consider(r2)) {
+                if (++considered >= k_near) break;
+            }
         }
     }
 

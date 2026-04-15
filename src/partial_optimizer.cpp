@@ -37,7 +37,20 @@ std::string cplexStatusToString(IloAlgorithm::Status status) {
     }
 }
 
+struct IncumbentTimerCtx {
+    std::chrono::steady_clock::time_point t0;
+    double last_s = -1.0;
+    int count = 0;
+};
+
 }  // namespace
+
+ILOINCUMBENTCALLBACK1(IncumbentTimerCallback, IncumbentTimerCtx*, ctx) {
+    ctx->last_s = std::chrono::duration<double>(
+                      std::chrono::steady_clock::now() - ctx->t0)
+                      .count();
+    ++ctx->count;
+}
 
 PartialOptimizer::PartialOptimizer(const Instance& instance,
                                    const DistanceMatrix& dm,
@@ -364,6 +377,16 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
         cplex.setOut(env.getNullStream());
         cplex.setWarning(env.getNullStream());
         cplex.setParam(IloCplex::Param::TimeLimit, time_limit_s_);
+        // Prioriza encontrar incumbents melhores em vez de fechar gap.
+        // Probe 2026-04-15: 95% do tempo do MIP e gasto em B&B antes da
+        // incumbent aparecer — emphasis=1 coloca mais esforco nas
+        // heuristicas primais (RINS, feasibility pump) que achavam essas
+        // solucoes.
+        cplex.setParam(IloCplex::Param::Emphasis::MIP, 1);
+
+        IncumbentTimerCtx timer_ctx;
+        timer_ctx.t0 = t_start;
+        cplex.use(IncumbentTimerCallback(env, &timer_ctx));
 
         // Warm start apenas quando a solucao corrente cabe no modelo reduzido.
         {
@@ -498,7 +521,9 @@ bool PartialOptimizer::solveSubproblem(Solution& solution,
                   << " | fo_after=" << objective_after
                   << " | delta=" << (objective_after - objective_before)
                   << " | time=" << elapsed_s
-                  << "s | status=" << cplexStatusToString(status)
+                  << "s | t_last_inc=" << timer_ctx.last_s
+                  << "s | n_inc=" << timer_ctx.count
+                  << " | status=" << cplexStatusToString(status)
                   << "\n";
     } catch (const IloException& ex) {
         std::cout << "[PARTIAL_OPT] cplex_exception=" << ex.getMessage() << "\n";

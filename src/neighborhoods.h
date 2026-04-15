@@ -3,6 +3,7 @@
 
 #include "distance_matrix.h"
 #include "instance.h"
+#include "neighborhood_cache.h"
 #include "solution.h"
 
 struct MoveM1 {
@@ -44,7 +45,8 @@ MoveM2 bestM2(const Solution& solution,
 
 MoveM3 bestM3(const Solution& solution,
               const Instance& instance,
-              const DistanceMatrix& dm);
+              const DistanceMatrix& dm,
+              const NeighborhoodCache& nh_cache);
 
 MoveM4 bestM4(const Solution& solution,
               const Instance& instance,

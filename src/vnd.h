@@ -3,12 +3,14 @@
 
 #include "distance_matrix.h"
 #include "instance.h"
+#include "neighborhood_cache.h"
 #include "solution.h"
 
 class VND {
 private:
     const Instance& instance_;
     const DistanceMatrix& distance_matrix_;
+    const NeighborhoodCache& nh_cache_;
     int iterations_m1_;
     int iterations_m2_;
     int iterations_m3_;
@@ -16,7 +18,8 @@ private:
 
 public:
     VND(const Instance& instance,
-        const DistanceMatrix& distance_matrix);
+        const DistanceMatrix& distance_matrix,
+        const NeighborhoodCache& nh_cache);
 
     void run(Solution& solution);
 

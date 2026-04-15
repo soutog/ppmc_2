@@ -1,4 +1,5 @@
 #include "vnd.h"
+#include "neighborhood_cache.h"
 #include "neighborhoods.h"
 
 #include <chrono>
@@ -10,8 +11,10 @@ constexpr double kImprovementEps = 1e-9;
 }  // namespace
 
 VND::VND(const Instance& instance,
-         const DistanceMatrix& distance_matrix)
+         const DistanceMatrix& distance_matrix,
+         const NeighborhoodCache& nh_cache)
     : instance_(instance), distance_matrix_(distance_matrix),
+      nh_cache_(nh_cache),
       iterations_m1_(0), iterations_m2_(0),
       iterations_m3_(0), iterations_m4_(0) {}
 
@@ -59,7 +62,7 @@ void VND::run(Solution& solution) {
         }
         case 2: {
             const auto t0 = std::chrono::steady_clock::now();
-            const MoveM3 move = bestM3(solution, instance_, distance_matrix_);
+            const MoveM3 move = bestM3(solution, instance_, distance_matrix_, nh_cache_);
             t_m3 += std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
             ++n_m3;
             if (move.found) {

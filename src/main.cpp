@@ -4,6 +4,7 @@
 #include "grasp_constructor.h"
 #include "ils.h"
 #include "instance.h"
+#include "neighborhood_cache.h"
 #include "partial_optimizer.h"
 #include "reduction.h"
 #include "vnd.h"
@@ -30,8 +31,8 @@ int main(int argc, char* argv[]) {
     const double alpha = (argc >= 4 ? std::strtod(argv[3], nullptr) : 0.6);
     const int construction_max_tries =
         (argc >= 5 ? std::atoi(argv[4]) : 1000);
-    const int num_iter_max =
-        (argc >= 6 ? std::atoi(argv[5]) : 60);
+    const int num_iter_max_cli =
+        (argc >= 6 ? std::atoi(argv[5]) : -1);
     const double cli_time_limit_s =
         (argc >= 7 ? std::strtod(argv[6], nullptr) : -1.0);
 
@@ -43,6 +44,7 @@ int main(int argc, char* argv[]) {
     DistanceMatrix distance_matrix(instance);
     Evaluator evaluator(instance, distance_matrix);
     R1Filter r1_filter(instance, distance_matrix, 2.0);
+    NeighborhoodCache nh_cache(instance, distance_matrix);
 
     GRASPConstructor grasp(instance,
                            distance_matrix,
@@ -52,6 +54,20 @@ int main(int argc, char* argv[]) {
                            construction_max_tries,
                            seed);
 
+    // NumIterMax adaptativo por tamanho quando nao passado na CLI.
+    // Instancias grandes tem custo por iteracao ILS proibitivo; reduzir
+    // permite terminar a execucao dentro do orcamento. Medias mantem o
+    // valor do paper (60).
+    int num_iter_max;
+    if (num_iter_max_cli > 0) {
+        num_iter_max = num_iter_max_cli;
+    } else {
+        const int n = instance.numNodes();
+        if (n <= 1000) num_iter_max = 60;
+        else if (n <= 2500) num_iter_max = 40;
+        else num_iter_max = 25;
+    }
+
     // Orcamento de tempo por default depende do tamanho da instancia;
     // pode ser sobrescrito pela CLI. num_iter_max continua valendo como
     // segundo criterio (o que primeiro atingir encerra o ILS).
@@ -60,10 +76,12 @@ int main(int argc, char* argv[]) {
         time_limit_s = cli_time_limit_s;
     } else {
         const int n = instance.numNodes();
-        if (n <= 200) time_limit_s = 30.0;
-        else if (n <= 500) time_limit_s = 60.0;
-        else if (n <= 1000) time_limit_s = 120.0;
-        else time_limit_s = 300.0;
+        // Safety net: NumIterMax deve ser o criterio primario; este teto
+        // so dispara em instancias grandes quando a iteracao fica muito cara.
+        if (n <= 200) time_limit_s = 1800.0;
+        else if (n <= 500) time_limit_s = 1800.0;
+        else if (n <= 1000) time_limit_s = 2400.0;
+        else time_limit_s = 3600.0;
     }
 
     instance.printSummary();
@@ -97,7 +115,7 @@ int main(int argc, char* argv[]) {
               << " (tempo: " << grasp_secs << "s)\n";
 
     // === VND inicial ===
-    VND vnd(instance, distance_matrix);
+    VND vnd(instance, distance_matrix, nh_cache);
     const auto t_vnd_start = std::chrono::steady_clock::now();
     vnd.run(solution);
     const auto t_vnd_end = std::chrono::steady_clock::now();
@@ -122,10 +140,11 @@ int main(int argc, char* argv[]) {
                                        &r1_filter);
     ClusteringSearch clustering_search(instance,
                                        distance_matrix,
+                                       nh_cache,
                                        evaluator,
                                        &partial_optimizer,
                                        &grasp);
-    ILS ils(instance, distance_matrix, num_iter_max, time_limit_s);
+    ILS ils(instance, distance_matrix, nh_cache, num_iter_max, time_limit_s);
     const auto t_ils_start = std::chrono::steady_clock::now();
     Solution best = ils.run(solution, rng, &clustering_search);
     const auto t_ils_end = std::chrono::steady_clock::now();
@@ -138,7 +157,8 @@ int main(int argc, char* argv[]) {
               << ((vnd_cost - final_cost) / vnd_cost * 100.0) << "%)\n";
     std::cout << std::setprecision(4);
     std::cout << "Iteracoes ILS: " << ils.totalIterations()
-              << ", melhorias: " << ils.improvements() << "\n";
+              << ", melhorias: " << ils.improvements()
+              << ", parada: " << ils.stopReason() << "\n";
     const ClusteringSearchStats& cs_stats = clustering_search.stats();
     std::cout << "CS observacoes: " << cs_stats.observations
               << ", clusters ativos: " << cs_stats.active_clusters

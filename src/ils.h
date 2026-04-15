@@ -3,6 +3,7 @@
 
 #include "distance_matrix.h"
 #include "instance.h"
+#include "neighborhood_cache.h"
 #include "solution.h"
 
 #include <array>
@@ -14,8 +15,11 @@ class ILS {
 private:
     const Instance& instance_;
     const DistanceMatrix& distance_matrix_;
+    const NeighborhoodCache& nh_cache_;
     int num_iter_max_;
     double time_limit_s_;
+    // 0 = running, 1 = stopped via iter_limit, 2 = stopped via time_limit
+    int stop_reason_;
 
     // Estatisticas
     int total_iterations_;
@@ -29,6 +33,7 @@ private:
 public:
     ILS(const Instance& instance,
         const DistanceMatrix& dm,
+        const NeighborhoodCache& nh_cache,
         int num_iter_max,
         double time_limit_s = 0.0);
 
@@ -42,6 +47,8 @@ public:
     int returnsToDifferentEqualCost() const;
     int iterationsAtLevel(int level) const;
     int improvementsAtLevel(int level) const;
+    // "iter_limit" ou "time_limit"; vazio se ILS ainda nao rodou.
+    const char* stopReason() const;
 };
 
 #endif

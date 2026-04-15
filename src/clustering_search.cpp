@@ -8,6 +8,7 @@
 
 ClusteringSearch::ClusteringSearch(const Instance& instance,
                                    const DistanceMatrix& dm,
+                                   const NeighborhoodCache& nh_cache,
                                    const Evaluator& evaluator,
                                    PartialOptimizer* partial_optimizer,
                                    GRASPConstructor* grasp,
@@ -18,6 +19,7 @@ ClusteringSearch::ClusteringSearch(const Instance& instance,
                                    unsigned int seed)
     : instance_(instance),
       dm_(dm),
+      nh_cache_(nh_cache),
       evaluator_(evaluator),
       partial_optimizer_(partial_optimizer),
       grasp_(grasp),
@@ -142,7 +144,7 @@ void ClusteringSearch::intensifyCluster(ClusterInfo& cluster,
     const double center_before = cluster.center.cost();
 
     partial_optimizer_->run(candidate);
-    VND vnd(instance_, dm_);
+    VND vnd(instance_, dm_, nh_cache_);
     vnd.run(candidate);
 
     std::string error;
@@ -308,11 +310,10 @@ void ClusteringSearch::observe(const Solution& local_opt,
         intensifyCluster(cluster, best_global, ils_current);
     }
 
-    // Destroy/repair quando o cluster acumula max_inef falhas sem melhoria.
-    // Equivalente a linhas 21-24 do Alg. 6 do CS-ALNS-LB (Souto et al. 2021).
-    if (cluster.ineff_count >= max_inef_) {
-        destroyRepairCluster(cluster, best_global);
-    }
+    // Destroy/repair desativado: no batch 2026-04-14 nao registrou nenhuma
+    // melhoria em 60 runs (CS_DR sempre X/0). Mantemos a funcao para
+    // reativacao futura apos investigar a logica de aceitacao.
+    (void)best_global;
 }
 
 const ClusteringSearchStats& ClusteringSearch::stats() const { return stats_; }

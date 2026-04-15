@@ -1,0 +1,1091 @@
+=== ali535_150.txt seed=42 ===
+Instancia carregada com sucesso.
+Numero de pontos (n): 535
+Numero de medianas (p): 150
+
+Primeiros pontos da instancia:
+Ponto 0 -> x=36.49, y=7.49, cap=219.00, dem=18.00
+Ponto 1 -> x=57.06, y=9.51, cap=219.00, dem=74.00
+Ponto 2 -> x=30.22, y=48.14, cap=219.00, dem=84.00
+Ponto 3 -> x=5.15, y=-3.56, cap=219.00, dem=89.00
+Ponto 4 -> x=34.59, y=-106.37, cap=219.00, dem=77.00
+
+Parametros
+seed=42, alpha=0.60, construction_max_tries=1000, NumIterMax=60, PO_R1_alpha=2.00, PO_R2_beta=10, time_limit_s=2400.00
+
+Custo GRASP: 1780.7718 (tempo: 0.0713s)
+Custo VND:   1324.0887
+Melhoria:    456.6832 (25.65%)
+Iteracoes M1: 39, M2: 27, M3: 38, M4: 8
+Tempo VND inicial: 1.1086s
+[PARTIAL_OPT] ref_cluster=122 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=948 | fo_before=1312.5176 | fo_after=1272.1234 | delta=-40.3942 | time=16.8298s | t_last_inc=9.4835s | n_inc=15 | status=Optimal
+[PARTIAL_OPT] ref_cluster=438 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=1008 | fo_before=1272.1234 | fo_after=1213.9068 | delta=-58.2165 | time=30.0318s | t_last_inc=28.9403s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=2 | skipped_calls=0 | no_improve_streak=0 | total_gain=98.6108 | best_gain=58.2165 | total_time=46.8650s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=112 | candidate_medians=112 | vars_x=899 | fo_before=1162.5360 | fo_after=1162.5360 | delta=0.0000 | time=3.2563s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=112 | candidate_medians=112 | vars_x=899 | fo_before=1162.5360 | fo_after=1162.5360 | delta=0.0000 | time=3.2036s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.4608s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=837 | fo_before=1135.6926 | fo_after=1125.3329 | delta=-10.3597 | time=3.3863s | t_last_inc=3.1301s | n_inc=9 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=837 | fo_before=1125.3329 | fo_after=1125.3329 | delta=0.0000 | time=3.3922s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=112 | candidate_medians=112 | vars_x=893 | fo_before=1125.3329 | fo_after=1125.3329 | delta=0.0000 | time=2.2326s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=10.3597 | best_gain=10.3597 | total_time=9.0129s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1125.2986 | fo_after=1125.2986 | delta=0.0000 | time=3.5042s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1125.2986 | fo_after=1125.2986 | delta=0.0000 | time=3.2922s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.7972s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=111 | candidate_medians=111 | vars_x=882 | fo_before=1120.5847 | fo_after=1120.5847 | delta=-0.0000 | time=4.3527s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1120.5847 | fo_after=1120.5847 | delta=-0.0000 | time=3.6141s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.9677s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1120.5847 | fo_after=1120.5847 | delta=0.0000 | time=3.4365s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=111 | candidate_medians=111 | vars_x=882 | fo_before=1120.5847 | fo_after=1120.5847 | delta=0.0000 | time=4.2181s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.6555s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=110 | candidate_medians=110 | vars_x=883 | fo_before=1102.4429 | fo_after=1102.4429 | delta=-0.0000 | time=3.6491s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=110 | candidate_medians=110 | vars_x=883 | fo_before=1102.4429 | fo_after=1102.4429 | delta=-0.0000 | time=3.5878s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.2378s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1098.2128 | fo_after=1098.2128 | delta=-0.0000 | time=3.3727s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=885 | fo_before=1098.2128 | fo_after=1095.9264 | delta=-2.2864 | time=30.0064s | t_last_inc=24.7175s | n_inc=13 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=1 | skipped_calls=0 | no_improve_streak=0 | total_gain=2.2864 | best_gain=2.2864 | total_time=33.3808s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=110 | candidate_medians=110 | vars_x=883 | fo_before=1093.9946 | fo_after=1093.9946 | delta=0.0000 | time=3.4975s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1093.9946 | fo_after=1093.9946 | delta=0.0000 | time=3.7293s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.2276s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1093.9946 | fo_after=1093.9946 | delta=0.0000 | time=4.8434s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=969 | fo_before=1093.9946 | fo_after=1093.9946 | delta=0.0000 | time=3.8096s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=8.6539s
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=969 | fo_before=1082.3716 | fo_after=1082.3716 | delta=0.0000 | time=3.6470s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=969 | fo_before=1082.3716 | fo_after=1082.3716 | delta=0.0000 | time=3.5113s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.1591s
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=969 | fo_before=1082.3623 | fo_after=1082.3623 | delta=0.0000 | time=3.5849s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=969 | fo_before=1082.3623 | fo_after=1082.3623 | delta=0.0000 | time=3.5287s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.1146s
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=969 | fo_before=1080.7144 | fo_after=1080.7144 | delta=0.0000 | time=3.5410s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=826 | fo_before=1080.7144 | fo_after=1080.7144 | delta=0.0000 | time=3.5710s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.1128s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=873 | fo_before=1080.7018 | fo_after=1082.7572 | delta=2.0554 | time=10.2679s | t_last_inc=7.4474s | n_inc=14 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=105 | candidate_medians=105 | vars_x=820 | fo_before=1080.7018 | fo_after=1080.7018 | delta=0.0000 | time=3.0974s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=13.3663s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=876 | fo_before=1079.3094 | fo_after=1082.5498 | delta=3.2405 | time=30.0662s | t_last_inc=15.1310s | n_inc=3 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0679s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=876 | fo_before=1079.3094 | fo_after=1082.5498 | delta=3.2405 | time=30.0032s | t_last_inc=13.8288s | n_inc=3 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0053s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=105 | candidate_medians=105 | vars_x=820 | fo_before=1079.3094 | fo_after=1079.3094 | delta=0.0000 | time=2.9688s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=876 | fo_before=1079.3094 | fo_after=1082.5498 | delta=3.2405 | time=30.0722s | t_last_inc=14.5876s | n_inc=3 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=33.0433s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=876 | fo_before=1079.3094 | fo_after=1082.5498 | delta=3.2405 | time=30.0034s | t_last_inc=14.4259s | n_inc=3 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0054s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=876 | fo_before=1079.3094 | fo_after=1082.5498 | delta=3.2405 | time=30.0310s | t_last_inc=14.4020s | n_inc=3 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0328s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=105 | candidate_medians=105 | vars_x=850 | fo_before=1079.3094 | fo_after=1079.3094 | delta=0.0000 | time=3.4808s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=105 | candidate_medians=105 | vars_x=820 | fo_before=1079.3094 | fo_after=1079.3094 | delta=0.0000 | time=2.8181s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.2998s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1077.9279 | fo_after=1079.9146 | delta=1.9868 | time=19.8421s | t_last_inc=14.6253s | n_inc=17 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=885 | fo_before=1077.9279 | fo_after=1081.2002 | delta=3.2723 | time=30.0066s | t_last_inc=24.3860s | n_inc=13 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=49.8505s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=845 | fo_before=1075.1809 | fo_after=1075.1809 | delta=0.0000 | time=1.7701s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=885 | fo_before=1075.1809 | fo_after=1078.4533 | delta=3.2723 | time=30.0061s | t_last_inc=24.6771s | n_inc=13 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.7781s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=99 | candidate_medians=99 | vars_x=785 | fo_before=1073.5211 | fo_after=1069.0381 | delta=-4.4830 | time=1.3208s | t_last_inc=1.1039s | n_inc=8 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=885 | fo_before=1069.0381 | fo_after=1072.3105 | delta=3.2723 | time=30.0211s | t_last_inc=25.0892s | n_inc=13 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=1 | skipped_calls=0 | no_improve_streak=1 | total_gain=4.4830 | best_gain=4.4830 | total_time=31.3439s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=112 | candidate_medians=112 | vars_x=867 | fo_before=1069.0381 | fo_after=1080.7731 | delta=11.7349 | time=30.0329s | t_last_inc=29.7000s | n_inc=17 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0355s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=885 | fo_before=1069.0381 | fo_after=1072.3105 | delta=3.2723 | time=30.0038s | t_last_inc=24.0944s | n_inc=13 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0055s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=115 | candidate_medians=115 | vars_x=906 | fo_before=1066.7237 | fo_after=1064.5089 | delta=-2.2148 | time=12.2256s | t_last_inc=11.9958s | n_inc=15 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1064.5089 | fo_after=1066.4957 | delta=1.9868 | time=19.3863s | t_last_inc=14.2435s | n_inc=17 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=1 | skipped_calls=0 | no_improve_streak=1 | total_gain=2.2148 | best_gain=2.2148 | total_time=31.6141s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=923 | fo_before=1062.9892 | fo_after=1062.8910 | delta=-0.0982 | time=7.1756s | t_last_inc=7.0875s | n_inc=16 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1062.8910 | fo_after=1064.8777 | delta=1.9868 | time=19.5204s | t_last_inc=14.3929s | n_inc=17 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=923 | fo_before=1062.8910 | fo_after=1062.8910 | delta=0.0000 | time=17.2337s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0982 | best_gain=0.0982 | total_time=43.9310s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=923 | fo_before=1061.6044 | fo_after=1061.6044 | delta=0.0000 | time=17.8411s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=873 | fo_before=1061.6044 | fo_after=1063.6598 | delta=2.0554 | time=9.2356s | t_last_inc=6.9111s | n_inc=14 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=27.0777s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1059.6562 | fo_after=1060.4359 | delta=0.7798 | time=7.7451s | t_last_inc=7.5578s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1059.6562 | fo_after=1057.3824 | delta=-2.2738 | time=5.1195s | t_last_inc=4.9074s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=878 | fo_before=1057.3824 | fo_after=1057.3824 | delta=0.0000 | time=3.5400s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=878 | fo_before=1057.3824 | fo_after=1057.3824 | delta=0.0000 | time=3.6289s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=2.2738 | best_gain=2.2738 | total_time=20.0352s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=878 | fo_before=1057.3824 | fo_after=1057.3824 | delta=0.0000 | time=3.6283s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=878 | fo_before=1057.3824 | fo_after=1057.3824 | delta=0.0000 | time=3.5188s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.1478s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1054.7978 | fo_after=1055.5775 | delta=0.7798 | time=7.3595s | t_last_inc=7.1827s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=102 | candidate_medians=102 | vars_x=843 | fo_before=1054.7978 | fo_after=1052.2765 | delta=-2.5213 | time=3.1181s | t_last_inc=2.8120s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.2765 | fo_after=1053.0562 | delta=0.7798 | time=7.3536s | t_last_inc=7.1780s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1052.2765 | fo_after=1052.2765 | delta=0.0000 | time=2.5306s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=2.5213 | best_gain=2.5213 | total_time=20.3660s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.2765 | fo_after=1053.0562 | delta=0.7798 | time=7.1364s | t_last_inc=6.9576s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.2765 | fo_after=1053.0562 | delta=0.7798 | time=7.3831s | t_last_inc=7.1978s | n_inc=11 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=14.5204s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1052.2765 | fo_after=1052.2765 | delta=0.0000 | time=2.5027s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.2765 | fo_after=1053.0562 | delta=0.7798 | time=7.6622s | t_last_inc=7.4772s | n_inc=11 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=10.1657s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.2765 | fo_after=1053.0562 | delta=0.7798 | time=7.3388s | t_last_inc=7.1561s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.2765 | fo_after=1053.0562 | delta=0.7798 | time=7.0986s | t_last_inc=6.9230s | n_inc=11 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=14.4381s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1052.2765 | fo_after=1052.2765 | delta=0.0000 | time=2.4093s | t_last_inc=0.0037s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=968 | fo_before=1052.2765 | fo_after=1053.0562 | delta=0.7798 | time=3.2616s | t_last_inc=2.8148s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.6722s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.0900 | fo_after=1052.8698 | delta=0.7798 | time=7.3139s | t_last_inc=7.1473s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1052.0900 | fo_after=1052.0900 | delta=0.0000 | time=2.5345s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.8492s
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=131 | candidate_medians=131 | vars_x=1175 | fo_before=1052.0900 | fo_after=1073.3788 | delta=21.2888 | time=30.0120s | t_last_inc=29.8199s | n_inc=17 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0155s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.0900 | fo_after=1052.8698 | delta=0.7798 | time=7.4383s | t_last_inc=7.2725s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=131 | candidate_medians=131 | vars_x=1175 | fo_before=1052.0900 | fo_after=1065.5019 | delta=13.4119 | time=30.1131s | t_last_inc=29.9305s | n_inc=17 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=37.5543s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=941 | fo_before=1052.0900 | fo_after=1052.8698 | delta=0.7798 | time=7.4319s | t_last_inc=7.2682s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=131 | candidate_medians=131 | vars_x=1175 | fo_before=1052.0900 | fo_after=1074.5487 | delta=22.4587 | time=30.0886s | t_last_inc=29.6449s | n_inc=15 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=37.5235s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1051.1124 | fo_after=1051.1124 | delta=-0.0000 | time=2.5653s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=131 | candidate_medians=131 | vars_x=1175 | fo_before=1051.1124 | fo_after=1064.5243 | delta=13.4119 | time=30.0768s | t_last_inc=29.9137s | n_inc=17 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=32.6449s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=933 | fo_before=1051.0014 | fo_after=1051.0014 | delta=0.0000 | time=5.6540s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=933 | fo_before=1051.0014 | fo_after=1051.0014 | delta=0.0000 | time=5.6597s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=11.3145s
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=129 | candidate_medians=129 | vars_x=1158 | fo_before=1051.0014 | fo_after=1051.4953 | delta=0.4939 | time=30.0097s | t_last_inc=28.6152s | n_inc=18 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0128s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1051.0014 | fo_after=1049.6213 | delta=-1.3801 | time=5.4858s | t_last_inc=5.2358s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1049.6213 | fo_after=1049.6213 | delta=0.0000 | time=2.0390s | t_last_inc=0.0033s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1049.6213 | fo_after=1049.6213 | delta=0.0000 | time=2.0340s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=1.3801 | best_gain=1.3801 | total_time=9.5603s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1049.1377 | fo_after=1051.1714 | delta=2.0337 | time=7.9820s | t_last_inc=3.1762s | n_inc=10 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1049.1377 | fo_after=1051.1714 | delta=2.0337 | time=7.9409s | t_last_inc=3.1579s | n_inc=10 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=15.9240s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=933 | fo_before=1049.1377 | fo_after=1049.1377 | delta=0.0000 | time=5.3726s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1049.1377 | fo_after=1051.1714 | delta=2.0337 | time=8.0335s | t_last_inc=3.1540s | n_inc=10 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=13.4069s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1049.1377 | fo_after=1051.1714 | delta=2.0337 | time=7.9913s | t_last_inc=3.2117s | n_inc=10 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1049.1377 | fo_after=1051.1714 | delta=2.0337 | time=19.1466s | t_last_inc=14.0805s | n_inc=17 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=27.1388s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=933 | fo_before=1049.1377 | fo_after=1049.1377 | delta=0.0000 | time=5.6680s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1049.1377 | fo_after=1051.1714 | delta=2.0337 | time=19.4085s | t_last_inc=14.3061s | n_inc=17 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=25.0774s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=933 | fo_before=1049.1377 | fo_after=1049.1377 | delta=0.0000 | time=5.5741s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1049.1377 | fo_after=1051.1714 | delta=2.0337 | time=7.9056s | t_last_inc=3.1023s | n_inc=10 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=13.4804s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=7.9322s | t_last_inc=3.1461s | n_inc=10 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=19.2893s | t_last_inc=14.0844s | n_inc=17 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=27.2226s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=19.2979s | t_last_inc=14.2644s | n_inc=17 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=933 | fo_before=1048.3615 | fo_after=1048.3615 | delta=0.0000 | time=5.5004s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=24.7991s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=20.0426s | t_last_inc=15.0164s | n_inc=17 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=7.8477s | t_last_inc=3.1453s | n_inc=10 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=27.8911s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=19.8036s | t_last_inc=14.5966s | n_inc=17 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=19.8399s | t_last_inc=14.3065s | n_inc=17 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=39.6444s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=933 | fo_before=1048.3615 | fo_after=1048.3615 | delta=0.0000 | time=5.8939s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1048.3615 | fo_after=1050.3952 | delta=2.0337 | time=19.7723s | t_last_inc=14.4436s | n_inc=17 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=25.6672s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1047.3405 | fo_after=1049.3741 | delta=2.0337 | time=18.9765s | t_last_inc=13.9043s | n_inc=17 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1047.3405 | fo_after=1048.1442 | delta=0.8038 | time=30.0029s | t_last_inc=25.9635s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=48.9806s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1047.3405 | fo_after=1048.1442 | delta=0.8038 | time=30.0032s | t_last_inc=26.5821s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0041s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1047.3405 | fo_after=1048.1442 | delta=0.8038 | time=30.0033s | t_last_inc=25.8527s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0041s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=893 | fo_before=1047.3405 | fo_after=1049.3741 | delta=2.0337 | time=19.1078s | t_last_inc=14.0338s | n_inc=17 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=917 | fo_before=1047.3405 | fo_after=1049.3741 | delta=2.0337 | time=8.2708s | t_last_inc=3.2980s | n_inc=10 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=27.3794s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0043s | t_last_inc=26.3111s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0055s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0058s | t_last_inc=27.0659s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0066s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0045s | t_last_inc=25.2765s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0055s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1045.1636 | fo_after=1045.1636 | delta=0.0000 | time=1.8965s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1045.1636 | fo_after=1045.1636 | delta=0.0000 | time=1.8444s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.7417s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1045.1636 | fo_after=1045.1636 | delta=0.0000 | time=1.8771s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0053s | t_last_inc=26.4725s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.8834s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0052s | t_last_inc=26.2012s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0062s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0048s | t_last_inc=26.6730s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0060s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0038s | t_last_inc=26.5353s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0046s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0032s | t_last_inc=25.3123s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0039s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1045.1636 | fo_after=1045.9674 | delta=0.8038 | time=30.0051s | t_last_inc=26.1155s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0059s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1044.0423 | fo_after=1044.0423 | delta=0.0000 | time=2.1528s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1044.0423 | fo_after=1044.0423 | delta=0.0000 | time=1.8020s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.9559s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1044.0423 | fo_after=1044.0423 | delta=0.0000 | time=1.9636s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1044.0423 | fo_after=1044.0423 | delta=0.0000 | time=1.9771s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.9414s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1044.0423 | fo_after=1044.0423 | delta=0.0000 | time=2.0689s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1044.0423 | fo_after=1044.0423 | delta=0.0000 | time=2.0788s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.1485s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1044.0423 | fo_after=1044.0423 | delta=0.0000 | time=2.0844s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1044.0423 | fo_after=1045.9674 | delta=1.9252 | time=30.0032s | t_last_inc=26.6902s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=32.0887s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1044.0423 | fo_after=1045.9674 | delta=1.9252 | time=30.0037s | t_last_inc=26.6077s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0045s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=1.7847s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=2.1326s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.9181s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=2.1369s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=1.9726s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.1102s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=2.0260s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=1.9913s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.0180s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=882 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=1.9942s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1041.9377 | fo_after=1043.8629 | delta=1.9252 | time=30.0039s | t_last_inc=27.0726s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.9993s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1041.9377 | fo_after=1043.8629 | delta=1.9252 | time=30.0033s | t_last_inc=26.2536s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0041s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=1.7962s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=1.8242s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.6211s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1041.9377 | fo_after=1041.9377 | delta=0.0000 | time=1.8686s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1041.9377 | fo_after=1043.8629 | delta=1.9252 | time=30.0030s | t_last_inc=25.9668s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.8730s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.6512 | fo_after=1042.5763 | delta=1.9252 | time=30.0035s | t_last_inc=26.0690s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0043s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.6512 | fo_after=1042.5763 | delta=1.9252 | time=30.0029s | t_last_inc=25.6500s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0040s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1040.6512 | fo_after=1040.5131 | delta=-0.1381 | time=2.1523s | t_last_inc=1.8875s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1040.5131 | fo_after=1040.5131 | delta=0.0000 | time=3.3235s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1040.5131 | fo_after=1040.5131 | delta=0.0000 | time=3.5126s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.1381 | best_gain=0.1381 | total_time=8.9895s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1040.5131 | fo_after=1040.5131 | delta=0.0000 | time=3.2962s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.5131 | fo_after=1042.4382 | delta=1.9252 | time=30.0097s | t_last_inc=26.4647s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=33.3072s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.5131 | fo_after=1042.4382 | delta=1.9252 | time=30.0038s | t_last_inc=26.3838s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0047s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1040.5131 | fo_after=1040.5131 | delta=0.0000 | time=3.5336s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1040.5131 | fo_after=1040.5131 | delta=0.0000 | time=3.4338s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.9681s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.5131 | fo_after=1042.4382 | delta=1.9252 | time=30.0032s | t_last_inc=26.7626s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0039s
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=130 | candidate_medians=130 | vars_x=1164 | fo_before=1040.4573 | fo_after=1040.4573 | delta=0.0000 | time=30.0037s | t_last_inc=-1.0000s | n_inc=0 | status=Unknown
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0060s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1040.4573 | fo_after=1040.5131 | delta=0.0557 | time=1.0808s | t_last_inc=0.9451s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=130 | candidate_medians=130 | vars_x=1164 | fo_before=1040.4573 | fo_after=1040.4573 | delta=0.0000 | time=30.0027s | t_last_inc=-1.0000s | n_inc=0 | status=Unknown
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.0865s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.4573 | fo_after=1042.3825 | delta=1.9252 | time=30.0034s | t_last_inc=26.4489s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0042s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.4573 | fo_after=1042.3825 | delta=1.9252 | time=30.0211s | t_last_inc=25.9930s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0221s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.4573 | fo_after=1042.3825 | delta=1.9252 | time=30.0352s | t_last_inc=26.1510s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0362s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.4573 | fo_after=1042.3825 | delta=1.9252 | time=30.0218s | t_last_inc=26.1999s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0225s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1040.4573 | fo_after=1040.5131 | delta=0.0557 | time=1.1274s | t_last_inc=0.9767s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=130 | candidate_medians=130 | vars_x=1164 | fo_before=1040.4573 | fo_after=1040.4573 | delta=0.0000 | time=30.0025s | t_last_inc=-1.0000s | n_inc=0 | status=Unknown
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.1337s
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=130 | candidate_medians=130 | vars_x=1164 | fo_before=1040.4573 | fo_after=1040.4573 | delta=0.0000 | time=30.0029s | t_last_inc=-1.0000s | n_inc=0 | status=Unknown
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0054s
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=130 | candidate_medians=130 | vars_x=1164 | fo_before=1040.4573 | fo_after=1040.4573 | delta=0.0000 | time=30.0030s | t_last_inc=-1.0000s | n_inc=0 | status=Unknown
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0062s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=922 | fo_before=1040.4573 | fo_after=1042.3825 | delta=1.9252 | time=30.0038s | t_last_inc=26.2478s | n_inc=19 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0046s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1040.4573 | fo_after=1040.5131 | delta=0.0557 | time=1.0943s | t_last_inc=0.9393s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=198 | free_clusters=30 | free_nodes=130 | candidate_medians=130 | vars_x=1164 | fo_before=1040.4573 | fo_after=1040.4573 | delta=0.0000 | time=30.0024s | t_last_inc=-1.0000s | n_inc=0 | status=Unknown
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.1000s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1040.4573 | fo_after=1040.5131 | delta=0.0557 | time=1.0601s | t_last_inc=0.9253s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1040.4573 | fo_after=1040.5131 | delta=0.0557 | time=1.1029s | t_last_inc=0.9627s | n_inc=5 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.1639s
+
+Custo FINAL: 1040.4573
+Melhoria sobre VND: 283.6313 (21.42%)
+Iteracoes ILS: 492, melhorias: 41, parada: iter_limit
+CS observacoes: 492, clusters ativos: 1, novos clusters: 1, updates de centro: 55
+CS gatilhos PO: 98, melhorias PO: 13, ganho total PO: 163.2634
+CS destroy/repair: 0, com melhoria: 0, promocoes ILS: 11
+Tempo ILS: 2324.4444s
+Tempo total: 2325.6243s
+Validacao final: OK
+[STATUS] OK em 2326s
+
+=== ali535_150.txt seed=43 ===
+Instancia carregada com sucesso.
+Numero de pontos (n): 535
+Numero de medianas (p): 150
+
+Primeiros pontos da instancia:
+Ponto 0 -> x=36.49, y=7.49, cap=219.00, dem=18.00
+Ponto 1 -> x=57.06, y=9.51, cap=219.00, dem=74.00
+Ponto 2 -> x=30.22, y=48.14, cap=219.00, dem=84.00
+Ponto 3 -> x=5.15, y=-3.56, cap=219.00, dem=89.00
+Ponto 4 -> x=34.59, y=-106.37, cap=219.00, dem=77.00
+
+Parametros
+seed=43, alpha=0.60, construction_max_tries=1000, NumIterMax=60, PO_R1_alpha=2.00, PO_R2_beta=10, time_limit_s=2400.00
+
+Custo GRASP: 1767.2624 (tempo: 0.0969s)
+Custo VND:   1319.0538
+Melhoria:    448.2086 (25.36%)
+Iteracoes M1: 43, M2: 48, M3: 39, M4: 8
+Tempo VND inicial: 1.2563s
+[PARTIAL_OPT] ref_cluster=25 | free_clusters=30 | free_nodes=105 | candidate_medians=105 | vars_x=911 | fo_before=1298.1659 | fo_after=1258.3554 | delta=-39.8105 | time=3.4421s | t_last_inc=2.7479s | n_inc=11 | status=Optimal
+[PARTIAL_OPT] ref_cluster=109 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=910 | fo_before=1258.3554 | fo_after=1205.5908 | delta=-52.7646 | time=30.0206s | t_last_inc=29.6039s | n_inc=27 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=2 | skipped_calls=0 | no_improve_streak=0 | total_gain=92.5751 | best_gain=52.7646 | total_time=33.4652s
+[PARTIAL_OPT] ref_cluster=455 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=823 | fo_before=1176.3737 | fo_after=1163.9755 | delta=-12.3981 | time=26.5715s | t_last_inc=10.9783s | n_inc=8 | status=Optimal
+[PARTIAL_OPT] ref_cluster=203 | free_clusters=30 | free_nodes=131 | candidate_medians=131 | vars_x=1121 | fo_before=1163.9755 | fo_after=1151.9892 | delta=-11.9863 | time=30.0048s | t_last_inc=27.4690s | n_inc=15 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=2 | skipped_calls=0 | no_improve_streak=0 | total_gain=24.3845 | best_gain=12.3981 | total_time=56.5789s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=109 | candidate_medians=109 | vars_x=852 | fo_before=1134.4904 | fo_after=1131.0732 | delta=-3.4172 | time=3.2092s | t_last_inc=3.1797s | n_inc=8 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=109 | candidate_medians=109 | vars_x=852 | fo_before=1131.0732 | fo_after=1131.0732 | delta=0.0000 | time=2.8640s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=114 | candidate_medians=114 | vars_x=917 | fo_before=1131.0732 | fo_after=1131.0732 | delta=0.0000 | time=2.1207s | t_last_inc=0.0024s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=3.4172 | best_gain=3.4172 | total_time=8.1951s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=846 | fo_before=1106.3391 | fo_after=1105.2597 | delta=-1.0795 | time=3.7977s | t_last_inc=2.3615s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=846 | fo_before=1105.2597 | fo_after=1105.2597 | delta=0.0000 | time=3.7999s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=109 | candidate_medians=109 | vars_x=877 | fo_before=1105.2597 | fo_after=1102.9502 | delta=-2.3095 | time=3.0856s | t_last_inc=2.9121s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=113 | candidate_medians=113 | vars_x=909 | fo_before=1102.9502 | fo_after=1102.9502 | delta=0.0000 | time=3.2865s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=113 | candidate_medians=113 | vars_x=909 | fo_before=1102.9502 | fo_after=1102.9502 | delta=0.0000 | time=3.3577s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=2 | skipped_calls=0 | no_improve_streak=2 | total_gain=3.3889 | best_gain=2.3095 | total_time=17.3294s
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=1003 | fo_before=1093.9167 | fo_after=1093.9167 | delta=0.0000 | time=8.6747s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=113 | candidate_medians=113 | vars_x=909 | fo_before=1093.9167 | fo_after=1093.9167 | delta=0.0000 | time=3.1027s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=11.7783s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=113 | candidate_medians=113 | vars_x=909 | fo_before=1093.9167 | fo_after=1093.9167 | delta=0.0000 | time=3.1472s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=109 | candidate_medians=109 | vars_x=852 | fo_before=1093.9167 | fo_after=1093.9167 | delta=0.0000 | time=2.8080s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.9569s
+[PARTIAL_OPT] ref_cluster=18 | free_clusters=30 | free_nodes=96 | candidate_medians=96 | vars_x=745 | fo_before=1093.5928 | fo_after=1085.8566 | delta=-7.7362 | time=0.7213s | t_last_inc=0.7069s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=113 | candidate_medians=113 | vars_x=909 | fo_before=1085.8566 | fo_after=1085.8566 | delta=0.0000 | time=2.5607s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=109 | candidate_medians=109 | vars_x=852 | fo_before=1085.8566 | fo_after=1085.8566 | delta=0.0000 | time=3.2529s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=7.7362 | best_gain=7.7362 | total_time=6.5361s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=109 | candidate_medians=109 | vars_x=852 | fo_before=1085.8566 | fo_after=1085.8566 | delta=0.0000 | time=3.2145s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=1003 | fo_before=1085.8566 | fo_after=1085.8566 | delta=0.0000 | time=8.7606s | t_last_inc=0.0022s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=11.9759s
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=1003 | fo_before=1085.8566 | fo_after=1085.8566 | delta=0.0000 | time=8.3911s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=386 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=1003 | fo_before=1085.8566 | fo_after=1085.8566 | delta=0.0000 | time=8.4194s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=16.8115s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=119 | candidate_medians=119 | vars_x=954 | fo_before=1069.9991 | fo_after=1065.6012 | delta=-4.3979 | time=30.0780s | t_last_inc=26.8096s | n_inc=8 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=1 | skipped_calls=0 | no_improve_streak=0 | total_gain=4.3979 | best_gain=4.3979 | total_time=30.0799s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=119 | candidate_medians=119 | vars_x=954 | fo_before=1065.4842 | fo_after=1065.6012 | delta=0.1169 | time=30.0036s | t_last_inc=27.4935s | n_inc=8 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0062s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=119 | candidate_medians=119 | vars_x=954 | fo_before=1065.4842 | fo_after=1065.6012 | delta=0.1169 | time=30.0048s | t_last_inc=27.5520s | n_inc=8 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0075s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=846 | fo_before=1060.6101 | fo_after=1060.6101 | delta=0.0000 | time=3.6586s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=119 | candidate_medians=119 | vars_x=954 | fo_before=1060.6101 | fo_after=1060.7271 | delta=0.1169 | time=30.2106s | t_last_inc=26.7174s | n_inc=8 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=33.8724s
+[PARTIAL_OPT] ref_cluster=250 | free_clusters=30 | free_nodes=108 | candidate_medians=108 | vars_x=846 | fo_before=1060.6101 | fo_after=1060.6101 | delta=0.0000 | time=3.5615s | t_last_inc=0.0023s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=119 | candidate_medians=119 | vars_x=954 | fo_before=1060.6101 | fo_after=1060.7271 | delta=0.1169 | time=30.0836s | t_last_inc=26.8028s | n_inc=8 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=33.6473s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=119 | candidate_medians=119 | vars_x=954 | fo_before=1060.6101 | fo_after=1060.7271 | delta=0.1169 | time=30.0912s | t_last_inc=28.1200s | n_inc=8 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0931s
+[PARTIAL_OPT] ref_cluster=76 | free_clusters=30 | free_nodes=107 | candidate_medians=107 | vars_x=864 | fo_before=1059.0236 | fo_after=1059.0236 | delta=0.0000 | time=2.3379s | t_last_inc=0.0037s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=802 | fo_before=1059.0236 | fo_after=1062.4445 | delta=3.4209 | time=2.6156s | t_last_inc=1.7885s | n_inc=9 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.9544s
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=802 | fo_before=1059.0236 | fo_after=1062.4445 | delta=3.4209 | time=2.4390s | t_last_inc=1.6962s | n_inc=9 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=802 | fo_before=1059.0236 | fo_after=1062.4445 | delta=3.4209 | time=2.5480s | t_last_inc=1.8013s | n_inc=9 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.9878s
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=101 | candidate_medians=101 | vars_x=807 | fo_before=1057.4318 | fo_after=1060.8527 | delta=3.4209 | time=1.5158s | t_last_inc=1.2696s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=116 | candidate_medians=116 | vars_x=919 | fo_before=1057.4318 | fo_after=1056.7534 | delta=-0.6784 | time=30.0036s | t_last_inc=27.3362s | n_inc=22 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=1 | skipped_calls=0 | no_improve_streak=0 | total_gain=0.6784 | best_gain=0.6784 | total_time=31.5222s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1055.6981 | fo_after=1056.2965 | delta=0.5984 | time=8.2366s | t_last_inc=6.0762s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=101 | candidate_medians=101 | vars_x=807 | fo_before=1055.6981 | fo_after=1059.1190 | delta=3.4209 | time=1.4542s | t_last_inc=1.2152s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.6917s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1055.6981 | fo_after=1056.9764 | delta=1.2783 | time=30.0047s | t_last_inc=19.3053s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0059s
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=101 | candidate_medians=101 | vars_x=807 | fo_before=1055.6981 | fo_after=1059.1190 | delta=3.4209 | time=1.5681s | t_last_inc=1.3075s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1055.6981 | fo_after=1056.9764 | delta=1.2783 | time=30.0029s | t_last_inc=19.5028s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.5725s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1055.6981 | fo_after=1056.9764 | delta=1.2783 | time=30.0942s | t_last_inc=19.4872s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0952s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1055.6981 | fo_after=1056.2965 | delta=0.5984 | time=8.5351s | t_last_inc=6.2860s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1055.6981 | fo_after=1056.9764 | delta=1.2783 | time=30.0030s | t_last_inc=19.7690s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=38.5400s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1055.6981 | fo_after=1056.2965 | delta=0.5984 | time=8.7131s | t_last_inc=6.4771s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=101 | candidate_medians=101 | vars_x=807 | fo_before=1055.6981 | fo_after=1059.1190 | delta=3.4209 | time=1.4195s | t_last_inc=1.1813s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=10.1335s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1055.6981 | fo_after=1056.2965 | delta=0.5984 | time=8.2052s | t_last_inc=5.9876s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=101 | candidate_medians=101 | vars_x=807 | fo_before=1055.6981 | fo_after=1059.1190 | delta=3.4209 | time=1.4405s | t_last_inc=1.2165s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.6465s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1055.6981 | fo_after=1056.2965 | delta=0.5984 | time=7.9282s | t_last_inc=5.7727s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=101 | candidate_medians=101 | vars_x=807 | fo_before=1055.6981 | fo_after=1059.1190 | delta=3.4209 | time=1.5420s | t_last_inc=1.3110s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.4711s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1055.6981 | fo_after=1056.8016 | delta=1.1034 | time=30.0035s | t_last_inc=28.6148s | n_inc=12 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0048s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1055.6981 | fo_after=1056.2965 | delta=0.5984 | time=8.3461s | t_last_inc=6.1089s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=101 | candidate_medians=101 | vars_x=807 | fo_before=1055.6981 | fo_after=1059.1190 | delta=3.4209 | time=1.4178s | t_last_inc=1.1878s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.7648s
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=98 | candidate_medians=98 | vars_x=798 | fo_before=1054.5926 | fo_after=1057.3076 | delta=2.7150 | time=1.4351s | t_last_inc=1.2817s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=98 | candidate_medians=98 | vars_x=798 | fo_before=1054.5926 | fo_after=1057.3076 | delta=2.7150 | time=1.4433s | t_last_inc=1.2927s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.8791s
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=98 | candidate_medians=98 | vars_x=798 | fo_before=1054.5926 | fo_after=1057.3076 | delta=2.7150 | time=1.5087s | t_last_inc=1.3474s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=98 | candidate_medians=98 | vars_x=798 | fo_before=1054.5926 | fo_after=1057.3076 | delta=2.7150 | time=1.3020s | t_last_inc=1.1459s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.8113s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1052.5181 | fo_after=1055.3773 | delta=2.8592 | time=30.0669s | t_last_inc=29.3872s | n_inc=12 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0682s
+[PARTIAL_OPT] ref_cluster=421 | free_clusters=30 | free_nodes=98 | candidate_medians=98 | vars_x=798 | fo_before=1052.5181 | fo_after=1055.2331 | delta=2.7150 | time=2.4015s | t_last_inc=2.1987s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=902 | fo_before=1052.5181 | fo_after=1050.5053 | delta=-2.0128 | time=5.2066s | t_last_inc=3.2785s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=106 | candidate_medians=106 | vars_x=885 | fo_before=1050.5053 | fo_after=1048.7699 | delta=-1.7354 | time=3.2006s | t_last_inc=2.6020s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1048.7699 | fo_after=1051.6291 | delta=2.8592 | time=30.0032s | t_last_inc=28.7179s | n_inc=12 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=2 | skipped_calls=0 | no_improve_streak=1 | total_gain=3.7482 | best_gain=2.0128 | total_time=40.8141s
+[PARTIAL_OPT] ref_cluster=432 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1048.0640 | fo_after=1047.9259 | delta=-0.1381 | time=2.0543s | t_last_inc=2.0467s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1047.9259 | fo_after=1047.9259 | delta=0.0000 | time=2.2931s | t_last_inc=0.0019s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.9259 | fo_after=1050.9599 | delta=3.0340 | time=30.0241s | t_last_inc=18.9365s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.1381 | best_gain=0.1381 | total_time=34.3737s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.9259 | fo_after=1050.9599 | delta=3.0340 | time=30.0032s | t_last_inc=18.9381s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0047s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.9259 | fo_after=1050.9599 | delta=3.0340 | time=30.0091s | t_last_inc=20.1336s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0101s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1047.9259 | fo_after=1047.9259 | delta=0.0000 | time=2.2763s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.9259 | fo_after=1048.5243 | delta=0.5984 | time=7.9153s | t_last_inc=5.7791s | n_inc=13 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=10.1939s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.9259 | fo_after=1050.9599 | delta=3.0340 | time=30.0504s | t_last_inc=19.6706s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0517s
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1047.9259 | fo_after=1047.9259 | delta=0.0000 | time=2.3506s | t_last_inc=0.0021s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.9259 | fo_after=1048.5243 | delta=0.5984 | time=8.2336s | t_last_inc=5.9979s | n_inc=13 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=10.5850s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.9259 | fo_after=1050.9599 | delta=3.0340 | time=30.0034s | t_last_inc=20.3467s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0046s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.9259 | fo_after=1048.5243 | delta=0.5984 | time=8.3952s | t_last_inc=6.0671s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.9259 | fo_after=1050.9599 | delta=3.0340 | time=30.0307s | t_last_inc=19.8848s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=38.4280s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.9259 | fo_after=1048.5243 | delta=0.5984 | time=8.9221s | t_last_inc=6.6327s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=30 | free_nodes=104 | candidate_medians=104 | vars_x=872 | fo_before=1047.9259 | fo_after=1047.9259 | delta=0.0000 | time=2.4779s | t_last_inc=0.0020s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=11.4008s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.8702 | fo_after=1048.4686 | delta=0.5984 | time=8.3288s | t_last_inc=6.0787s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.8702 | fo_after=1047.9259 | delta=0.0557 | time=1.1697s | t_last_inc=1.0151s | n_inc=5 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.4994s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.8702 | fo_after=1047.9259 | delta=0.0557 | time=1.1015s | t_last_inc=0.9700s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.8702 | fo_after=1048.4686 | delta=0.5984 | time=8.0245s | t_last_inc=5.9345s | n_inc=13 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.1270s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.8702 | fo_after=1050.9042 | delta=3.0340 | time=30.0032s | t_last_inc=19.5558s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0046s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.5123 | fo_after=1048.1107 | delta=0.5984 | time=8.8066s | t_last_inc=6.5031s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.5123 | fo_after=1048.1107 | delta=0.5984 | time=8.6349s | t_last_inc=6.2706s | n_inc=13 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=17.4425s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.5123 | fo_after=1048.1107 | delta=0.5984 | time=8.8520s | t_last_inc=6.6710s | n_inc=13 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.5123 | fo_after=1048.1107 | delta=0.5984 | time=8.3447s | t_last_inc=6.0491s | n_inc=13 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=17.1976s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.5123 | fo_after=1047.5680 | delta=0.0557 | time=1.1723s | t_last_inc=1.0305s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=117 | candidate_medians=117 | vars_x=959 | fo_before=1047.5123 | fo_after=1048.1107 | delta=0.5984 | time=8.5775s | t_last_inc=6.3318s | n_inc=13 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.7507s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=120 | candidate_medians=120 | vars_x=997 | fo_before=1047.0181 | fo_after=1047.6165 | delta=0.5984 | time=4.4093s | t_last_inc=2.7310s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0134s | t_last_inc=19.3323s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=34.4242s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.0181 | fo_after=1047.0738 | delta=0.0557 | time=1.1373s | t_last_inc=0.9831s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1049.8773 | delta=2.8592 | time=30.0050s | t_last_inc=28.6521s | n_inc=12 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.1440s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.0181 | fo_after=1047.0738 | delta=0.0557 | time=1.0710s | t_last_inc=0.9383s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=120 | candidate_medians=120 | vars_x=997 | fo_before=1047.0181 | fo_after=1047.6165 | delta=0.5984 | time=4.4940s | t_last_inc=2.7500s | n_inc=6 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.5657s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=120 | candidate_medians=120 | vars_x=997 | fo_before=1047.0181 | fo_after=1047.6165 | delta=0.5984 | time=4.6512s | t_last_inc=2.8944s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0950s | t_last_inc=19.7206s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=34.7477s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0053s | t_last_inc=19.3374s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0064s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.0181 | fo_after=1047.0738 | delta=0.0557 | time=1.1487s | t_last_inc=1.0066s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0033s | t_last_inc=18.7334s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.1535s
+[PARTIAL_OPT] ref_cluster=32 | free_clusters=30 | free_nodes=120 | candidate_medians=120 | vars_x=997 | fo_before=1047.0181 | fo_after=1047.6165 | delta=0.5984 | time=4.5775s | t_last_inc=2.7809s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0035s | t_last_inc=18.8561s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=34.5826s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0039s | t_last_inc=19.1512s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0056s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.0181 | fo_after=1047.0738 | delta=0.0557 | time=1.0681s | t_last_inc=0.9233s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0031s | t_last_inc=19.2681s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.0729s
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0033s | t_last_inc=20.3514s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=0 | skipped_calls=0 | no_improve_streak=1 | total_gain=0.0000 | best_gain=0.0000 | total_time=30.0045s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.0181 | fo_after=1047.0738 | delta=0.0557 | time=1.1426s | t_last_inc=0.9917s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.0181 | fo_after=1047.0738 | delta=0.0557 | time=1.1218s | t_last_inc=0.9790s | n_inc=5 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.2653s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=30 | free_nodes=100 | candidate_medians=100 | vars_x=860 | fo_before=1047.0181 | fo_after=1047.0738 | delta=0.0557 | time=1.0894s | t_last_inc=0.9414s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=186 | free_clusters=30 | free_nodes=118 | candidate_medians=118 | vars_x=929 | fo_before=1047.0181 | fo_after=1050.0521 | delta=3.0340 | time=30.0033s | t_last_inc=19.5425s | n_inc=11 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=31.0945s
+
+Custo FINAL: 1047.0181
+Melhoria sobre VND: 272.0357 (20.62%)
+Iteracoes ILS: 299, melhorias: 30, parada: iter_limit
+CS observacoes: 299, clusters ativos: 1, novos clusters: 1, updates de centro: 40
+CS gatilhos PO: 59, melhorias PO: 12, ganho total PO: 148.3620
+CS destroy/repair: 0, com melhoria: 0, promocoes ILS: 9
+Tempo ILS: 1377.2433s
+Tempo total: 1378.5966s
+Validacao final: OK
+[STATUS] OK em 1378s
+
+=== pr2392_075.txt seed=42 ===
+Instancia carregada com sucesso.
+Numero de pontos (n): 2392
+Numero de medianas (p): 75
+
+Primeiros pontos da instancia:
+Ponto 0 -> x=1639.00, y=2156.00, cap=2031.00, dem=76.00
+Ponto 1 -> x=1875.00, y=2925.00, cap=2031.00, dem=70.00
+Ponto 2 -> x=2150.00, y=2925.00, cap=2031.00, dem=44.00
+Ponto 3 -> x=2425.00, y=2925.00, cap=2031.00, dem=66.00
+Ponto 4 -> x=2525.00, y=2675.00, cap=2031.00, dem=47.00
+
+Parametros
+seed=42, alpha=0.60, construction_max_tries=1000, NumIterMax=60, PO_R1_alpha=2.00, PO_R2_beta=10, time_limit_s=3600.00
+
+Custo GRASP: 1176219.4426 (tempo: 1.0744s)
+Custo VND:   1164437.9197
+Melhoria:    11781.5229 (1.00%)
+Iteracoes M1: 12, M2: 3, M3: 0, M4: 12
+Tempo VND inicial: 1.7714s
+[PARTIAL_OPT] ref_cluster=575 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=7077 | fo_before=1162273.9668 | fo_after=1159402.2446 | delta=-2871.7221 | time=3.0971s | t_last_inc=1.5335s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=332 | candidate_medians=90 | vars_x=6748 | fo_before=1159402.2446 | fo_after=1157951.5087 | delta=-1450.7359 | time=8.3790s | t_last_inc=8.1988s | n_inc=9 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=332 | candidate_medians=90 | vars_x=6764 | fo_before=1157951.5087 | fo_after=1157951.5087 | delta=0.0000 | time=4.2962s | t_last_inc=0.0096s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=332 | candidate_medians=90 | vars_x=6764 | fo_before=1157951.5087 | fo_after=1157951.5087 | delta=0.0000 | time=3.9991s | t_last_inc=0.0098s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=2 | skipped_calls=0 | no_improve_streak=2 | total_gain=4322.4581 | best_gain=2871.7221 | total_time=19.7754s
+[PARTIAL_OPT] ref_cluster=2 | free_clusters=10 | free_nodes=321 | candidate_medians=100 | vars_x=6670 | fo_before=1135827.3839 | fo_after=1130515.2387 | delta=-5312.1453 | time=0.2512s | t_last_inc=0.2495s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=6616 | fo_before=1130515.2387 | fo_after=1130157.0139 | delta=-358.2247 | time=2.0843s | t_last_inc=1.3410s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=5 | free_clusters=9 | free_nodes=302 | candidate_medians=90 | vars_x=6352 | fo_before=1130157.0139 | fo_after=1127317.3563 | delta=-2839.6576 | time=0.2309s | t_last_inc=0.2293s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=6614 | fo_before=1127317.3563 | fo_after=1127317.3563 | delta=0.0000 | time=1.0902s | t_last_inc=0.0100s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=6614 | fo_before=1127317.3563 | fo_after=1127317.3563 | delta=0.0000 | time=1.0633s | t_last_inc=0.0126s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=3 | skipped_calls=0 | no_improve_streak=2 | total_gain=8510.0276 | best_gain=5312.1453 | total_time=4.7247s
+[PARTIAL_OPT] ref_cluster=1939 | free_clusters=9 | free_nodes=322 | candidate_medians=90 | vars_x=6594 | fo_before=1127051.2316 | fo_after=1125492.1350 | delta=-1559.0966 | time=0.2097s | t_last_inc=0.2080s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=320 | candidate_medians=90 | vars_x=6625 | fo_before=1125492.1350 | fo_after=1125492.1350 | delta=0.0000 | time=0.6673s | t_last_inc=0.0093s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=320 | candidate_medians=90 | vars_x=6625 | fo_before=1125492.1350 | fo_after=1125492.1350 | delta=0.0000 | time=0.6650s | t_last_inc=0.0095s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=1559.0966 | best_gain=1559.0966 | total_time=1.5447s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=324 | candidate_medians=90 | vars_x=6918 | fo_before=1123319.4208 | fo_after=1122829.5670 | delta=-489.8538 | time=0.2497s | t_last_inc=0.2470s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=6616 | fo_before=1122829.5670 | fo_after=1122829.5670 | delta=0.0000 | time=1.9096s | t_last_inc=0.0097s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=6616 | fo_before=1122829.5670 | fo_after=1122829.5670 | delta=0.0000 | time=1.8499s | t_last_inc=0.0095s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=489.8538 | best_gain=489.8538 | total_time=4.0121s
+[PARTIAL_OPT] ref_cluster=2257 | free_clusters=10 | free_nodes=333 | candidate_medians=100 | vars_x=6318 | fo_before=1119548.3629 | fo_after=1117044.2233 | delta=-2504.1396 | time=0.2578s | t_last_inc=0.2558s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=324 | candidate_medians=90 | vars_x=6839 | fo_before=1117044.2233 | fo_after=1117044.2233 | delta=0.0000 | time=0.2429s | t_last_inc=0.0112s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=6616 | fo_before=1117044.2233 | fo_after=1117044.2233 | delta=0.0000 | time=2.1342s | t_last_inc=0.0172s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=2504.1396 | best_gain=2504.1396 | total_time=2.6384s
+[PARTIAL_OPT] ref_cluster=1513 | free_clusters=10 | free_nodes=321 | candidate_medians=100 | vars_x=6327 | fo_before=1116884.3843 | fo_after=1116831.1997 | delta=-53.1846 | time=0.3859s | t_last_inc=0.3812s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1513 | free_clusters=10 | free_nodes=321 | candidate_medians=100 | vars_x=6381 | fo_before=1116831.1997 | fo_after=1116831.1997 | delta=0.0000 | time=0.3284s | t_last_inc=0.0095s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=324 | candidate_medians=90 | vars_x=6839 | fo_before=1116831.1997 | fo_after=1116831.1997 | delta=0.0000 | time=0.2342s | t_last_inc=0.0102s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=53.1846 | best_gain=53.1846 | total_time=0.9513s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=324 | candidate_medians=90 | vars_x=6839 | fo_before=1116634.3035 | fo_after=1116634.3035 | delta=0.0000 | time=0.2368s | t_last_inc=0.0103s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=324 | candidate_medians=90 | vars_x=6839 | fo_before=1116634.3035 | fo_after=1116634.3035 | delta=0.0000 | time=0.2666s | t_last_inc=0.0122s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.5057s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=324 | candidate_medians=90 | vars_x=6839 | fo_before=1116634.3035 | fo_after=1116634.3035 | delta=0.0000 | time=0.2586s | t_last_inc=0.0123s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=324 | candidate_medians=90 | vars_x=6839 | fo_before=1116634.3035 | fo_after=1116634.3035 | delta=0.0000 | time=0.2449s | t_last_inc=0.0109s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.5057s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.2927s | t_last_inc=0.0160s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1513 | free_clusters=10 | free_nodes=320 | candidate_medians=100 | vars_x=6376 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=1.2628s | t_last_inc=0.0108s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.5579s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.2624s | t_last_inc=0.0120s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1513 | free_clusters=10 | free_nodes=320 | candidate_medians=100 | vars_x=6376 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=1.2601s | t_last_inc=0.0119s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.5247s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.2562s | t_last_inc=0.0106s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.3325s | t_last_inc=0.0123s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.5910s
+[PARTIAL_OPT] ref_cluster=1513 | free_clusters=10 | free_nodes=320 | candidate_medians=100 | vars_x=6376 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=1.3923s | t_last_inc=0.0131s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.2936s | t_last_inc=0.0129s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.6881s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.3137s | t_last_inc=0.0101s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.4206s | t_last_inc=0.0176s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.7368s
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=318 | candidate_medians=90 | vars_x=6605 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=0.4897s | t_last_inc=0.0112s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1513 | free_clusters=10 | free_nodes=320 | candidate_medians=100 | vars_x=6376 | fo_before=1115103.6773 | fo_after=1115103.6773 | delta=0.0000 | time=1.3818s | t_last_inc=0.0164s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.8745s
+[PARTIAL_OPT] ref_cluster=5 | free_clusters=9 | free_nodes=302 | candidate_medians=90 | vars_x=6259 | fo_before=1114821.7294 | fo_after=1114530.3926 | delta=-291.3369 | time=0.2277s | t_last_inc=0.1946s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=327 | candidate_medians=100 | vars_x=7000 | fo_before=1114530.3926 | fo_after=1114530.3926 | delta=0.0000 | time=0.2202s | t_last_inc=0.0125s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=318 | candidate_medians=90 | vars_x=6605 | fo_before=1114530.3926 | fo_after=1114530.3926 | delta=0.0000 | time=0.5645s | t_last_inc=0.0111s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=291.3369 | best_gain=291.3369 | total_time=1.0158s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=328 | candidate_medians=100 | vars_x=7012 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2020s | t_last_inc=0.0125s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=318 | candidate_medians=90 | vars_x=6605 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.4172s | t_last_inc=0.0116s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.6211s
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=318 | candidate_medians=90 | vars_x=6605 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.4628s | t_last_inc=0.0129s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.3103s | t_last_inc=0.0128s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.7751s
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=318 | candidate_medians=90 | vars_x=6605 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.6428s | t_last_inc=0.0144s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.3912s | t_last_inc=0.0115s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.0363s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=328 | candidate_medians=100 | vars_x=7012 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2365s | t_last_inc=0.0182s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2880s | t_last_inc=0.0126s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.5271s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=328 | candidate_medians=100 | vars_x=7012 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2161s | t_last_inc=0.0113s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.3310s | t_last_inc=0.0141s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.5493s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=328 | candidate_medians=100 | vars_x=7012 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.1988s | t_last_inc=0.0103s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=318 | candidate_medians=90 | vars_x=6605 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.4250s | t_last_inc=0.0116s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.6258s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2825s | t_last_inc=0.0104s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=328 | candidate_medians=100 | vars_x=7012 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2120s | t_last_inc=0.0115s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.4966s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2426s | t_last_inc=0.0095s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2819s | t_last_inc=0.0112s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.5264s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2386s | t_last_inc=0.0103s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2702s | t_last_inc=0.0110s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.5107s
+[PARTIAL_OPT] ref_cluster=95 | free_clusters=9 | free_nodes=318 | candidate_medians=90 | vars_x=6605 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.4275s | t_last_inc=0.0102s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=323 | candidate_medians=90 | vars_x=6831 | fo_before=1113161.1384 | fo_after=1113161.1384 | delta=0.0000 | time=0.2740s | t_last_inc=0.0112s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.7034s
+
+Custo FINAL: 1113161.1384
+Melhoria sobre VND: 51276.7813 (4.40%)
+Iteracoes ILS: 135, melhorias: 16, parada: iter_limit
+CS observacoes: 135, clusters ativos: 7, novos clusters: 7, updates de centro: 15
+CS gatilhos PO: 25, melhorias PO: 7, ganho total PO: 21826.4728
+CS destroy/repair: 0, com melhoria: 0, promocoes ILS: 7
+Tempo ILS: 337.8469s
+Tempo total: 340.6929s
+Validacao final: OK
+[STATUS] OK em 341s
+
+=== pr2392_075.txt seed=43 ===
+Instancia carregada com sucesso.
+Numero de pontos (n): 2392
+Numero de medianas (p): 75
+
+Primeiros pontos da instancia:
+Ponto 0 -> x=1639.00, y=2156.00, cap=2031.00, dem=76.00
+Ponto 1 -> x=1875.00, y=2925.00, cap=2031.00, dem=70.00
+Ponto 2 -> x=2150.00, y=2925.00, cap=2031.00, dem=44.00
+Ponto 3 -> x=2425.00, y=2925.00, cap=2031.00, dem=66.00
+Ponto 4 -> x=2525.00, y=2675.00, cap=2031.00, dem=47.00
+
+Parametros
+seed=43, alpha=0.60, construction_max_tries=1000, NumIterMax=60, PO_R1_alpha=2.00, PO_R2_beta=10, time_limit_s=3600.00
+
+Custo GRASP: 1167175.9775 (tempo: 1.2307s)
+Custo VND:   1154290.7889
+Melhoria:    12885.1886 (1.10%)
+Iteracoes M1: 13, M2: 2, M3: 0, M4: 20
+Tempo VND inicial: 2.9503s
+[PARTIAL_OPT] ref_cluster=1939 | free_clusters=8 | free_nodes=309 | candidate_medians=80 | vars_x=5887 | fo_before=1130476.4910 | fo_after=1129401.6924 | delta=-1074.7986 | time=3.2865s | t_last_inc=1.3772s | n_inc=10 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=331 | candidate_medians=100 | vars_x=7307 | fo_before=1129401.6924 | fo_after=1127104.3497 | delta=-2297.3427 | time=0.2051s | t_last_inc=0.2032s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=331 | candidate_medians=100 | vars_x=7065 | fo_before=1127104.3497 | fo_after=1126324.7100 | delta=-779.6397 | time=0.2996s | t_last_inc=0.2426s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=599 | free_clusters=8 | free_nodes=309 | candidate_medians=80 | vars_x=5637 | fo_before=1126324.7100 | fo_after=1126252.0474 | delta=-72.6625 | time=0.3275s | t_last_inc=0.1996s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=311 | candidate_medians=80 | vars_x=6155 | fo_before=1126252.0474 | fo_after=1126211.3753 | delta=-40.6721 | time=0.7470s | t_last_inc=0.3185s | n_inc=2 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=5 | skipped_calls=0 | no_improve_streak=0 | total_gain=4265.1157 | best_gain=2297.3427 | total_time=4.8703s
+[PARTIAL_OPT] ref_cluster=599 | free_clusters=9 | free_nodes=338 | candidate_medians=90 | vars_x=6414 | fo_before=1118166.7827 | fo_after=1118103.8885 | delta=-62.8942 | time=1.2765s | t_last_inc=1.2732s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1939 | free_clusters=9 | free_nodes=309 | candidate_medians=90 | vars_x=6590 | fo_before=1118103.8885 | fo_after=1117483.7200 | delta=-620.1686 | time=0.1892s | t_last_inc=0.1875s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=599 | free_clusters=8 | free_nodes=308 | candidate_medians=80 | vars_x=5643 | fo_before=1117483.7200 | fo_after=1117483.7200 | delta=0.0000 | time=0.2490s | t_last_inc=0.0088s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=599 | free_clusters=8 | free_nodes=308 | candidate_medians=80 | vars_x=5643 | fo_before=1117483.7200 | fo_after=1117483.7200 | delta=0.0000 | time=0.2351s | t_last_inc=0.0078s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=2 | skipped_calls=0 | no_improve_streak=2 | total_gain=683.0628 | best_gain=620.1686 | total_time=1.9530s
+[PARTIAL_OPT] ref_cluster=5 | free_clusters=10 | free_nodes=335 | candidate_medians=100 | vars_x=7173 | fo_before=1115830.8448 | fo_after=1115351.5929 | delta=-479.2519 | time=0.2152s | t_last_inc=0.2125s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=9 | free_nodes=305 | candidate_medians=90 | vars_x=6283 | fo_before=1115351.5929 | fo_after=1115070.7595 | delta=-280.8334 | time=0.1798s | t_last_inc=0.1782s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=9 | free_nodes=305 | candidate_medians=90 | vars_x=6278 | fo_before=1115070.7595 | fo_after=1115070.7595 | delta=0.0000 | time=0.1514s | t_last_inc=0.0091s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=309 | candidate_medians=90 | vars_x=6702 | fo_before=1115070.7595 | fo_after=1114954.6461 | delta=-116.1134 | time=0.2218s | t_last_inc=0.2164s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=9 | free_nodes=305 | candidate_medians=90 | vars_x=6278 | fo_before=1114954.6461 | fo_after=1114954.6461 | delta=0.0000 | time=0.1547s | t_last_inc=0.0135s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=3 | skipped_calls=0 | no_improve_streak=1 | total_gain=876.1987 | best_gain=479.2519 | total_time=0.9282s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=9 | free_nodes=309 | candidate_medians=90 | vars_x=6338 | fo_before=1114449.0229 | fo_after=1114373.2733 | delta=-75.7495 | time=0.2025s | t_last_inc=0.1994s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=308 | candidate_medians=80 | vars_x=6097 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=1.4153s | t_last_inc=0.0101s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=310 | candidate_medians=90 | vars_x=6751 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=0.2294s | t_last_inc=0.0117s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=75.7495 | best_gain=75.7495 | total_time=1.8502s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=9 | free_nodes=309 | candidate_medians=90 | vars_x=6338 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=0.1589s | t_last_inc=0.0100s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=308 | candidate_medians=80 | vars_x=6097 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=1.1484s | t_last_inc=0.0094s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.3093s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=308 | candidate_medians=80 | vars_x=6097 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=1.2310s | t_last_inc=0.0136s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=310 | candidate_medians=90 | vars_x=6751 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=0.2225s | t_last_inc=0.0107s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.4557s
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=310 | candidate_medians=90 | vars_x=6751 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=0.2191s | t_last_inc=0.0100s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=310 | candidate_medians=90 | vars_x=6751 | fo_before=1114373.2733 | fo_after=1114373.2733 | delta=0.0000 | time=0.2080s | t_last_inc=0.0163s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.4294s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=9 | free_nodes=309 | candidate_medians=90 | vars_x=6338 | fo_before=1114331.5557 | fo_after=1114331.5557 | delta=0.0000 | time=0.1755s | t_last_inc=0.0160s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=9 | free_nodes=309 | candidate_medians=90 | vars_x=6338 | fo_before=1114331.5557 | fo_after=1114331.5557 | delta=0.0000 | time=0.1476s | t_last_inc=0.0091s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.3252s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7023 | fo_before=1111575.7796 | fo_after=1111431.0512 | delta=-144.7284 | time=0.1614s | t_last_inc=0.1600s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=662 | free_clusters=9 | free_nodes=329 | candidate_medians=90 | vars_x=6272 | fo_before=1111431.0512 | fo_after=1110348.1042 | delta=-1082.9470 | time=8.3169s | t_last_inc=8.1184s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=1937 | free_clusters=9 | free_nodes=319 | candidate_medians=90 | vars_x=6808 | fo_before=1110348.1042 | fo_after=1110348.1042 | delta=0.0000 | time=0.2387s | t_last_inc=0.0107s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=312 | candidate_medians=80 | vars_x=6081 | fo_before=1110348.1042 | fo_after=1110141.7088 | delta=-206.3954 | time=2.1058s | t_last_inc=0.9903s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1110141.7088 | fo_after=1110141.7088 | delta=0.0000 | time=0.1627s | t_last_inc=0.0104s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=3 | skipped_calls=0 | no_improve_streak=1 | total_gain=1434.0708 | best_gain=1082.9470 | total_time=10.9904s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109866.3389 | fo_after=1109866.3389 | delta=0.0000 | time=0.1888s | t_last_inc=0.0100s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5658 | fo_before=1109866.3389 | fo_after=1109747.2822 | delta=-119.0567 | time=2.9230s | t_last_inc=2.8413s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1685s | t_last_inc=0.0105s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1794s | t_last_inc=0.0105s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=119.0567 | best_gain=119.0567 | total_time=3.4634s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1869s | t_last_inc=0.0104s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5622 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.0207s | t_last_inc=0.0087s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.2094s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=312 | candidate_medians=80 | vars_x=6178 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.6381s | t_last_inc=0.0109s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1707s | t_last_inc=0.0115s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.8110s
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5622 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.0726s | t_last_inc=0.0108s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=312 | candidate_medians=80 | vars_x=6178 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.6742s | t_last_inc=0.0119s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.7495s
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5622 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.0478s | t_last_inc=0.0091s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=312 | candidate_medians=80 | vars_x=6178 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.6565s | t_last_inc=0.0086s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.7060s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=312 | candidate_medians=80 | vars_x=6178 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=4.5365s | t_last_inc=0.0096s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1817s | t_last_inc=0.0102s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.7200s
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=312 | candidate_medians=80 | vars_x=6178 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=4.1324s | t_last_inc=0.0118s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1737s | t_last_inc=0.0132s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.3084s
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5622 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.4444s | t_last_inc=0.0147s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.2407s | t_last_inc=0.0118s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.6871s
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5622 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.0786s | t_last_inc=0.0141s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1899s | t_last_inc=0.0174s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.2711s
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5622 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=2.9266s | t_last_inc=0.0088s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=525 | free_clusters=8 | free_nodes=312 | candidate_medians=80 | vars_x=6178 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.3811s | t_last_inc=0.0136s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.3097s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1756s | t_last_inc=0.0152s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=600 | free_clusters=8 | free_nodes=321 | candidate_medians=80 | vars_x=5622 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=3.2820s | t_last_inc=0.0129s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.4597s
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.1761s | t_last_inc=0.0108s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=13 | free_clusters=10 | free_nodes=308 | candidate_medians=100 | vars_x=7011 | fo_before=1109747.2822 | fo_after=1109747.2822 | delta=0.0000 | time=0.2086s | t_last_inc=0.0124s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=0.3868s
+
+Custo FINAL: 1109747.2822
+Melhoria sobre VND: 44543.5067 (3.86%)
+Iteracoes ILS: 114, melhorias: 13, parada: iter_limit
+CS observacoes: 114, clusters ativos: 5, novos clusters: 5, updates de centro: 13
+CS gatilhos PO: 21, melhorias PO: 6, ganho total PO: 11344.1862
+CS destroy/repair: 0, com melhoria: 0, promocoes ILS: 6
+Tempo ILS: 358.0909s
+Tempo total: 362.2720s
+Validacao final: OK
+[STATUS] OK em 363s
+
+=== u724_200.txt seed=42 ===
+Instancia carregada com sucesso.
+Numero de pontos (n): 724
+Numero de medianas (p): 200
+
+Primeiros pontos da instancia:
+Ponto 0 -> x=605.61, y=796.60, cap=222.00, dem=96.00
+Ponto 1 -> x=681.80, y=1025.20, cap=222.00, dem=44.00
+Ponto 2 -> x=605.61, y=1152.21, cap=222.00, dem=5.00
+Ponto 3 -> x=605.61, y=1253.81, cap=222.00, dem=53.00
+Ponto 4 -> x=656.41, y=1736.41, cap=222.00, dem=72.00
+
+Parametros
+seed=42, alpha=0.60, construction_max_tries=1000, NumIterMax=60, PO_R1_alpha=2.00, PO_R2_beta=10, time_limit_s=2400.00
+
+Custo GRASP: 34730.9976 (tempo: 0.2032s)
+Custo VND:   30712.7241
+Melhoria:    4018.2736 (11.57%)
+Iteracoes M1: 30, M2: 30, M3: 30, M4: 6
+Tempo VND inicial: 1.8801s
+[PARTIAL_OPT] ref_cluster=719 | free_clusters=40 | free_nodes=139 | candidate_medians=139 | vars_x=1130 | fo_before=30292.2095 | fo_after=29938.4961 | delta=-353.7134 | time=3.4370s | t_last_inc=2.3324s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=10 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1261 | fo_before=29938.4961 | fo_after=29577.3447 | delta=-361.1513 | time=5.8723s | t_last_inc=5.8243s | n_inc=9 | status=Optimal
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1168 | fo_before=29577.3447 | fo_after=29432.5241 | delta=-144.8207 | time=2.4348s | t_last_inc=1.1795s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1230 | fo_before=29432.5241 | fo_after=29193.7508 | delta=-238.7733 | time=0.1731s | t_last_inc=0.1714s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1266 | fo_before=29193.7508 | fo_after=29193.7508 | delta=0.0000 | time=5.7277s | t_last_inc=0.0031s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=4 | skipped_calls=0 | no_improve_streak=1 | total_gain=1098.4587 | best_gain=361.1513 | total_time=17.6479s
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1266 | fo_before=29170.6906 | fo_after=29170.6906 | delta=0.0000 | time=5.7916s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1230 | fo_before=29170.6906 | fo_after=29180.8908 | delta=10.2001 | time=0.2047s | t_last_inc=0.2035s | n_inc=2 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.9975s
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1266 | fo_before=29170.6906 | fo_after=29170.6906 | delta=0.0000 | time=5.7053s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1266 | fo_before=29170.6906 | fo_after=29170.6906 | delta=0.0000 | time=5.5735s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=11.2798s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=149 | candidate_medians=149 | vars_x=1232 | fo_before=29110.5324 | fo_after=29076.9263 | delta=-33.6061 | time=0.2318s | t_last_inc=0.2300s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1241 | fo_before=29076.9263 | fo_after=29069.2428 | delta=-7.6835 | time=2.3648s | t_last_inc=2.2166s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1241 | fo_before=29069.2428 | fo_after=29069.2428 | delta=0.0000 | time=4.1468s | t_last_inc=0.0045s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1224 | fo_before=29069.2428 | fo_after=29069.2428 | delta=0.0000 | time=0.1369s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=2 | skipped_calls=0 | no_improve_streak=2 | total_gain=41.2896 | best_gain=33.6061 | total_time=6.8825s
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1241 | fo_before=29059.0427 | fo_after=29059.0427 | delta=0.0000 | time=4.2407s | t_last_inc=0.0096s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1241 | fo_before=29059.0427 | fo_after=29059.0427 | delta=0.0000 | time=3.9281s | t_last_inc=0.0047s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=8.1703s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=29027.5325 | fo_after=28864.7213 | delta=-162.8112 | time=3.5012s | t_last_inc=3.4458s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1224 | fo_before=28864.7213 | fo_after=28874.9214 | delta=10.2001 | time=0.2178s | t_last_inc=0.2159s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1238 | fo_before=28864.7213 | fo_after=28834.7633 | delta=-29.9580 | time=2.3253s | t_last_inc=2.2502s | n_inc=7 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28834.7633 | fo_after=28834.7633 | delta=0.0000 | time=2.7865s | t_last_inc=0.0048s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28834.7633 | fo_after=28834.7633 | delta=0.0000 | time=2.3516s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=2 | skipped_calls=0 | no_improve_streak=2 | total_gain=192.7692 | best_gain=162.8112 | total_time=11.1854s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28834.7633 | fo_after=28820.2736 | delta=-14.4896 | time=3.4679s | t_last_inc=3.4542s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28820.2736 | fo_after=28820.2736 | delta=0.0000 | time=2.5779s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28820.2736 | fo_after=28820.2736 | delta=0.0000 | time=2.5356s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=14.4896 | best_gain=14.4896 | total_time=8.5829s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28820.2736 | fo_after=28820.2736 | delta=0.0000 | time=2.7909s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28820.2736 | fo_after=28820.2736 | delta=0.0000 | time=2.7848s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.5766s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28820.2736 | fo_after=28820.2736 | delta=0.0000 | time=2.6361s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28820.2736 | fo_after=28820.2736 | delta=0.0000 | time=2.9606s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.5978s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28629.1620 | fo_after=28629.1620 | delta=-0.0000 | time=3.5956s | t_last_inc=0.0035s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=416 | free_clusters=40 | free_nodes=158 | candidate_medians=158 | vars_x=1320 | fo_before=28629.1620 | fo_after=28488.2405 | delta=-140.9214 | time=15.9033s | t_last_inc=13.8875s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28488.2405 | fo_after=28488.2405 | delta=0.0000 | time=2.7952s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28488.2405 | fo_after=28488.2405 | delta=0.0000 | time=3.3578s | t_last_inc=0.0031s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=4 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=140.9214 | best_gain=140.9214 | total_time=25.6541s
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1262 | fo_before=28488.2405 | fo_after=28488.2405 | delta=0.0000 | time=6.4076s | t_last_inc=0.0072s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28488.2405 | fo_after=28488.2405 | delta=0.0000 | time=3.0245s | t_last_inc=0.0045s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.4334s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28488.2405 | fo_after=28488.2405 | delta=0.0000 | time=2.9260s | t_last_inc=0.0045s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28488.2405 | fo_after=28488.2405 | delta=0.0000 | time=2.9220s | t_last_inc=0.0067s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.8492s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1191 | fo_before=28488.2405 | fo_after=28480.7233 | delta=-7.5172 | time=0.1298s | t_last_inc=0.1280s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1262 | fo_before=28480.7233 | fo_after=28480.7233 | delta=0.0000 | time=6.1419s | t_last_inc=0.0033s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28480.7233 | fo_after=28480.7233 | delta=0.0000 | time=3.2567s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=7.5172 | best_gain=7.5172 | total_time=9.5299s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1191 | fo_before=28470.5232 | fo_after=28480.7233 | delta=10.2001 | time=0.1287s | t_last_inc=0.1266s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1262 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=6.4058s | t_last_inc=0.0047s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.5357s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1191 | fo_before=28470.5232 | fo_after=28480.7233 | delta=10.2001 | time=0.1100s | t_last_inc=0.1084s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1262 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=6.0039s | t_last_inc=0.0033s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.1149s
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1262 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=6.9186s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=3.5529s | t_last_inc=0.0045s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=10.4727s
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1262 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=6.7472s | t_last_inc=0.0036s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=3.0849s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.8331s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1191 | fo_before=28470.5232 | fo_after=28480.7233 | delta=10.2001 | time=0.1524s | t_last_inc=0.1503s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=2.8735s | t_last_inc=0.0043s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.0270s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1191 | fo_before=28470.5232 | fo_after=28480.7233 | delta=10.2001 | time=0.1174s | t_last_inc=0.1062s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=3.5287s | t_last_inc=0.0065s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.6473s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1191 | fo_before=28470.5232 | fo_after=28480.7233 | delta=10.2001 | time=0.0939s | t_last_inc=0.0921s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1262 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=5.9578s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.0527s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=2.7634s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1191 | fo_before=28470.5232 | fo_after=28480.7233 | delta=10.2001 | time=0.1037s | t_last_inc=0.1019s | n_inc=2 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.8680s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=2.8782s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28470.5232 | fo_after=28470.5232 | delta=0.0000 | time=3.0634s | t_last_inc=0.0031s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.9427s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28439.3163 | fo_after=28439.3163 | delta=0.0000 | time=2.7836s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28439.3163 | fo_after=28439.3163 | delta=0.0000 | time=3.1973s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.9822s
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28439.3163 | fo_after=28439.3163 | delta=0.0000 | time=6.6139s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1175 | fo_before=28439.3163 | fo_after=28439.3163 | delta=0.0000 | time=2.5590s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=9.1738s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1210 | fo_before=28439.3163 | fo_after=28435.0845 | delta=-4.2318 | time=1.4708s | t_last_inc=1.4694s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28435.0845 | fo_after=28435.0845 | delta=0.0000 | time=6.6682s | t_last_inc=0.0033s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1210 | fo_before=28435.0845 | fo_after=28435.0845 | delta=0.0000 | time=3.4515s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=4.2318 | best_gain=4.2318 | total_time=11.5921s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1210 | fo_before=28424.8844 | fo_after=28435.0845 | delta=10.2001 | time=1.7470s | t_last_inc=1.7457s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28424.8844 | fo_after=28424.8844 | delta=0.0000 | time=5.4286s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.1765s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1210 | fo_before=28424.8844 | fo_after=28435.0845 | delta=10.2001 | time=1.2709s | t_last_inc=1.2696s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1210 | fo_before=28424.8844 | fo_after=28435.0845 | delta=10.2001 | time=1.3677s | t_last_inc=1.3660s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.6394s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1210 | fo_before=28424.8844 | fo_after=28435.0845 | delta=10.2001 | time=1.3475s | t_last_inc=1.3462s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28424.8844 | fo_after=28424.8844 | delta=0.0000 | time=5.3682s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.7166s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28424.8844 | fo_after=28424.8844 | delta=0.0000 | time=2.8708s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1210 | fo_before=28424.8844 | fo_after=28435.0845 | delta=10.2001 | time=1.2565s | t_last_inc=1.2551s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.1282s
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28424.8844 | fo_after=28424.8844 | delta=0.0000 | time=5.3836s | t_last_inc=0.0031s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28424.8844 | fo_after=28424.8844 | delta=0.0000 | time=2.8160s | t_last_inc=0.0043s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=8.2007s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1164 | fo_before=28391.4504 | fo_after=28401.5861 | delta=10.1357 | time=1.3638s | t_last_inc=1.3479s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=-0.0000 | time=2.8460s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.2106s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1164 | fo_before=28391.4504 | fo_after=28401.5861 | delta=10.1357 | time=1.3828s | t_last_inc=1.3659s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=3.1155s | t_last_inc=0.0043s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.4994s
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=5.4197s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.8060s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=8.2276s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1164 | fo_before=28391.4504 | fo_after=28401.5861 | delta=10.1357 | time=1.1616s | t_last_inc=1.1464s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1164 | fo_before=28391.4504 | fo_after=28401.5861 | delta=10.1357 | time=1.1583s | t_last_inc=1.1428s | n_inc=4 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.3208s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.7467s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=5.3260s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=8.0737s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.8039s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.7012s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.5059s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.7287s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.8359s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.5654s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1164 | fo_before=28391.4504 | fo_after=28401.5861 | delta=10.1357 | time=1.2448s | t_last_inc=1.2290s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.7965s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.0423s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.7437s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=5.3274s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=8.0720s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1164 | fo_before=28391.4504 | fo_after=28401.5861 | delta=10.1357 | time=1.1856s | t_last_inc=1.1702s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=5.3899s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.5764s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1164 | fo_before=28391.4504 | fo_after=28401.5861 | delta=10.1357 | time=1.1571s | t_last_inc=1.1408s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.9351s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.0931s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1171 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=2.7731s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=413 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1224 | fo_before=28391.4504 | fo_after=28391.4504 | delta=0.0000 | time=5.3183s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=8.0923s
+
+Custo FINAL: 28391.4504
+Melhoria sobre VND: 2321.2737 (7.56%)
+Iteracoes ILS: 214, melhorias: 15, parada: iter_limit
+CS observacoes: 214, clusters ativos: 1, novos clusters: 1, updates de centro: 18
+CS gatilhos PO: 42, melhorias PO: 8, ganho total PO: 1553.3382
+CS destroy/repair: 0, com melhoria: 0, promocoes ILS: 7
+Tempo ILS: 381.6718s
+Tempo total: 383.7553s
+Validacao final: OK
+[STATUS] OK em 384s
+
+=== u724_200.txt seed=43 ===
+Instancia carregada com sucesso.
+Numero de pontos (n): 724
+Numero de medianas (p): 200
+
+Primeiros pontos da instancia:
+Ponto 0 -> x=605.61, y=796.60, cap=222.00, dem=96.00
+Ponto 1 -> x=681.80, y=1025.20, cap=222.00, dem=44.00
+Ponto 2 -> x=605.61, y=1152.21, cap=222.00, dem=5.00
+Ponto 3 -> x=605.61, y=1253.81, cap=222.00, dem=53.00
+Ponto 4 -> x=656.41, y=1736.41, cap=222.00, dem=72.00
+
+Parametros
+seed=43, alpha=0.60, construction_max_tries=1000, NumIterMax=60, PO_R1_alpha=2.00, PO_R2_beta=10, time_limit_s=2400.00
+
+Custo GRASP: 35594.7695 (tempo: 0.2242s)
+Custo VND:   31108.5622
+Melhoria:    4486.2073 (12.60%)
+Iteracoes M1: 37, M2: 37, M3: 46, M4: 8
+Tempo VND inicial: 2.5487s
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=166 | candidate_medians=166 | vars_x=1412 | fo_before=30631.4149 | fo_after=30112.1413 | delta=-519.2736 | time=30.1774s | t_last_inc=28.6209s | n_inc=17 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=1 | skipped_calls=0 | no_improve_streak=0 | total_gain=519.2736 | best_gain=519.2736 | total_time=30.1788s
+[PARTIAL_OPT] ref_cluster=683 | free_clusters=40 | free_nodes=159 | candidate_medians=159 | vars_x=1371 | fo_before=29985.3518 | fo_after=29846.9040 | delta=-138.4478 | time=30.2145s | t_last_inc=19.8164s | n_inc=10 | status=Feasible
+[PARTIAL_OPT_SUMMARY] calls=1 | improving_calls=1 | skipped_calls=0 | no_improve_streak=0 | total_gain=138.4478 | best_gain=138.4478 | total_time=30.2163s
+[PARTIAL_OPT] ref_cluster=683 | free_clusters=40 | free_nodes=161 | candidate_medians=161 | vars_x=1389 | fo_before=29803.2143 | fo_after=29803.2143 | delta=0.0000 | time=18.0891s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=683 | free_clusters=40 | free_nodes=161 | candidate_medians=161 | vars_x=1389 | fo_before=29803.2143 | fo_after=29803.2143 | delta=0.0000 | time=18.1516s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=36.2418s
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=162 | candidate_medians=162 | vars_x=1380 | fo_before=29802.2442 | fo_after=29723.5895 | delta=-78.6547 | time=16.0587s | t_last_inc=5.2786s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=712 | free_clusters=40 | free_nodes=162 | candidate_medians=162 | vars_x=1380 | fo_before=29723.5895 | fo_after=29723.5895 | delta=0.0000 | time=15.1967s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=1 | skipped_calls=0 | no_improve_streak=1 | total_gain=78.6547 | best_gain=78.6547 | total_time=31.2565s
+[PARTIAL_OPT] ref_cluster=542 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1081 | fo_before=29670.2400 | fo_after=29463.4069 | delta=-206.8331 | time=8.5838s | t_last_inc=8.4734s | n_inc=19 | status=Optimal
+[PARTIAL_OPT] ref_cluster=677 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1271 | fo_before=29463.4069 | fo_after=29279.3468 | delta=-184.0601 | time=6.0657s | t_last_inc=5.2946s | n_inc=9 | status=Optimal
+[PARTIAL_OPT] ref_cluster=139 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1167 | fo_before=29279.3468 | fo_after=29153.6239 | delta=-125.7229 | time=2.2873s | t_last_inc=2.2214s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1153 | fo_before=29153.6239 | fo_after=29070.0813 | delta=-83.5427 | time=1.6251s | t_last_inc=1.2400s | n_inc=6 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1197 | fo_before=29070.0813 | fo_after=29038.4165 | delta=-31.6648 | time=0.1428s | t_last_inc=0.1417s | n_inc=2 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=5 | skipped_calls=0 | no_improve_streak=0 | total_gain=631.8235 | best_gain=206.8331 | total_time=18.7074s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1197 | fo_before=29028.2163 | fo_after=29038.4165 | delta=10.2001 | time=0.4814s | t_last_inc=0.4270s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1153 | fo_before=29028.2163 | fo_after=29038.4165 | delta=10.2001 | time=3.7767s | t_last_inc=0.2478s | n_inc=2 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.2589s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1197 | fo_before=29028.2163 | fo_after=29038.4165 | delta=10.2001 | time=0.5742s | t_last_inc=0.5204s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=146 | candidate_medians=146 | vars_x=1197 | fo_before=29028.2163 | fo_after=29038.4165 | delta=10.2001 | time=0.5723s | t_last_inc=0.5187s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.1473s
+[PARTIAL_OPT] ref_cluster=719 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1199 | fo_before=29006.0311 | fo_after=28950.3980 | delta=-55.6331 | time=6.2585s | t_last_inc=4.8921s | n_inc=4 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1203 | fo_before=28950.3980 | fo_after=28950.3980 | delta=0.0000 | time=3.4536s | t_last_inc=0.0044s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=62 | free_clusters=40 | free_nodes=141 | candidate_medians=141 | vars_x=1113 | fo_before=28950.3980 | fo_after=28854.7098 | delta=-95.6882 | time=8.1057s | t_last_inc=3.1793s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=147 | candidate_medians=147 | vars_x=1205 | fo_before=28854.7098 | fo_after=28844.0393 | delta=-10.6705 | time=0.1675s | t_last_inc=0.1393s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=147 | candidate_medians=147 | vars_x=1205 | fo_before=28844.0393 | fo_after=28844.0393 | delta=0.0000 | time=0.1374s | t_last_inc=0.0043s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=3 | skipped_calls=0 | no_improve_streak=1 | total_gain=161.9918 | best_gain=95.6882 | total_time=18.1256s
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1203 | fo_before=28799.8909 | fo_after=28799.8909 | delta=-0.0000 | time=3.5638s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=718 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1203 | fo_before=28799.8909 | fo_after=28799.8909 | delta=-0.0000 | time=3.4464s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.0112s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1153 | fo_before=28749.0287 | fo_after=28759.2288 | delta=10.2001 | time=3.9406s | t_last_inc=0.2872s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1153 | fo_before=28749.0287 | fo_after=28759.2288 | delta=10.2001 | time=3.6521s | t_last_inc=0.2549s | n_inc=2 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.5937s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28721.8503 | fo_after=28732.0504 | delta=10.2001 | time=1.7448s | t_last_inc=0.2043s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28721.8503 | fo_after=28732.0504 | delta=10.2001 | time=1.6859s | t_last_inc=0.2096s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.4317s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=152 | candidate_medians=152 | vars_x=1301 | fo_before=28649.2102 | fo_after=28531.5320 | delta=-117.6783 | time=2.0815s | t_last_inc=2.0801s | n_inc=5 | status=Optimal
+[PARTIAL_OPT] ref_cluster=625 | free_clusters=40 | free_nodes=142 | candidate_medians=142 | vars_x=1096 | fo_before=28531.5320 | fo_after=28501.1746 | delta=-30.3574 | time=0.1740s | t_last_inc=0.0920s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=152 | candidate_medians=152 | vars_x=1301 | fo_before=28501.1746 | fo_after=28501.1746 | delta=0.0000 | time=1.9192s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=153 | candidate_medians=153 | vars_x=1264 | fo_before=28501.1746 | fo_after=28492.4771 | delta=-8.6975 | time=1.3821s | t_last_inc=0.9500s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9427s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=3 | skipped_calls=0 | no_improve_streak=1 | total_gain=156.7331 | best_gain=117.6783 | total_time=6.5028s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=1.3700s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.8769s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.2478s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9356s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9314s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.8679s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1184 | fo_before=28492.4771 | fo_after=28497.2147 | delta=4.7376 | time=0.4345s | t_last_inc=0.1320s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=1.3233s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.7587s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9091s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1184 | fo_before=28492.4771 | fo_after=28497.2147 | delta=4.7376 | time=0.4739s | t_last_inc=0.1366s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.3839s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=1.3018s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1184 | fo_before=28492.4771 | fo_after=28497.2147 | delta=4.7376 | time=0.5184s | t_last_inc=0.1332s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.8210s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=1.2697s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=1.3438s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.6143s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9350s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=1.3379s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.2738s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9134s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1184 | fo_before=28492.4771 | fo_after=28497.2147 | delta=4.7376 | time=0.4929s | t_last_inc=0.1357s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.4071s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9514s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1184 | fo_before=28492.4771 | fo_after=28497.2147 | delta=4.7376 | time=0.5130s | t_last_inc=0.1321s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.4652s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.8754s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=144 | candidate_medians=144 | vars_x=1184 | fo_before=28492.4771 | fo_after=28497.2147 | delta=4.7376 | time=0.6000s | t_last_inc=0.1325s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.4762s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=1.3489s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28492.4771 | fo_after=28492.4771 | delta=0.0000 | time=0.9368s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.2866s
+[PARTIAL_OPT] ref_cluster=78 | free_clusters=40 | free_nodes=140 | candidate_medians=140 | vars_x=1150 | fo_before=28488.6498 | fo_after=28460.5545 | delta=-28.0953 | time=0.1603s | t_last_inc=0.0932s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28460.5545 | fo_after=28460.5545 | delta=0.0000 | time=1.9944s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28460.5545 | fo_after=28460.5545 | delta=0.0000 | time=1.9285s | t_last_inc=0.0043s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=28.0953 | best_gain=28.0953 | total_time=4.0855s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28450.3543 | fo_after=28460.5545 | delta=10.2001 | time=1.7403s | t_last_inc=0.2048s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28450.3543 | fo_after=28460.5545 | delta=10.2001 | time=1.8315s | t_last_inc=0.2061s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.5729s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=1.2942s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28450.3543 | fo_after=28460.5545 | delta=10.2001 | time=2.3413s | t_last_inc=0.2217s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.6367s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=0.8440s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=1.3158s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.1607s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=0.8433s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=1.1464s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.9906s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=1.3566s | t_last_inc=0.0036s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=0.8846s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.2420s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=0.9889s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=0.8643s | t_last_inc=0.0032s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=1.8541s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=1.4155s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28450.3543 | fo_after=28460.5545 | delta=10.2001 | time=1.9312s | t_last_inc=0.2057s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.3476s
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=1.0778s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=151 | candidate_medians=151 | vars_x=1290 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=1.3311s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.4098s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28450.3543 | fo_after=28460.5545 | delta=10.2001 | time=1.8590s | t_last_inc=0.2028s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=155 | candidate_medians=155 | vars_x=1261 | fo_before=28450.3543 | fo_after=28450.3543 | delta=0.0000 | time=0.9665s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=2.8264s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1177 | fo_before=28436.4645 | fo_after=28426.7564 | delta=-9.7081 | time=2.6714s | t_last_inc=2.6366s | n_inc=7 | status=Optimal
+[PARTIAL_OPT] ref_cluster=332 | free_clusters=40 | free_nodes=152 | candidate_medians=152 | vars_x=1241 | fo_before=28426.7564 | fo_after=28424.8273 | delta=-1.9291 | time=0.3782s | t_last_inc=0.0921s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1177 | fo_before=28424.8273 | fo_after=28424.8273 | delta=0.0000 | time=2.7500s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28424.8273 | fo_after=28423.2890 | delta=-1.5384 | time=1.0110s | t_last_inc=0.8174s | n_inc=2 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1177 | fo_before=28423.2890 | fo_after=28423.2890 | delta=0.0000 | time=2.6510s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=5 | improving_calls=3 | skipped_calls=0 | no_improve_streak=1 | total_gain=13.1756 | best_gain=9.7081 | total_time=9.4639s
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28413.0888 | fo_after=28423.6289 | delta=10.5400 | time=3.6205s | t_last_inc=1.8868s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28413.0888 | fo_after=28423.6289 | delta=10.5400 | time=3.5310s | t_last_inc=1.8275s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.1525s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1177 | fo_before=28410.7232 | fo_after=28420.9233 | delta=10.2001 | time=2.7358s | t_last_inc=2.6997s | n_inc=7 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28410.7232 | fo_after=28410.7232 | delta=0.0000 | time=2.0902s | t_last_inc=0.0035s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=4.8269s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28400.2992 | fo_after=28377.0315 | delta=-23.2677 | time=1.8491s | t_last_inc=0.2075s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28377.0315 | fo_after=28377.0315 | delta=0.0000 | time=2.0666s | t_last_inc=0.0026s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28377.0315 | fo_after=28377.0315 | delta=0.0000 | time=2.0490s | t_last_inc=0.0025s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=3 | improving_calls=1 | skipped_calls=0 | no_improve_streak=2 | total_gain=23.2677 | best_gain=23.2677 | total_time=5.9660s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28366.8314 | fo_after=28377.0315 | delta=10.2001 | time=1.9455s | t_last_inc=0.2119s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.6481s | t_last_inc=1.8420s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.5946s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28366.8314 | fo_after=28377.0315 | delta=10.2001 | time=1.8656s | t_last_inc=0.3239s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28366.8314 | fo_after=28377.0315 | delta=10.2001 | time=1.6766s | t_last_inc=0.2012s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.5434s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=2.1392s | t_last_inc=0.0035s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.8415s | t_last_inc=2.1587s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.9816s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=1.9251s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.5134s | t_last_inc=1.7861s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.4395s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28366.8314 | fo_after=28377.0315 | delta=10.2001 | time=1.7976s | t_last_inc=0.2034s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28366.8314 | fo_after=28377.0315 | delta=10.2001 | time=1.6730s | t_last_inc=0.2032s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.4715s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=1.8316s | t_last_inc=0.0029s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=2.0694s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.9019s
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.5748s | t_last_inc=1.8516s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=2.1202s | t_last_inc=0.0027s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.6959s
+[PARTIAL_OPT] ref_cluster=144 | free_clusters=40 | free_nodes=145 | candidate_medians=145 | vars_x=1159 | fo_before=28366.8314 | fo_after=28377.0315 | delta=10.2001 | time=1.8119s | t_last_inc=0.2075s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=2.0939s | t_last_inc=0.0034s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.9066s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=2.0102s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.6373s | t_last_inc=1.9299s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=5.6484s
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=2.0705s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=1.7548s | t_last_inc=0.0028s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=3.8262s
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.6301s | t_last_inc=1.9154s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.6556s | t_last_inc=1.9407s | n_inc=3 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=7.2866s
+[PARTIAL_OPT] ref_cluster=478 | free_clusters=40 | free_nodes=150 | candidate_medians=150 | vars_x=1224 | fo_before=28366.8314 | fo_after=28377.3714 | delta=10.5400 | time=3.7657s | t_last_inc=1.9104s | n_inc=3 | status=Optimal
+[PARTIAL_OPT] ref_cluster=400 | free_clusters=40 | free_nodes=148 | candidate_medians=148 | vars_x=1266 | fo_before=28366.8314 | fo_after=28366.8314 | delta=0.0000 | time=2.3822s | t_last_inc=0.0030s | n_inc=1 | status=Optimal
+[PARTIAL_OPT_SUMMARY] calls=2 | improving_calls=0 | skipped_calls=0 | no_improve_streak=2 | total_gain=0.0000 | best_gain=0.0000 | total_time=6.1488s
+
+Custo FINAL: 28366.8314
+Melhoria sobre VND: 2741.7309 (8.81%)
+Iteracoes ILS: 245, melhorias: 23, parada: iter_limit
+CS observacoes: 245, clusters ativos: 1, novos clusters: 1, updates de centro: 32
+CS gatilhos PO: 49, melhorias PO: 12, ganho total PO: 1833.3797
+CS destroy/repair: 0, com melhoria: 0, promocoes ILS: 10
+Tempo ILS: 402.1037s
+Tempo total: 404.8767s
+Validacao final: OK
+[STATUS] OK em 405s
+
