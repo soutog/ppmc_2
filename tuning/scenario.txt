@@ -1,0 +1,15 @@
+## irace scenario para tuning curto do PPMC-2.
+## 4 parametros, 5 instancias x 3 seeds = 15 cenarios de treino.
+## Orcamento ~300 experimentos. Estimativa wall time: ~2h com parallel=4.
+
+parameterFile       = "parameters.txt"
+trainInstancesFile  = "scenarios-train.txt"
+targetRunner        = "./target-runner.sh"
+targetCmdline       = "{configurationID} {instanceID} {seed} \"{instance}\" {bound} {targetRunnerArgs}"
+
+maxExperiments      = 300
+firstTest           = 3
+minNbSurvival       = 3
+parallel            = 4
+deterministic       = 0
+logFile             = "irace.Rdata"

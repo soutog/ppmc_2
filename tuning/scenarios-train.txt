@@ -1,0 +1,15 @@
+instances/sample_instance/lin318_015.txt|88901.56|11
+instances/sample_instance/lin318_015.txt|88901.56|23
+instances/sample_instance/lin318_015.txt|88901.56|47
+instances/sample_instance/u724_030.txt|95034.01|11
+instances/sample_instance/u724_030.txt|95034.01|23
+instances/sample_instance/u724_030.txt|95034.01|47
+instances/sample_instance/ali535_025.txt|3695.15|11
+instances/sample_instance/ali535_025.txt|3695.15|23
+instances/sample_instance/ali535_025.txt|3695.15|47
+instances/sample_instance/rl1304_050.txt|802283.41|11
+instances/sample_instance/rl1304_050.txt|802283.41|23
+instances/sample_instance/rl1304_050.txt|802283.41|47
+instances/sample_instance/pr2392_075.txt|1099723.42|11
+instances/sample_instance/pr2392_075.txt|1099723.42|23
+instances/sample_instance/pr2392_075.txt|1099723.42|47

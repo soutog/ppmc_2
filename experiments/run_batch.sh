@@ -13,8 +13,9 @@ BIN="./bin/main"
 INSTANCE_DIR="./instances/sample_instance"
 RESULT_DIR="./experiments/results"
 
-ALPHA=0.6
-NUM_ITER_MAX=60
+ALPHA=0.6667
+# NumIterMax agora eh adaptativo dentro do binario (60/40/25 por n).
+# Nao passamos via CLI para nao sobrescrever a logica interna.
 CONSTRUCTION_MAX_TRIES=1000
 NUM_RUNS=5
 SEED_BASE=42
@@ -53,7 +54,7 @@ INSTANCES=$(find "$INSTANCE_DIR" -type f \( -name '*.txt' -o -name '*.dat' \) | 
 TOTAL=$(echo "$INSTANCES" | wc -l)
 
 echo "Diretorio: $INSTANCE_DIR"
-echo "Instancias: $TOTAL | Runs: $NUM_RUNS | Seeds: ${SEED_BASE}..$(( SEED_BASE + NUM_RUNS - 1 )) | alpha=$ALPHA | NumIterMax=$NUM_ITER_MAX | timeout/run=$RUN_TIMEOUT"
+echo "Instancias: $TOTAL | Runs: $NUM_RUNS | Seeds: ${SEED_BASE}..$(( SEED_BASE + NUM_RUNS - 1 )) | alpha=$ALPHA | NumIterMax=adaptive | timeout/run=$RUN_TIMEOUT"
 echo ""
 
 printf "%-22s %-6s %6s %6s %14s %10s %10s %9s %8s %6s %9s\n" \
@@ -81,7 +82,7 @@ for INST in $INSTANCES; do
     for ((r=0; r<NUM_RUNS; r++)); do
         SEED=$((SEED_BASE + r))
 
-        OUTPUT=$(timeout "$RUN_TIMEOUT" "$BIN" "$INST" "$SEED" "$ALPHA" "$CONSTRUCTION_MAX_TRIES" "$NUM_ITER_MAX" 2>&1)
+        OUTPUT=$(timeout "$RUN_TIMEOUT" "$BIN" "$INST" "$SEED" "$ALPHA" "$CONSTRUCTION_MAX_TRIES" 2>&1)
         RC=$?
         if [[ $RC -eq 124 ]]; then
             printf "%-22s %-6s %6s %6s  TIMEOUT (%s)\n" "$FNAME" "$SEED" "$P_VAL" "$((r+1))" "$RUN_TIMEOUT"

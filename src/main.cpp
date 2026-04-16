@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
     const unsigned int seed =
         (argc >= 3 ? static_cast<unsigned int>(std::strtoul(argv[2], nullptr, 10))
                    : 42u);
-    const double alpha = (argc >= 4 ? std::strtod(argv[3], nullptr) : 0.6);
+    const double alpha = (argc >= 4 ? std::strtod(argv[3], nullptr) : 0.6667);
     const int construction_max_tries =
         (argc >= 5 ? std::atoi(argv[4]) : 1000);
     const int num_iter_max_cli =
@@ -45,6 +45,18 @@ int main(int argc, char* argv[]) {
     Evaluator evaluator(instance, distance_matrix);
     R1Filter r1_filter(instance, distance_matrix, 2.0);
     NeighborhoodCache nh_cache(instance, distance_matrix);
+
+    // Hooks de tuning via env vars (usado pelo irace/target-runner).
+    // Valores invalidos caem no default do respectivo construtor.
+    auto env_int = [](const char* name, int fallback) {
+        const char* v = std::getenv(name);
+        if (v == nullptr || *v == '\0') return fallback;
+        const int parsed = std::atoi(v);
+        return parsed > 0 ? parsed : fallback;
+    };
+    const int cs_gamma       = env_int("PPMC_GAMMA", 18);
+    const int cs_max_volume  = env_int("PPMC_MAX_VOLUME", 8);
+    const int po_beta_r2     = env_int("PPMC_BETA_R2", 16);
 
     GRASPConstructor grasp(instance,
                            distance_matrix,
@@ -137,13 +149,20 @@ int main(int argc, char* argv[]) {
     std::mt19937 rng(seed);
     // === Partial Optimizer ===
     PartialOptimizer partial_optimizer(instance, distance_matrix, evaluator,
-                                       &r1_filter);
+                                       &r1_filter,
+                                       300,          // omega
+                                       5,            // min_clusters
+                                       8,            // max_clusters_free
+                                       30.0,         // time_limit_s
+                                       po_beta_r2);  // overridable via env
     ClusteringSearch clustering_search(instance,
                                        distance_matrix,
                                        nh_cache,
                                        evaluator,
                                        &partial_optimizer,
-                                       &grasp);
+                                       &grasp,
+                                       cs_gamma,
+                                       cs_max_volume);
     ILS ils(instance, distance_matrix, nh_cache, num_iter_max, time_limit_s);
     const auto t_ils_start = std::chrono::steady_clock::now();
     Solution best = ils.run(solution, rng, &clustering_search);

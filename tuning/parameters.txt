@@ -1,0 +1,8 @@
+## Parametros tunaveis do PPMC-2.
+## Formato do irace: <nome>  "<flag>"  <tipo>  (<low>, <high>)
+## Tipos: r=real, i=inteiro, c=categorico
+
+alpha       "--alpha "       r (0.30, 0.90)
+gamma       "--gamma "       i (6, 20)
+max_volume  "--max_volume "  i (5, 16)
+beta_r2     "--beta_r2 "     i (5, 20)
