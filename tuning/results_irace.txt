@@ -1,0 +1,240 @@
+labotim-alien01@prometheus:~/gabriel/codes/ppmc_2$ ./tuning/run-irace.sh 
+#------------------------------------------------------------------------------
+# irace: An implementation in R of (Elitist) Iterated Racing
+# Version: 4.4.0.f55adc4
+# Copyright (C) 2010-2025
+# Manuel Lopez-Ibanez     <manuel.lopez-ibanez@manchester.ac.uk>
+# Jeremie Dubois-Lacoste
+# Leslie Perez Caceres    <leslie.perez.caceres@ulb.ac.be>
+#
+# This is free software, and you are welcome to redistribute it under certain
+# conditions.  See the GNU General Public License for details. There is NO
+# WARRANTY; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# irace builds upon previous code from the race package:
+#     race: Racing methods for the selection of the best
+#     Copyright (C) 2003 Mauro Birattari
+#------------------------------------------------------------------------------
+# installed at: /home/labotim-alien01/R/x86_64-pc-linux-gnu-library/4.1/irace
+# called with: -s scenario.txt
+# 2026-04-15 18:17:34 -03: Reading parameter file '/home/labotim-alien01/gabriel/codes/ppmc_2/tuning/parameters.txt'.
+# 2026-04-15 18:17:34 -03: Initialization
+# Elitist race
+# Elitist new instances: 1
+# Elitist limit: 2
+# nbIterations: 4
+# minNbSurvival: 3
+# nbParameters: 4
+# seed: 1863472032
+# confidence level: 0.95
+# budget: 300
+# mu: 5
+# deterministic: FALSE
+
+# 2026-04-15 18:17:34 -03: Iteration 1 of 4
+# experimentsUsed: 0
+# remainingBudget: 300
+# currentBudget: 75
+# nbConfigurations: 12
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          1|         12|         11|    0.5253211982|         12|00:01:36|   NA|  NA|    NA|
+|x|          2|         12|          1|     1.170094818|         24|00:05:11|-0.33|0.34|1.1967|
+|=|          3|         12|          1|     1.275294263|         36|00:04:43|-0.31|0.12|1.1999|
+|=|          4|         12|          1|     1.194929664|         48|00:05:11|-0.13|0.15|1.0451|
+|=|          5|         12|          1|     1.324668172|         60|00:01:32|-0.13|0.09|1.0339|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:           1    mean value:      1.324668172
+Description of the best-so-far configuration:
+  .ID.  alpha gamma max_volume beta_r2 .PARENT.
+1    1 0.8615     8          9       9       NA
+
+# 2026-04-15 18:35:50 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    alpha gamma max_volume beta_r2
+1  0.8615     8          9       9
+10 0.5240    20          6      16
+11 0.6740    16          9      20
+# 2026-04-15 18:35:50 -03: Iteration 2 of 4
+# experimentsUsed: 60
+# remainingBudget: 240
+# currentBudget: 80
+# nbConfigurations: 13
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          6|         13|         22|    0.4989101545|         13|00:04:58|   NA|  NA|    NA|
+|x|          4|         13|         21|     1.338326755|         23|00:04:44|+0.42|0.71|0.3660|
+|=|          5|         13|         21|    0.8922189991|         33|00:01:13|+0.03|0.35|0.9476|
+|=|          3|         13|         20|     1.009539407|         43|00:03:03|+0.00|0.25|0.9373|
+|=|          2|         13|         18|     1.317246407|         53|00:04:46|-0.10|0.12|1.0144|
+|=|          1|         13|         19|     1.333734420|         63|00:01:32|-0.05|0.12|0.9838|
+|=|          7|         13|         19|     1.278796015|         76|00:05:25|-0.05|0.10|0.9668|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          19    mean value:      1.278796015
+Description of the best-so-far configuration:
+   .ID.  alpha gamma max_volume beta_r2 .PARENT.
+19   19 0.7348    19          8      17       10
+
+# 2026-04-15 19:01:35 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    alpha gamma max_volume beta_r2
+19 0.7348    19          8      17
+20 0.5019    17          8      19
+18 0.4210    18         10      15
+# 2026-04-15 19:01:35 -03: Iteration 3 of 4
+# experimentsUsed: 136
+# remainingBudget: 164
+# currentBudget: 82
+# nbConfigurations: 12
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          8|         12|         31|    0.4293123447|         12|00:05:39|   NA|  NA|    NA|
+|x|          2|         12|         29|     1.348625594|         21|00:04:49|-0.06|0.47|0.9313|
+|=|          7|         12|         29|     1.420319573|         30|00:04:15|+0.01|0.34|0.8830|
+|=|          5|         12|         30|     1.057787946|         39|00:01:09|-0.02|0.24|0.9480|
+|=|          4|         12|         30|     1.109694850|         48|00:04:43|-0.01|0.19|0.9293|
+|=|          3|         12|         30|     1.176951075|         57|00:04:03|+0.02|0.18|0.8806|
+|=|          6|         12|         30|     1.080088087|         66|00:04:15|+0.04|0.18|0.8682|
+|=|          1|         12|         30|     1.027843498|         75|00:01:11|+0.06|0.18|0.8421|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          30    mean value:      1.027843498
+Description of the best-so-far configuration:
+   .ID.  alpha gamma max_volume beta_r2 .PARENT.
+30   30 0.6667    18          8      16       19
+
+# 2026-04-15 19:31:42 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    alpha gamma max_volume beta_r2
+30 0.6667    18          8      16
+28 0.7281    17          7      20
+19 0.7348    19          8      17
+# 2026-04-15 19:31:42 -03: Iteration 4 of 4
+# experimentsUsed: 211
+# remainingBudget: 89
+# currentBudget: 89
+# nbConfigurations: 12
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|x|          9|         12|         39|    0.3709901329|         12|00:00:39|   NA|  NA|    NA|
+|x|          2|         12|         32|    0.7913498332|         21|00:04:46|+0.53|0.76|0.3884|
+|=|          7|         12|         30|     1.045343213|         30|00:03:15|+0.03|0.35|0.8979|
+|=|          3|         12|         30|     1.162315460|         39|00:04:04|+0.06|0.29|0.8794|
+|=|          1|         12|         30|     1.062278644|         48|00:01:21|+0.14|0.31|0.7456|
+|=|          4|         12|         30|     1.104785948|         57|00:05:13|+0.15|0.29|0.7572|
+|=|          8|         12|         30|     1.204506456|         66|00:04:44|+0.05|0.19|0.8552|
+|=|          6|         12|         30|     1.116306918|         75|00:03:24|+0.04|0.16|0.8733|
+|=|          5|         12|         30|    0.9922732038|         84|00:00:30|+0.04|0.14|0.8727|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          30    mean value:     0.9922732038
+Description of the best-so-far configuration:
+   .ID.  alpha gamma max_volume beta_r2 .PARENT.
+30   30 0.6667    18          8      16       19
+
+# 2026-04-15 19:59:43 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    alpha gamma max_volume beta_r2
+30 0.6667    18          8      16
+33 0.6069    20          9      17
+38 0.6380    17          6      19
+# 2026-04-15 19:59:43 -03: Stopped because there is not enough budget left to race more than the minimum (3).
+# You may either increase the budget or set 'minNbSurvival' to a lower value.
+# Iteration: 5
+# nbIterations: 5
+# experimentsUsed: 295
+# timeUsed: 0
+# remainingBudget: 5
+# currentBudget: 5
+# number of elites: 3
+# nbConfigurations: 3
+# Total CPU user time: 52946.86, CPU sys time: 2411.095, Wall-clock time: 6129.639
+# 2026-04-15 19:59:43 -03: Starting post-selection:
+# Configurations selected: 30, 33, 38, 28, 19.
+# Pending instances: 0, 0, 0, 0, 0.
+# 2026-04-15 19:59:43 -03: seed: 1863472032
+# Configurations: 5
+# Available experiments: 5
+# minSurvival: 1
+# Markers:
+     x No test is performed.
+     c Configurations are discarded only due to capping.
+     - The test is performed and some configurations are discarded.
+     = The test is performed but no configuration is discarded.
+     ! The test is performed and configurations could be discarded but elite configurations are preserved.
+     . Alive configurations were already evaluated on this instance and nothing is discarded.
+     : All alive configurations are elite, but some need to be evaluated on this instance.
+
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+| |   Instance|      Alive|       Best|       Mean best| Exp so far|  W time|  rho|KenW|  Qvar|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+|.|          4|          5|         28|    0.9328328208|          0|00:00:00|   NA|  NA|    NA|
+|.|          8|          5|         28|     2.123650918|          0|00:00:00|-0.70|0.15|1.1603|
+|.|          7|          5|         28|     1.936494046|          0|00:00:00|-0.43|0.04|1.0531|
+|.|          5|          5|         28|     1.452371406|          0|00:00:00|-0.25|0.06|0.9272|
+|.|          9|          5|         28|     1.384972275|          0|00:00:00|-0.14|0.08|0.8287|
+|.|          6|          5|         28|     1.387086960|          0|00:00:00|-0.02|0.15|0.7561|
+|.|          2|          5|         28|     1.342556174|          0|00:00:00|-0.05|0.10|0.7687|
+|.|          1|          5|         28|     1.246998112|          0|00:00:00|-0.11|0.03|0.8496|
+|.|          3|          5|         28|     1.469534532|          0|00:00:00|-0.05|0.06|0.8211|
+|=|         10|          5|         30|    0.9174332845|          5|00:00:21|-0.05|0.05|0.8164|
++-+-----------+-----------+-----------+----------------+-----------+--------+-----+----+------+
+Best-so-far configuration:          30    mean value:     0.9174332845
+Description of the best-so-far configuration:
+   .ID.  alpha gamma max_volume beta_r2 .PARENT.
+30   30 0.6667    18          8      16       19
+
+# 2026-04-15 20:00:05 -03: Elite configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    alpha gamma max_volume beta_r2
+30 0.6667    18          8      16
+38 0.6380    17          6      19
+33 0.6069    20          9      17
+# Total CPU user time: 53195.81, CPU sys time: 2415.319, Wall-clock time: 6151.6
+# Best configurations (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+    alpha gamma max_volume beta_r2
+30 0.6667    18          8      16
+38 0.6380    17          6      19
+33 0.6069    20          9      17
+# Best configurations as commandlines (first number is the configuration ID; listed from best to worst according to the sum of ranks):
+30 --alpha 0.6667 --gamma 18 --max_volume 8 --beta_r2 16
+38 --alpha 0.638 --gamma 17 --max_volume 6 --beta_r2 19
+33 --alpha 0.6069 --gamma 20 --max_volume 9 --beta_r2 17
+
+
+# Testing of elite configurations: 1 
+# Testing iteration configurations: FALSE 
+# 2026-04-15 20:00:05 -03: No test instances, skip testing

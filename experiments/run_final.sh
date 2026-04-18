@@ -22,7 +22,7 @@ CONSTRUCTION_MAX_TRIES=1000
 
 NUM_SEEDS=10
 SEED_BASE=${SEED_START:-42}
-RUN_TIMEOUT=3600s
+RUN_TIMEOUT=7200s
 
 mkdir -p "$RESULT_DIR"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -101,7 +101,7 @@ LAST_SEED=$((SEED_BASE + NUM_SEEDS - 1))
 echo "============================================================"
 echo "  EXPERIMENTO FINAL"
 echo "  Instancias: $TOTAL | Seeds: ${SEED_BASE}..${LAST_SEED} | alpha=$ALPHA"
-echo "  NumIterMax: adaptive (60/40/25) | timeout/run=$RUN_TIMEOUT"
+echo "  NumIterMax: 60 | timeout/run=$RUN_TIMEOUT"
 echo "  CSV: $CSV_FILE"
 echo "  Log: $LOG_FILE"
 echo "============================================================"

@@ -8,9 +8,10 @@ NeighborhoodCache::NeighborhoodCache(const Instance& instance,
     const int n = instance.numNodes();
     const int p = instance.numMedians();
 
-    // k_near cobre a vizinhanca natural (3x o tamanho medio de um cluster)
-    // com um piso de 50 para instancias de p grande. Nunca maior que n-1.
-    k_near_ = std::max(50, 3 * (n / std::max(1, p)));
+    // k_near cobre a vizinhanca de cada mediana para o M3. Piso de 100
+    // e fator 5x o tamanho medio do cluster para nao perder movimentos
+    // bons em instancias de p grande (p3038, fnl4461). Nunca maior que n-1.
+    k_near_ = std::max(100, 5 * (n / std::max(1, p)));
     k_near_ = std::min(k_near_, n - 1);
 
     // Teto do armazenamento: no pior caso todas as p medianas estao entre os

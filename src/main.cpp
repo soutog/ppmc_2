@@ -66,19 +66,8 @@ int main(int argc, char* argv[]) {
                            construction_max_tries,
                            seed);
 
-    // NumIterMax adaptativo por tamanho quando nao passado na CLI.
-    // Instancias grandes tem custo por iteracao ILS proibitivo; reduzir
-    // permite terminar a execucao dentro do orcamento. Medias mantem o
-    // valor do paper (60).
-    int num_iter_max;
-    if (num_iter_max_cli > 0) {
-        num_iter_max = num_iter_max_cli;
-    } else {
-        const int n = instance.numNodes();
-        if (n <= 1000) num_iter_max = 60;
-        else if (n <= 2500) num_iter_max = 40;
-        else num_iter_max = 25;
-    }
+    const int num_iter_max =
+        (num_iter_max_cli > 0 ? num_iter_max_cli : 60);
 
     // Orcamento de tempo por default depende do tamanho da instancia;
     // pode ser sobrescrito pela CLI. num_iter_max continua valendo como
