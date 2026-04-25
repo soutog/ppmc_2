@@ -55,11 +55,6 @@ Hakimi, S.~L. (1964).
 \newblock Optimum locations of switching centers and the absolute centers and medians of a graph.
 \newblock {\em Operations research}, 12\penalty0 (3):\penalty0 450--459.
 
-\bibitem[Hansen et~al.(2001)Hansen, Mladenovi{\'c}, e Perez-Britos]{hansen2001variable}
-Hansen, P., Mladenovi{\'c}, N., e Perez-Britos, D. (2001).
-\newblock Variable neighborhood decomposition search.
-\newblock {\em Journal of Heuristics}, 7\penalty0 (4):\penalty0 335--350.
-
 \bibitem[L{\'o}pez-Ib{\'a}{\~n}ez et~al.(2016)L{\'o}pez-Ib{\'a}{\~n}ez, Dubois-Lacoste, {P{\'e}rez C{\'a}ceres}, Birattari, e St{\"u}tzle]{LopezIbanez2016irace}
 L{\'o}pez-Ib{\'a}{\~n}ez, M., Dubois-Lacoste, J., {P{\'e}rez C{\'a}ceres}, L., Birattari, M., e St{\"u}tzle, T. (2016).
 \newblock The {irace} package: Iterated racing for automatic algorithm configuration.
@@ -70,10 +65,15 @@ Lorena, L.~A. e Senne, E.~L. (2004).
 \newblock A column generation approach to capacitated p-median problems.
 \newblock {\em Computers \& Operations Research}, 31\penalty0 (6):\penalty0 863--876.
 
-\bibitem[Louren{\c{c}}o et~al.(2003)Louren{\c{c}}o, Martin, e St{\"u}tzle]{lourencco2003iterated}
+\bibitem[Louren{\c{c}}o et~al.(2003)Louren{\c{c}}o, Martin, e St{\"u}tzle]{lourenco2003iterated}
 Louren{\c{c}}o, H.~R., Martin, O.~C., e St{\"u}tzle, T. (2003).
 \newblock Iterated local search.
 \newblock In {\em Handbook of metaheuristics}, p. 320--353. Springer.
+
+\bibitem[Mladenovi{\'c} e Hansen(1997)]{mladenovic1997variable}
+Mladenovi{\'c}, N. e Hansen, P. (1997).
+\newblock Variable neighborhood search.
+\newblock {\em Computers \& Operations Research}, 24\penalty0 (11):\penalty0 1097--1100.
 
 \bibitem[Mulvey e Beck(1984)]{mulvey1984solving}
 Mulvey, J.~M. e Beck, M.~P. (1984).

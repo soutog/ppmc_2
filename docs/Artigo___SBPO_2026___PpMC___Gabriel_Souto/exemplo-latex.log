@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.11.3)  25 APR 2026 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.11.3)  25 APR 2026 15:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -825,65 +825,65 @@ File: sbpo2026-header-logo.png Graphic file (type png)
 Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 141.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
 [2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 183.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 184.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
  [3]
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 267.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 259.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
  [4]
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 329.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 297.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
  [5]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 377.
-
-
-LaTeX Warning: Reference `alg:vnd' on page 6 undefined on input line 385.
-
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 409.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 375.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
-[6]
-File: sbpo2026-header-logo.png Graphic file (type png)
-<use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 427.
-(pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
- [7]
+ [6]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 381.
 
-LaTeX Warning: Reference `subsec:quality' on page 8 undefined on input line 449.
+
+LaTeX Warning: Reference `alg:vnd' on page 7 undefined on input line 389.
 
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 483.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 421.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
-[8]
-<figuras/boxplot_gap_pct.pdf, id=306, 520.34402pt x 332.44202pt>
-File: figuras/boxplot_gap_pct.pdf Graphic file (type pdf)
-<use figuras/boxplot_gap_pct.pdf>
-Package pdftex.def Info: figuras/boxplot_gap_pct.pdf  used on input line 535.
-(pdftex.def)             Requested size: 337.83469pt x 215.84633pt.
-<figuras/time_quality_scatter.pdf, id=316, 542.025pt x 361.35pt>
-File: figuras/time_quality_scatter.pdf Graphic file (type pdf)
-<use figuras/time_quality_scatter.pdf>
-Package pdftex.def Info: figuras/time_quality_scatter.pdf  used on input line 573.
-(pdftex.def)             Requested size: 368.1564pt x 245.44458pt.
+[7]
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 595.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 463.
+(pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
+ [8]
+File: sbpo2026-header-logo.png Graphic file (type png)
+<use sbpo2026-header-logo.png>
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 549.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
  [9]
+<figuras/time_quality_scatter.pdf, id=312, 605.06992pt x 336.90479pt>
+File: figuras/time_quality_scatter.pdf Graphic file (type pdf)
+<use figuras/time_quality_scatter.pdf>
+Package pdftex.def Info: figuras/time_quality_scatter.pdf  used on input line 552.
+(pdftex.def)             Requested size: 337.83469pt x 188.10504pt.
+
+Overfull \hbox (18.17897pt too wide) in paragraph at lines 558--566
+[]\T1/ptm/m/n/10.95 A mag-ni-tude do ga-nho tem-po-ral é quan-ti-fi-cada pela mé-dia ge-o-mé-trica das ra-zões $\OML/cmm/m/it/10.95 T[]=T[]$
+ []
+
+(./tabelas/T_speedup.tex)
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 595.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 579.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
- [10 <./figuras/boxplot_gap_pct.pdf> <./figuras/time_quality_scatter.pdf>] (./exemplo-latex.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 600--1
+ [10 <./figuras/time_quality_scatter.pdf>] (./exemplo-latex.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 584--1
 
  []
 
@@ -914,12 +914,12 @@ Overfull \hbox (8.8774pt too wide) in paragraph at lines 42--47
 
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 67.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 58.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
 [11])
 File: sbpo2026-header-logo.png Graphic file (type png)
 <use sbpo2026-header-logo.png>
-Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 605.
+Package pdftex.def Info: sbpo2026-header-logo.png  used on input line 589.
 (pdftex.def)             Requested size: 117.5589pt x 63.65765pt.
  [12] (./exemplo-latex.aux)
  ***********
@@ -934,18 +934,18 @@ Package rerunfilecheck Info: File `exemplo-latex.out' has not changed.
 (rerunfilecheck)             Checksum: 9FC4D39F3A07A75B5CBF4ECD0FFC241D;2581.
  ) 
 Here is how much of TeX's memory you used:
- 27919 strings out of 474222
- 518759 string characters out of 5748733
- 1944975 words of memory out of 5000000
+ 27925 strings out of 474222
+ 518724 string characters out of 5748733
+ 1947975 words of memory out of 5000000
  49584 multiletter control sequences out of 15000+600000
- 616628 words of font info for 113 fonts, out of 8000000 for 9000
+ 614417 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  94i,16n,93p,1474b,934s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on exemplo-latex.pdf (12 pages, 598595 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on exemplo-latex.pdf (12 pages, 602861 bytes).
 PDF statistics:
- 533 PDF objects out of 1000 (max. 8388607)
- 383 compressed objects within 4 object streams
- 78 named destinations out of 1000 (max. 500000)
- 140 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 495 PDF objects out of 1000 (max. 8388607)
+ 380 compressed objects within 4 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 135 words of extra memory for PDF output out of 10000 (max. 10000000)
 

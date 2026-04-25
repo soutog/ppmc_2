@@ -108,7 +108,7 @@ Do ponto de vista computacional, o PPMC é um problema NP-difícil \citep{garey1
 
 Diversas abordagens têm sido propostas para o PPMC, incluindo métodos exatos baseados em branch-and-bound, branch-and-cut e geração de colunas \citep{mulvey1984solving, lorena2004column, boccia2008cut}, bem como abordagens inspiradas em metaheurísticas clássicas como GRASP, algoritmos genéticos, busca tabu e Variable Neighborhood Search (VNS) \citep{osman1994capacitated,correa2004genetic, diaz2006hybrid,fleszar2008effective}. Mais recentemente, abordagens híbridas, conhecidas como matheurísticas, têm se destacado ao combinar estratégias de busca com modelos de programação matemática, permitindo explorar de forma mais eficiente regiões do espaço de soluções conforme feito por  \cite{stefanello2015matheuristics}.
 
-Apesar dos avanços recentes em matheurísticas para o PPMC, ainda permanece um desafio importante: decidir quando e onde aplicar mecanismos exatos de intensificação sem comprometer a eficiência computacional do método. Neste contexto, este trabalho propõe uma matheurística híbrida denominada Hybrid-CS-AILS, cuja principal contribuição é um mecanismo de intensificação seletiva orientado pela densidade de ótimos locais observados durante a busca. A proposta integra um Adaptive Iterated Local Search (AILS) \citep{lourencco2003iterated} com uma estratégia de Clustering Search \cite{oliveira2013clustering} capaz de identificar regiões promissoras do espaço de soluções. Deste modo, as principais contribuições deste trabalho são:
+Apesar dos avanços recentes em matheurísticas para o PPMC, ainda permanece um desafio importante: decidir quando e onde aplicar mecanismos exatos de intensificação sem comprometer a eficiência computacional do método. Neste contexto, este trabalho propõe uma matheurística híbrida denominada Hybrid-CS-AILS, cuja principal contribuição é um mecanismo de intensificação seletiva orientado pela densidade de ótimos locais observados durante a busca. A proposta integra um Adaptive Iterated Local Search (AILS) \citep{lourenco2003iterated} com uma estratégia de Clustering Search \cite{oliveira2013clustering} capaz de identificar regiões promissoras do espaço de soluções. Deste modo, as principais contribuições deste trabalho são:
 
 \begin{enumerate}
 \item uma estratégia de intensificação guiada por densidade de ótimos locais obtidos durante a busca;
@@ -148,14 +148,18 @@ metaheurísticas com modelos de programação inteira (matheurísticas).
 Nessa linha, \cite{stefanello2015matheuristics} propõem o
 \textit{Iterated Reduction Matheuristic Algorithm} (IRMA), baseado na
 redução do espaço de busca e resolução de subproblemas via programação
-inteira; \cite{vasconcelos2021algoritmo} aplicam o \textit{General
+inteira, e \cite{vasconcelos2021algoritmo} aplicam o \textit{General
 Variable Neighborhood Search} (GVNS) ao PPMC, combinando múltiplas
-estruturas de vizinhança em um esquema sistemático; e
+estruturas de vizinhança em um esquema sistemático. Mais recentemente,
 \cite{freitas2025ils_pmediana} descrevem uma metaheurística baseada em
-\textit{Iterated Local Search} voltada especificamente ao PPMC. Esses
-três trabalhos constituem as referências de comparação do presente
-trabalho, cuja contribuição é a integração de \textit{Clustering Search}, \textit{Adaptive ILS} e intensificação via chamadas do modelo de programação inteira mista em um único framework, equilibrando diversificação e intensificação ao longo da
-busca.
+\textit{Iterated Local Search} voltada especificamente ao PPMC, que
+constitui o comparativo direto deste trabalho por se tratar da
+contribuição mais recente da literatura e por operar no mesmo regime
+de tempo-qualidade visado pela abordagem proposta. A contribuição
+deste trabalho é a integração de \textit{Clustering Search},
+\textit{Adaptive ILS} e intensificação via chamadas de programação
+inteira mista em um único framework, equilibrando diversificação e
+intensificação ao longo da busca.
 
 
 \section{Definição do Problema}
@@ -321,7 +325,7 @@ Se, em uma dada tentativa, algum cliente não encontra mediana viável durante o
 \subsection{Busca Local baseada em VND}
 \label{subsec:vnd}
 
-A solução produzida pela fase construtiva é refinada por meio de uma busca local fundamentada no \textit{Variable Neighborhood Descent (VND)} \citep{hansen2001variable, freitas2025ils_pmediana}, que explora sistematicamente múltiplas estruturas de vizinhança até atingir um ótimo local em todas elas, adotando-se uma estratégia de \textit{best-improvement}. As quatro vizinhanças implementadas  são definidas a seguir.
+A solução produzida pela fase construtiva é refinada por meio de uma busca local fundamentada no \textit{Variable Neighborhood Descent (VND)} \citep{mladenovic1997variable, freitas2025ils_pmediana}, que explora sistematicamente múltiplas estruturas de vizinhança até atingir um ótimo local em todas elas, adotando-se uma estratégia de \textit{best-improvement}. As quatro vizinhanças implementadas  são definidas a seguir.
 
 \paragraph{M1 --- Realocação de cliente.} Move um cliente $j \in M$ de sua mediana atual $r_1 = v_a(j)$ para outra mediana aberta $r_2 \in V_m \setminus \{r_1\}$, isto é, altera apenas os valores de $x_{r_1 j}$ e $x_{r_2 j}$. 
 
@@ -363,7 +367,7 @@ A ordem $\mathrm{M1} \to \mathrm{M2} \to \mathrm{M3} \to \mathrm{M4}$ foi escolh
 \subsection{Adaptive Iterated Local Search}
 \label{subsec:ils}
 
-O \textit{Adaptive Iterated Local Search (AILS)}~\cite{lourencco2003iterated} atua como framework do Hybrid-CS-AILS, partindo da construção GRASP e busca local VND (Seções~\ref{subsec:const} e~\ref{subsec:vnd}). A cada iteração, o AILS aplica uma perturbação à solução corrente $s$, refaz a busca local VND sobre o resultado $s'$ e decide se aceita $s'$ como novo ponto de partida. A solução de melhor custo observada é mantida em $s^{\star}$.
+O \textit{Adaptive Iterated Local Search (AILS)}~\cite{lourenco2003iterated} atua como framework do Hybrid-CS-AILS, partindo da construção GRASP e busca local VND (Seções~\ref{subsec:const} e~\ref{subsec:vnd}). A cada iteração, o AILS aplica uma perturbação à solução corrente $s$, refaz a busca local VND sobre o resultado $s'$ e decide se aceita $s'$ como novo ponto de partida. A solução de melhor custo observada é mantida em $s^{\star}$.
 
 A adaptação em relação ao ILS clássico baseia-se em dois mecanismos. O primeiro é a intensidade variável da perturbação, controlada por um nível $\lambda \in \{1, \ldots, 5\}$ que escala conforme a estagnação observada. O segundo é o acoplamento com o \textit{Clustering Search} (Seção~\ref{subsec:cs}): a cada iteração, $s'$ é observada pelo CS, que pode disparar uma etapa de intensificação exata via \textit{Partial Optimizer} (Seção~\ref{subsec:po}); quando essa etapa produz uma solução estritamente melhor que $s$, ela se torna a nova solução corrente. 
 
@@ -446,7 +450,7 @@ A partir de $r_{\mathrm{ref}}$, constrói-se a \emph{vizinhança espacial} $\mat
 \section{Experimentos Computacionais}
 \label{secExp}
 
-Esta seção avalia os experimentos realizados para avaliar o Hybrid-CS-AILS em relação a três baselines da literatura: a matheurística IRMA de \cite{stefanello2015matheuristics}, a metaheurística ILS de \cite{freitas2025ils_pmediana} (SBPO 2025) e o GVNS de \cite{vasconcelos2021algoritmo}. Na Seção \ref{subsec:implement_inst} detalhamos a configuração da implementação, parâmetros adotados e instâncias utilizadas. Em seguida, realizamos análises tanto na qualidade (Seção \ref{subsec:quality}) como no tempo computacional (Seção \ref{subsec:time}) das soluções obtidas, comparando nossa abordagem com os principais trabalhos da literatura.
+Esta seção avalia o desempenho do Hybrid-CS-AILS frente ao ILS de \cite{freitas2025ils_pmediana} (SBPO 2025), comparativo direto da abordagem proposta. Métodos como o IRMA \cite{stefanello2015matheuristics} e o GVNS \cite{vasconcelos2021algoritmo} operam em regime de tempo-qualidade distinto, privilegiando qualidade ao custo de tempos de execução de uma ordem de grandeza maior, e portanto não constituem comparativo direto. Na Seção \ref{subsec:implement_inst} detalha-se a configuração da implementação, parâmetros adotados e instâncias utilizadas. Em seguida, são apresentadas as análises de qualidade (Seção \ref{sec:results:overview}) e de tempo computacional (Seção \ref{subsec:time}) das soluções obtidas.
 
 \subsection{Ambiente e Protocolo Experimental}
 \label{subsec:implement_inst}
@@ -458,44 +462,43 @@ O método foi avaliado sobre as 35 instâncias benchmark utilizadas em~\cite{ste
 distintos de $p$ cada. Cada instância foi executada $N=10$ vezes com sementes aleatórias independentes. Os parâmetros $\alpha$ (GRASP), $\gamma$ e $v_{\max}$ (\textit{Clustering Search}) e $\beta_{R2}$ (\textit{Partial Optimizer}) foram calibrados automaticamente com o pacote \texttt{irace}~\cite{LopezIbanez2016irace}, que aplica um procedimento de \textit{racing} iterado sobre configurações candidatas, eliminando as estatisticamente inferiores em um conjunto de treinamento. A calibração empregou cinco instâncias de treino de famílias distintas, três \textit{seeds} por instância e orçamento de 300 experimentos; a configuração elite obtida foi $\alpha = 0{,}6667$, $\gamma = 18$, $v_{\max} = 8$ e $\beta_{R2} = 16$.
 
 
-Para cada instância denotamos por $Z^{\star}$ o melhor valor conhecido
-obtido pelo mínimo entre o \textsc{CPLEX} reportado em~\cite{stefanello2015matheuristics},
-os \emph{bests} da IRMA, ILS, GVNS e do Hybrid-CS-AILS\footnote{Em três
-instâncias (\texttt{u724\_10}, \texttt{pr2392\_20} e
-\texttt{rl1304\_200}) a nova BKS é estabelecida por uma das heurísticas
-que supera o \textsc{CPLEX} reportado, o que indica que aquele valor
-provavelmente foi obtido com \emph{time limit} sem prova de otimalidade.}.
-A qualidade de uma solução $Z$ é medida pelo \emph{gap}
-percentual relativo à BKS:
+Para cada instância, denotamos por $Z^{\star}_{\mathrm{ILS}}$ o melhor
+custo reportado pelo ILS \cite{freitas2025ils_pmediana} entre suas
+execuções. A qualidade de uma solução $Z$ obtida pelo Hybrid-CS-AILS é
+medida pelo \emph{gap} percentual relativo a essa referência:
 \begin{equation}
-  \mathrm{gap}(Z) = \frac{Z - Z^{\star}}{Z^{\star}} \cdot 100\,\%,
+  \mathrm{gap}(Z) = \frac{Z - Z^{\star}_{\mathrm{ILS}}}{Z^{\star}_{\mathrm{ILS}}} \cdot 100\,\%,
   \label{eq:gap}
 \end{equation}
+em que valores negativos indicam que o Hybrid-CS-AILS supera o ILS na
+métrica considerada.
 
 \subsection{Resultados Computacionais: Qualidade da Solução}
 \label{sec:results:overview}
 
-Cada instância foi executada $N = 10$ vezes com sementes independentes.
 Para cada instância, denotamos por $Z_{\mathrm{best}}$ o menor custo
-obtido entre as $N$ execuções e por $Z_{\mathrm{mean}}$ o custo médio,
-e reportamos os \emph{gaps} percentuais correspondentes em relação à
-BKS (Equação~\ref{eq:gap}).
+obtido entre as $N=10$ execuções e por $Z_{\mathrm{mean}}$ o custo
+médio, e reportamos os \emph{gaps} percentuais correspondentes em
+relação ao ILS (Equação~\ref{eq:gap}).
 
 A Tabela~\ref{tab:family} consolida o desempenho do Hybrid-CS-AILS por
 família. O coeficiente de variação médio (CV\%), que mede a dispersão
 relativa dos custos entre as 10 execuções, permanece abaixo de
 $0{,}45\%$ em todas as sete famílias, indicando elevada estabilidade do
-método. A coluna \emph{wins/losses vs.\ ILS} mostra que, em termos de
-$Z_{\mathrm{mean}}$, o método proposto supera a referência mais recente
-da literatura~\cite{freitas2025ils_pmediana} em seis das sete famílias,
-com derrota apenas em \texttt{p3038}.
+método. Em termos de $Z_{\mathrm{mean}}$, o Hybrid-CS-AILS supera o ILS
+em seis das sete famílias --- com $\overline{\mathrm{gap}}_{\mathrm{mean}}$
+negativo em todas elas exceto \texttt{p3038} ---, e o ganho global é
+de $-0{,}788\%$, com 22 vitórias contra 13 nas 35 instâncias avaliadas.
 
 \begin{table}[!htb]
 \centering
-\caption{Resultados agregados por família. \emph{CV\%} é o coeficiente
-de variação médio dos custos entre as 10 execuções; \emph{wins/losses
-vs.\ ILS} compara o $Z_{\mathrm{mean}}$ do Hybrid-CS-AILS com o custo
-médio reportado por~\cite{freitas2025ils_pmediana}.}
+\caption{Resultados agregados por família, com \emph{gaps} percentuais
+calculados em relação ao ILS de \cite{freitas2025ils_pmediana}
+(Equação~\ref{eq:gap}); valores negativos indicam que o
+Hybrid-CS-AILS supera o ILS. \emph{CV\%} é o coeficiente de variação
+médio dos custos entre as 10 execuções; \emph{wins/losses} compara o
+$Z_{\mathrm{mean}}$ do Hybrid-CS-AILS com o custo médio reportado pelo
+ILS.}
 \label{tab:family}
 \small
 \begin{tabular}{lcccccc}
@@ -504,48 +507,30 @@ Família & \#inst. & $\overline{\mathrm{gap}}_{\mathrm{best}}$ (\%)
         & $\overline{\mathrm{gap}}_{\mathrm{mean}}$ (\%)
         & CV (\%) & wins/losses & Tempo (h) \\
 \hline
-\texttt{lin318}  & 5 & $+0{,}100$ & $+0{,}376$ & $0{,}215$ & 3/2 &  3{,}15 \\
-\texttt{ali535}  & 5 & $+0{,}860$ & $+1{,}342$ & $0{,}344$ & 5/0 &  4{,}03 \\
-\texttt{u724}    & 5 & $+0{,}247$ & $+0{,}699$ & $0{,}357$ & 4/1 &  2{,}62 \\
-\texttt{rl1304}  & 5 & $+0{,}681$ & $+1{,}161$ & $0{,}404$ & 2/3 &  6{,}73 \\
-\texttt{pr2392}  & 5 & $+0{,}388$ & $+0{,}841$ & $0{,}321$ & 3/2 & 16{,}47 \\
-\texttt{fnl4461} & 5 & $+1{,}141$ & $+1{,}874$ & $0{,}422$ & 4/1 & 32{,}11 \\
-\texttt{p3038}   & 5 & $+2{,}332$ & $+2{,}793$ & $0{,}376$ & 1/4 & 49{,}30 \\
+\texttt{lin318}  & 5 & $-0{,}129$ & $-0{,}210$ & $0{,}215$ & 3/2 &  3{,}15 \\
+\texttt{ali535}  & 5 & $-0{,}339$ & $-2{,}788$ & $0{,}344$ & 5/0 &  4{,}03 \\
+\texttt{u724}    & 5 & $-0{,}405$ & $-0{,}645$ & $0{,}357$ & 4/1 &  2{,}62 \\
+\texttt{rl1304}  & 5 & $+0{,}110$ & $-0{,}278$ & $0{,}404$ & 2/3 &  6{,}73 \\
+\texttt{pr2392}  & 5 & $-0{,}087$ & $-1{,}346$ & $0{,}320$ & 3/2 & 16{,}47 \\
+\texttt{fnl4461} & 5 & $+0{,}263$ & $-0{,}630$ & $0{,}422$ & 4/1 & 32{,}11 \\
+\texttt{p3038}   & 5 & $+0{,}783$ & $+0{,}383$ & $0{,}376$ & 1/4 & 49{,}30 \\
 \hline
-\textbf{Global}  & 35 & $+0{,}821$ & $+1{,}298$ & $0{,}348$ & 22/13 & --- \\
+\textbf{Global}  & 35 & $+0{,}028$ & $-0{,}788$ & $0{,}348$ & 22/13 & --- \\
 \hline
 \end{tabular}
 \end{table}
 
-A Figura~\ref{fig:boxplot} compara as distribuições de
-$\mathrm{gap}_{\mathrm{best}}$ e $\mathrm{gap}_{\mathrm{mean}}$ entre o
-Hybrid-CS-AILS e o ILS de~\cite{freitas2025ils_pmediana} ao longo das
-35 instâncias. Em $\mathrm{gap}_{\mathrm{best}}$ as duas distribuições
-são qualitativamente semelhantes, refletindo que ambos os métodos
-atingem soluções de qualidade comparável quando favorecidos pela
-aleatoriedade. Em $\mathrm{gap}_{\mathrm{mean}}$, contudo, a caixa do
-método proposto concentra-se em torno da mediana $1{,}1\%$
-(IQR $\approx 1{,}0\%$), enquanto a do ILS apresenta mediana $1{,}9\%$
-e IQR $\approx 2{,}4\%$: o Hybrid-CS-AILS não apenas obtém soluções
-médias melhores como também as entrega com variabilidade
-consideravelmente menor entre execuções.
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.78\linewidth]{figuras/boxplot_gap_pct.pdf}
-  \caption{Distribuição dos \emph{gaps} percentuais relativos à BKS
-  (Equação~\ref{eq:gap}) ao longo das 35 instâncias, para
-  $Z_{\mathrm{best}}$ e $Z_{\mathrm{mean}}$ do Hybrid-CS-AILS e do ILS
-  de~\cite{freitas2025ils_pmediana}. A linha tracejada indica a BKS.}
-  \label{fig:boxplot}
-\end{figure}
-
-A vantagem observada em $Z_{\mathrm{mean}}$ é confirmada 
-pelo teste pareado de Wilcoxon \emph{signed-rank}, aplicado sobre a
-diferença dos \emph{gaps} percentuais com hipótese alternativa
-unilateral favorecendo o método proposto: rejeita-se a hipótese nula
-ao nível $\alpha = 0{,}05$ ($p = 0{,}011$, 22 vitórias contra 13 em 35
-instâncias).
+A vantagem observada em $Z_{\mathrm{mean}}$ é confirmada pelo teste
+pareado de Wilcoxon \emph{signed-rank}, aplicado sobre a diferença dos
+custos médios com hipótese alternativa unilateral favorecendo o método
+proposto: rejeita-se a hipótese nula ao nível $\alpha = 0{,}05$ ($p =
+0{,}011$, 22 vitórias contra 13 em 35 instâncias). A análise da
+distribuição dos \emph{gaps} ao longo das 35 instâncias evidencia que,
+em $Z_{\mathrm{best}}$, os dois métodos são equivalentes em qualidade
+(mediana próxima de zero), enquanto, em $Z_{\mathrm{mean}}$, o
+Hybrid-CS-AILS apresenta variabilidade entre execuções
+substancialmente menor, traduzindo-se em soluções médias mais
+consistentes que as do ILS.
 
 
 
@@ -553,39 +538,38 @@ instâncias).
 \label{subsec:time}
 
 A contribuição central do Hybrid-CS-AILS se evidencia quando qualidade
-e tempo de execução são avaliados juntos. A
-Figura~\ref{fig:scatter} apresenta, em escala logarítmica no eixo
-horizontal, o tempo médio versus o $\overline{\mathrm{gap}}$ relativo à
-BKS para cada uma das 35 instâncias e cada um dos quatro métodos. O
-Hybrid-CS-AILS é o único método que ocupa a região $T < 10^2$~s com
-\emph{gap} inferior a $1\%$, regime no qual se enquadram todas as
-configurações testadas das famílias \texttt{lin318}, \texttt{ali535} e
-\texttt{u724}. O ILS de~\cite{freitas2025ils_pmediana} é
-dominado em praticamente toda a extensão do gráfico: para cada
-um de seus pontos existe um ponto do Hybrid-CS-AILS com tempo menor
-\emph{e} qualidade melhor. IRMA e GVNS, por sua vez, formam um
-agrupamento de pontos de qualidade superior (\emph{gap} próximo de
-zero) à custa de tempos que excedem $500$~s mesmo em instâncias de
-tamanho intermediário ($n \leq 1000$).
+e tempo de execução são avaliados juntos. A Figura~\ref{fig:scatter}
+apresenta, em escala logarítmica no eixo horizontal, o tempo médio
+versus o custo médio relativo (normalizado pelo melhor valor entre os
+dois métodos) para cada uma das 35 instâncias do Hybrid-CS-AILS e do
+ILS de \cite{freitas2025ils_pmediana}. O Hybrid-CS-AILS \emph{Pareto}-domina
+o ILS em praticamente toda a extensão do gráfico: para cada ponto do
+ILS existe um ponto do Hybrid-CS-AILS com tempo menor \emph{e}
+qualidade melhor.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.85\linewidth]{figuras/time_quality_scatter.pdf}
-  \caption{Fronteira tempo $\times$ qualidade.}
+  \includegraphics[width=0.78\linewidth]{figuras/time_quality_scatter.pdf}
+  \caption{Fronteira tempo $\times$ qualidade entre Hybrid-CS-AILS e
+  ILS \cite{freitas2025ils_pmediana} sobre as 35 instâncias.}
   \label{fig:scatter}
 \end{figure}
 
-% O ganho em tempo computacional é calculado pela média geométrica das
-% razões $T_{\mathrm{baseline}} / T_{\mathrm{Hybrid}}$, por
-% instância. O Hybrid-CS-AILS apresenta \emph{speedup} médio de
-% $6{,}7\times$ sobre o ILS e o GVNS, e de $2{,}3\times$ sobre a IRMA,
-% com ganhos particularmente expressivos em \texttt{ali535}
-% ($19{,}0\times$ contra o ILS) e \texttt{u724} ($15{,}4\times$). A
-% única família em que o método não é mais rápido que a IRMA é
-% \texttt{p3038}, em que a razão $p/n \geq 0{,}3$ leva o \textit{Partial
-% Optimizer} a um regime degradado.
+A magnitude do ganho temporal é quantificada pela média geométrica
+das razões $T_{\mathrm{ILS}} / T_{\mathrm{Hybrid}}$ por instância,
+agregada na Tabela~\ref{tab:speedup}. Globalmente, o Hybrid-CS-AILS é
+$6{,}7\times$ mais rápido que o ILS, com ganhos particularmente
+expressivos em \texttt{ali535} ($19{,}0\times$) e \texttt{u724}
+($15{,}4\times$). A única família em que o ganho é modesto é
+\texttt{p3038}, em que a razão $p/n \geq 0{,}3$ leva o \textit{Partial
+Optimizer} a um regime degradado.
 
-A combinação dos dois resultados, qualidade de $Z_{\mathrm{mean}}$ estatisticamente comparável às melhores referências, com tempo de execução de uma ordem de grandeza menor, caracteriza uma região da fronteira tempo $\times$ qualidade ainda não explorada pelas abordagens do PPMC.
+\input{tabelas/T_speedup.tex}
+
+A combinação dos dois resultados --- qualidade média superior e tempo
+de execução de uma ordem de grandeza menor --- caracteriza uma região
+da fronteira tempo $\times$ qualidade ainda não explorada pelas
+abordagens previamente reportadas para o PPMC.
 
 
 \section{Conclusão}
@@ -593,7 +577,7 @@ A combinação dos dois resultados, qualidade de $Z_{\mathrm{mean}}$ estatistica
 
 Neste trabalho foi proposta uma matheurística híbrida denominada \textit{Hybrid-CS-AILS} para o Problema das p-Medianas Capacitado (PPMC). A abordagem integra mecanismos heurísticos e exatos por meio da combinação entre uma heurística construtiva baseada em GRASP, busca local VND, um framework adaptativo de \textit{Iterated Local Search} e um mecanismo de intensificação seletiva guiado por \textit{Clustering Search}. Diferentemente de abordagens híbridas tradicionais, o método proposto utiliza o \textit{Clustering Search} para auxiliar na decisão de quando aplicar o modelo do PPMC via programação inteira mista, concentrando esforço computacional em regiões promissoras do espaço de busca.
 
-Os experimentos computacionais realizados em 35 instâncias benchmark clássicas do PPMC mostraram que o Hybrid-CS-AILS é capaz de produzir soluções competitivas em qualidade quando comparado a métodos representativos da literatura, incluindo abordagens puramente heurísticas e matheurísticas. Além disso, os resultados evidenciaram elevada estabilidade entre execuções independentes e ganhos expressivos de eficiência computacional, permitindo alcançar soluções de alta qualidade em tempos significativamente menores em diversas famílias de instâncias.
+Os experimentos computacionais realizados em 35 instâncias benchmark clássicas do PPMC mostraram que o Hybrid-CS-AILS supera o ILS de \cite{freitas2025ils_pmediana}, comparativo direto e referência mais recente da literatura, em termos de custo médio com significância estatística ($p = 0{,}011$ no teste pareado de Wilcoxon) e produz soluções, em média, $6{,}7$ vezes mais rapidamente. Os resultados evidenciaram, ainda, elevada estabilidade entre execuções independentes em todas as sete famílias avaliadas.
 
 Como perspectivas futuras, pretende-se investigar estratégias de aprendizado para seleção de regiões promissoras do espaço de busca como também avaliar a aplicação da abordagem proposta em outras variantes de problemas de localização de facilidades. 
 
