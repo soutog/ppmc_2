@@ -1,0 +1,13 @@
+Teste de Wilcoxon signed-rank pareado (duas caudas)
+H0: mediana de (Hybrid_mean - Freitas_mean) = 0
+================================================================
+
+[Todas as instancias]
+  N=35  melhor=22  pior=13  empate=0
+  W=243.00  Z~=-1.179  p=0.24490  |r|=0.199
+  p >= 0.05 -> sem evidencia de diferenca.
+
+[Excluindo p3038 (familia com pior desempenho)]
+  N=30  melhor=21  pior=9  empate=0
+  W=143.00  Z~=-1.841  p=0.06666  |r|=0.336
+  p >= 0.05 -> sem evidencia de diferenca.

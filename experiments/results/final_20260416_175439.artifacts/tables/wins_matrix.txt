@@ -1,0 +1,16 @@
+Matriz de comparacao pareada (best-of-run) — linha bate coluna
+Formato: wins / ties / total (linha venceu estritamente <= total)
+========================================================================
+              Hybrid           ILS          IRMA          GVNS
+------------------------------------------------------------------------
+Hybrid           -       16/ 0/35       3/ 0/35      16/ 0/35 
+ILS        19/ 0/35            -        0/ 0/35      14/ 0/35 
+IRMA       32/ 0/35      35/ 0/35            -       23/ 0/35 
+GVNS       19/ 0/35      21/ 0/35      12/ 0/35            -  
+========================================================================
+
+Taxa de vitoria agregada (wins / n instancias):
+  Hybrid     35 / 105   ( 33.3%)
+  ILS        33 / 105   ( 31.4%)
+  IRMA       90 / 105   ( 85.7%)
+  GVNS       52 / 105   ( 49.5%)

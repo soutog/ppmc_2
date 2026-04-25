@@ -1,0 +1,28 @@
+Teste de Wilcoxon signed-rank PAREADO em gap% vs BKS
+H0: mediana(gap_H - gap_F) = 0
+H1: gap_H < gap_F  (Hybrid tem gap menor que Freitas)  -> uma cauda
+================================================================
+
+[Best (gap% vs BKS)  — todas as instancias]  N=35
+  Hybrid com gap MENOR: 16   MAIOR: 19   empate: 0
+  mediana(gap_H - gap_F) = +0.0457%
+  W=339.00  Z~=0.393  p(one-sided)=0.65411  |r|=0.066
+  p = 0.654   -> sem evidencia (teste nao rejeita H0)
+
+[Mean (gap% vs BKS)  — todas as instancias]  N=35
+  Hybrid com gap MENOR: 22   MAIOR: 13   empate: 0
+  mediana(gap_H - gap_F) = -0.2505%
+  W=176.00  Z~=-2.277  p(one-sided)=0.01098  |r|=0.385
+  p < 0.05  -> Hybrid estritamente melhor (sig.)
+
+[Best (gap% vs BKS)  — excluindo p3038]  N=30
+  Hybrid com gap MENOR: 16   MAIOR: 14   empate: 0
+  mediana(gap_H - gap_F) = -0.0778%
+  W=197.00  Z~=-0.730  p(one-sided)=0.23855  |r|=0.133
+  p = 0.239   -> sem evidencia (teste nao rejeita H0)
+
+[Mean (gap% vs BKS)  — excluindo p3038]  N=30
+  Hybrid com gap MENOR: 21   MAIOR: 9   empate: 0
+  mediana(gap_H - gap_F) = -0.4495%
+  W=93.00  Z~=-2.869  p(one-sided)=0.00161  |r|=0.524
+  p < 0.01  -> Hybrid estritamente melhor (sig.)

@@ -1,0 +1,21 @@
+Auditoria de instancias com gap absoluto > 1.5% vs BKS
+================================================================
+Formato: gap_best_vs_BKS%  gap_mean_vs_BKS%  Best  Mean  BKS
+
+  ali535_150    gap_best= +1.524%  gap_mean= +2.030%  best=1041.00  mean=1046.19  BKS=1025.37
+  fnl4461_250    gap_best= +1.286%  gap_mean= +2.254%  best=340207.19  mean=343460.21  BKS=335888.87
+  fnl4461_500    gap_best= +1.797%  gap_mean= +2.425%  best=228721.76  mean=230132.74  BKS=224684.24
+  fnl4461_1000   gap_best= +1.556%  gap_mean= +3.226%  best=148132.49  mean=150568.12  BKS=145862.38
+  p3038_700    gap_best= +1.572%  gap_mean= +1.900%  best=111100.90  mean=111459.08  BKS=109381.22
+  p3038_800    gap_best= +2.337%  gap_mean= +2.748%  best=101369.95  mean=101776.53  BKS=99054.98
+  p3038_900    gap_best= +2.749%  gap_mean= +3.274%  best=93470.32  mean=93948.72  BKS=90969.96
+  p3038_1000   gap_best= +3.804%  gap_mean= +4.140%  best=86877.18  mean=87158.26  BKS=83693.38
+
+Verificacao do u724_10 (ponto flagged como +19.5% no summary):
+  best=181778.6394  mean=181931.5515
+  BKS=181782.9600  Freitas_best=182036.23
+  gap_best_vs_BKS = -0.0024%
+  gap_mean_vs_BKS = +0.0817%
+  gap_best_vs_Freitas = -0.1415%
+  => Hybrid encontrou solucao estritamente MELHOR que a BKS reportada por Stefanello. Revisar se houve atualizacao de BKS ou se o run passou no validate().
+  => NAO ha gap real de ~20%; o valor do summary estava incorreto.

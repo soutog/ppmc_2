@@ -1,0 +1,128 @@
+\begin{thebibliography}{24}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}\fi
+
+\bibitem[Boccia et~al.(2008)Boccia, Sforza, Sterle, e Vasilyev]{boccia2008cut}
+Boccia, M., Sforza, A., Sterle, C., e Vasilyev, I. (2008).
+\newblock A cut and branch approach for the capacitated p-median problem based on fenchel cutting planes.
+\newblock {\em Journal of mathematical modelling and algorithms}, 7\penalty0 (1):\penalty0 43--58.
+
+\bibitem[Ceselli e Righini(2005)]{ceselli2005branch}
+Ceselli, A. e Righini, G. (2005).
+\newblock A branch-and-price algorithm for the capacitated p-median problem.
+\newblock {\em Networks: An International Journal}, 45\penalty0 (3):\penalty0 125--142.
+
+\bibitem[Chaves et~al.(2008)Chaves, de~Assis~Correa, e Lorena]{chaves2008clustering}
+Chaves, A.~A., de~Assis~Correa, F., e Lorena, L. A.~N. (2008).
+\newblock Clustering search heuristic for the capacitated p-median problem.
+\newblock In {\em Innovations in Hybrid Intelligent Systems}, p. 136--143. Springer.
+
+\bibitem[Correa et~al.(2004)Correa, Steiner, Freitas, e Carnieri]{correa2004genetic}
+Correa, E.~S., Steiner, M. T.~A., Freitas, A.~A., e Carnieri, C. (2004).
+\newblock A genetic algorithm for solving a capacitated p-median problem.
+\newblock {\em Numerical Algorithms}, 35\penalty0 (2):\penalty0 373--388.
+
+\bibitem[D{\'\i}az e Fernandez(2006)]{diaz2006hybrid}
+D{\'\i}az, J.~A. e Fernandez, E. (2006).
+\newblock Hybrid scatter search and path relinking for the capacitated p-median problem.
+\newblock {\em European Journal of Operational Research}, 169\penalty0 (2):\penalty0 570--585.
+
+\bibitem[Drezner(1996)]{drezner1996facility}
+Drezner, E. (1996).
+\newblock Facility location: A survey of applications and methods.
+\newblock {\em Journal of the Operational Research Society}, 47\penalty0 (11):\penalty0 1421--1421.
+
+\bibitem[Fleszar e Hindi(2008)]{fleszar2008effective}
+Fleszar, K. e Hindi, K.~S. (2008).
+\newblock An effective vns for the capacitated p-median problem.
+\newblock {\em European Journal of Operational Research}, 191\penalty0 (3):\penalty0 612--622.
+
+\bibitem[Freitas et~al.(2025)Freitas, de~Souza, e de~S{\'a}]{freitas2025ils_pmediana}
+Freitas, B.~A., de~Souza, S.~R., e de~S{\'a}, E.~M. (2025).
+\newblock Metaheur{\'\i}stica ils aplicada ao problema de p-medianas capacitado.
+\newblock In {\em Book of Abstracts of the LVII Brazilian Symposium on Operations Research (SBPO 2025)}, Gramado, Brazil. Galo{\'a}.
+\newblock URL \url{https://proceedings.science/sbpo/sbpo-2025/trabalhos/metaheuristica-ils-aplicada-ao-problema-de-p-medianas-capacitado?lang=pt-br}.
+\newblock Accessed: 21 Apr. 2026.
+
+\bibitem[Garey et~al.(1990)Garey, Johnson, et~al.]{garey1990guide}
+Garey, M.~R., Johnson, D.~S., et~al. (1990).
+\newblock A guide to the theory of np-completeness.
+\newblock {\em Computers and intractability}, p. 37--79.
+
+\bibitem[Hakimi(1964)]{hakimi1964optimum}
+Hakimi, S.~L. (1964).
+\newblock Optimum locations of switching centers and the absolute centers and medians of a graph.
+\newblock {\em Operations research}, 12\penalty0 (3):\penalty0 450--459.
+
+\bibitem[Hansen et~al.(2001)Hansen, Mladenovi{\'c}, e Perez-Britos]{hansen2001variable}
+Hansen, P., Mladenovi{\'c}, N., e Perez-Britos, D. (2001).
+\newblock Variable neighborhood decomposition search.
+\newblock {\em Journal of Heuristics}, 7\penalty0 (4):\penalty0 335--350.
+
+\bibitem[L{\'o}pez-Ib{\'a}{\~n}ez et~al.(2016)L{\'o}pez-Ib{\'a}{\~n}ez, Dubois-Lacoste, {P{\'e}rez C{\'a}ceres}, Birattari, e St{\"u}tzle]{LopezIbanez2016irace}
+L{\'o}pez-Ib{\'a}{\~n}ez, M., Dubois-Lacoste, J., {P{\'e}rez C{\'a}ceres}, L., Birattari, M., e St{\"u}tzle, T. (2016).
+\newblock The {irace} package: Iterated racing for automatic algorithm configuration.
+\newblock {\em Operations Research Perspectives}, 3:\penalty0 43--58.
+
+\bibitem[Lorena e Senne(2004)]{lorena2004column}
+Lorena, L.~A. e Senne, E.~L. (2004).
+\newblock A column generation approach to capacitated p-median problems.
+\newblock {\em Computers \& Operations Research}, 31\penalty0 (6):\penalty0 863--876.
+
+\bibitem[Louren{\c{c}}o et~al.(2003)Louren{\c{c}}o, Martin, e St{\"u}tzle]{lourencco2003iterated}
+Louren{\c{c}}o, H.~R., Martin, O.~C., e St{\"u}tzle, T. (2003).
+\newblock Iterated local search.
+\newblock In {\em Handbook of metaheuristics}, p. 320--353. Springer.
+
+\bibitem[Mulvey e Beck(1984)]{mulvey1984solving}
+Mulvey, J.~M. e Beck, M.~P. (1984).
+\newblock Solving capacitated clustering problems.
+\newblock {\em European Journal of Operational Research}, 18\penalty0 (3):\penalty0 339--348.
+
+\bibitem[Oliveira et~al.(2013)Oliveira, Chaves, e Lorena]{oliveira2013clustering}
+Oliveira, A. C. M.~d., Chaves, A.~A., e Lorena, L. A.~N. (2013).
+\newblock Clustering search.
+\newblock {\em Pesquisa operacional}, 33\penalty0 (1):\penalty0 105--121.
+
+\bibitem[Osman e Christofides(1994)]{osman1994capacitated}
+Osman, I.~H. e Christofides, N. (1994).
+\newblock Capacitated clustering problems by hybrid simulated annealing and tabu search.
+\newblock {\em International Transactions in Operational Research}, 1\penalty0 (3):\penalty0 317--336.
+
+\bibitem[Owen e Daskin(1998)]{owen1998strategic}
+Owen, S.~H. e Daskin, M.~S. (1998).
+\newblock Strategic facility location: A review.
+\newblock {\em European journal of operational research}, 111\penalty0 (3):\penalty0 423--447.
+
+\bibitem[Pirkul(1987)]{pirkul1987efficient}
+Pirkul, H. (1987).
+\newblock Efficient algorithms for the capacitated concentrator location problem.
+\newblock {\em Computers \& Operations Research}, 14\penalty0 (3):\penalty0 197--208.
+
+\bibitem[Resende e Werneck(2002)]{resende2002grasp}
+Resende, M.~G. e Werneck, R.~F. (2002).
+\newblock A grasp with path-relinking for the p-median problem.
+\newblock {\em Journal of Heuristics}.
+
+\bibitem[Revelle e Laporte(1996)]{revelle1996plant}
+Revelle, C.~S. e Laporte, G. (1996).
+\newblock The plant location problem: new models and research prospects.
+\newblock {\em Operations Research}, 44\penalty0 (6):\penalty0 864--874.
+
+\bibitem[Stefanello et~al.(2015)Stefanello, de~Ara{\'u}jo, e M{\"u}ller]{stefanello2015matheuristics}
+Stefanello, F., de~Ara{\'u}jo, O.~C., e M{\"u}ller, F.~M. (2015).
+\newblock Matheuristics for the capacitated p-median problem.
+\newblock {\em International Transactions in Operational Research}, 22\penalty0 (1):\penalty0 149--167.
+
+\bibitem[Ullah et~al.(2025)Ullah, Noor, Abbas, Garg, Choi, Hassan, e Bai]{ullah2025optimizing}
+Ullah, I., Noor, A., Abbas, M., Garg, S., Choi, B.~J., Hassan, M.~M., e Bai, X. (2025).
+\newblock Optimizing smart city services by utilizing appropriate characteristics of digital twin for urban excellence.
+\newblock {\em Alexandria Engineering Journal}, 122:\penalty0 399--410.
+
+\bibitem[Vasconcelos et~al.(2021)Vasconcelos, Souza, e Souza]{vasconcelos2021algoritmo}
+Vasconcelos, A., Souza, M., e Souza, S.~D. (2021).
+\newblock Algoritmo gvns h{\'\i}brido aplicado ao problema das p-medianas capacitado.
+\newblock {\em Trends in Computational and Applied Mathematics}, 22\penalty0 (3):\penalty0 453--473.
+
+\end{thebibliography}

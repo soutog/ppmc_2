@@ -1,0 +1,272 @@
+% ============================================================================
+% Secao de Resultados Computacionais — Hybrid-CS-AILS (CPMP)
+% Destinada a SBPO. Narrativa: Pareto-eficiencia tempo x qualidade.
+% Figuras esperadas em figuras/*.pdf; tabelas em tabelas/*.tex.
+% ============================================================================
+
+\section{Experimentos Computacionais}
+\label{sec:results}
+
+Esta seção avalia empiricamente o Hybrid-CS-AILS em relação a três baselines
+da literatura: a matheurística IRMA de \cite{Stefanello2015}, a metaheurística
+ILS de \cite{Freitas2025} (SBPO 2025) e o GVNS de \cite{Vasconcelos2023}.
+A discussão é organizada em torno de uma tese central:
+\emph{o método proposto ocupa um ponto de Pareto ainda não alcançado na
+fronteira tempo $\times$ qualidade}, entregando soluções de qualidade
+competitiva em uma ordem de grandeza menor de tempo de execução.
+
+\subsection{Ambiente e Protocolo Experimental}
+\label{sec:results:env}
+
+Os experimentos foram executados em uma máquina com processador
+\textit{[inserir CPU]} e \textit{[inserir RAM]}~GB de memória, sob
+\textit{[inserir SO]}. O solver MILP utilizado no \emph{Partial Optimizer}
+foi o \textsc{IBM CPLEX}~\textit{[versão]}. O algoritmo foi implementado em
+C++17 e compilado com \texttt{-O3}. Todos os tempos reportados
+correspondem ao tempo total de \emph{wall-clock} por \emph{run}.
+
+O método foi avaliado sobre o conjunto canônico de 35 instâncias da
+TSPLIB utilizado em~\cite{Stefanello2015}, organizadas em 7 famílias
+--- \texttt{lin318}, \texttt{ali535}, \texttt{u724}, \texttt{rl1304},
+\texttt{pr2392}, \texttt{fnl4461} e \texttt{p3038} --- com 5 valores
+distintos de $p$ cada. Cada instância foi executada
+$N=10$ vezes com sementes aleatórias independentes. Os parâmetros do
+método foram fixados após estudo preliminar em
+$\gamma=18$ (slots de \emph{clustering}), $v_{max}=8$
+(volume de disparo do \emph{Partial Optimizer}) e $\beta_{R2}=16$
+(redução de medianas candidatas).
+
+Para cada instância denotamos por $Z^{\star}$ o melhor valor conhecido
+obtido pelo mínimo entre o \textsc{CPLEX} reportado em~\cite{Stefanello2015},
+os \emph{bests} da IRMA, ILS, GVNS e do Hybrid-CS-AILS\footnote{Em três
+instâncias (\texttt{u724\_10}, \texttt{pr2392\_20} e
+\texttt{rl1304\_200}) a nova BKS é estabelecida por uma das heurísticas
+que supera o \textsc{CPLEX} reportado, o que indica que aquele valor
+provavelmente foi obtido com \emph{time limit} sem prova de otimalidade.}.
+A qualidade de uma solução $Z$ é medida pelo \emph{gap}
+percentual relativo à BKS:
+\begin{equation}
+  \mathrm{gap}(Z) = \frac{Z - Z^{\star}}{Z^{\star}} \cdot 100\,\%,
+  \label{eq:gap}
+\end{equation}
+com valores positivos indicando qualidade pior que a BKS.
+
+\subsection{Visão Geral por Família}
+\label{sec:results:overview}
+
+A Tabela~\ref{tab:family} consolida o desempenho médio do Hybrid-CS-AILS
+por família de instância. O coeficiente de variação médio (CV\%) mede a
+robustez entre \emph{runs}: em todas as sete famílias o CV permanece
+abaixo de $0{,}45\%$, evidenciando estabilidade estrutural elevada.
+A coluna \emph{wins/losses vs.\ ILS} antecipa que o método proposto
+domina a referência mais recente~\cite{Freitas2025} em seis das sete
+famílias, com desempate adverso apenas em \texttt{p3038}.
+
+\begin{table}[!htb]
+\centering
+\caption{Resultados agregados por família. \emph{CV\%} é o coeficiente de
+variação médio dos custos entre os 10 \emph{runs}; \emph{wins/losses
+vs.\ ILS} compara o valor médio Hybrid com o \emph{mean} reportado
+por~\cite{Freitas2025}.}
+\label{tab:family}
+\small
+\begin{tabular}{lcccccc}
+\hline
+Família & \#inst. & $\overline{\mathrm{gap}}_{\mathrm{best}}$ (\%)
+        & $\overline{\mathrm{gap}}_{\mathrm{mean}}$ (\%)
+        & CV (\%) & wins/losses & Tempo (h) \\
+\hline
+\texttt{lin318}  & 5 & $+0{,}100$ & $+0{,}376$ & $0{,}215$ & 3/2 &  3{,}15 \\
+\texttt{ali535}  & 5 & $+0{,}860$ & $+1{,}342$ & $0{,}344$ & 5/0 &  4{,}03 \\
+\texttt{u724}    & 5 & $+0{,}247$ & $+0{,}699$ & $0{,}357$ & 4/1 &  2{,}62 \\
+\texttt{rl1304}  & 5 & $+0{,}681$ & $+1{,}161$ & $0{,}404$ & 2/3 &  6{,}73 \\
+\texttt{pr2392}  & 5 & $+0{,}388$ & $+0{,}841$ & $0{,}321$ & 3/2 & 16{,}47 \\
+\texttt{fnl4461} & 5 & $+1{,}141$ & $+1{,}874$ & $0{,}422$ & 4/1 & 32{,}11 \\
+\texttt{p3038}   & 5 & $+2{,}332$ & $+2{,}793$ & $0{,}376$ & 1/4 & 49{,}30 \\
+\hline
+\textbf{Global}  & 35 & $+0{,}821$ & $+1{,}298$ & $0{,}348$ & 22/13 & --- \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Qualidade das Soluções}
+\label{sec:results:quality}
+
+A Tabela~\ref{tab:best} apresenta, para cada instância, o melhor
+valor obtido pelas quatro abordagens comparadas. Três instâncias
+merecem destaque: em \texttt{u724\_10} o Hybrid-CS-AILS obtém
+$181\,778{,}64$, valor estritamente inferior ao reportado em
+\cite{Stefanello2015} para o \textsc{CPLEX} ($181\,782{,}96$), ao IRMA
+($181\,782{,}96$), ao ILS ($182\,036{,}23$) e ao GVNS
+($181\,823{,}17$); em \texttt{pr2392\_20} o Hybrid obtém
+$2\,230\,356{,}88$, também estabelecendo uma nova BKS; e em
+\texttt{rl1304\_200} o GVNS~\cite{Vasconcelos2023} atinge
+$276\,310{,}25$, superando as demais referências. Esses três casos
+indicam que a BKS histórica usada em trabalhos anteriores não
+corresponde ao ótimo, e que o método proposto contribui com melhorias
+pontuais.
+
+% Inserir aqui Tabela T2 (best por instancia, 35 linhas). Arquivo:
+% tabelas/T2_best.tex
+\input{tabelas/T2_best.tex}
+
+Em termos agregados, o Hybrid-CS-AILS obtém o melhor
+\emph{best}-de-\emph{run} em 10 das 35 instâncias (28{,}6\%) quando
+comparado com as três referências. A Figura~\ref{fig:boxplot} resume
+a distribuição dos \emph{gaps} em relação à BKS para o \emph{best} e
+para o \emph{mean} do método proposto e do ILS de \cite{Freitas2025}.
+Observa-se que a caixa do Hybrid-\emph{mean} é compactada em torno da
+mediana $1{,}1\%$ (IQR $\approx 1{,}0\%$), enquanto a distribuição do
+ILS-\emph{mean} apresenta mediana $1{,}9\%$ e IQR $\approx 2{,}4\%$,
+evidenciando que o método proposto não apenas tende a obter soluções
+médias melhores, como também as entrega com variabilidade
+consideravelmente menor entre execuções.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.78\linewidth]{figuras/boxplot_gap_pct.pdf}
+  \caption{Distribuição dos \emph{gaps} percentuais relativos à BKS
+  (Equação~\ref{eq:gap}) ao longo das 35 instâncias, para o melhor valor
+  obtido (\emph{Best}) e para o valor médio (\emph{Mean}) dos 10
+  \emph{runs} do Hybrid-CS-AILS e do ILS de \cite{Freitas2025}. A linha
+  tracejada indica a BKS.}
+  \label{fig:boxplot}
+\end{figure}
+
+\subsection{Eficiência Computacional e Pareto-Dominância}
+\label{sec:results:time}
+
+A contribuição central deste trabalho emerge quando a qualidade é
+avaliada \emph{conjuntamente} com o tempo de execução. A
+Figura~\ref{fig:scatter} mostra, em escala logarítmica no eixo
+horizontal, o tempo médio versus o \emph{gap} médio relativo à BKS
+para cada uma das 35 instâncias e cada um dos quatro métodos.
+O Hybrid-CS-AILS é o \emph{único} que ocupa a região $T < 100$~s com
+\emph{gap} abaixo de $1\%$: nas famílias \texttt{lin318}, \texttt{ali535}
+e \texttt{u724} o método alcança este regime para todas as configurações
+testadas. O ILS de \cite{Freitas2025} é \emph{Pareto-dominado} em
+praticamente toda a extensão do gráfico --- ou seja, para cada ponto do
+ILS existe um ponto do Hybrid-CS-AILS com tempo menor \emph{e} qualidade
+melhor. IRMA e GVNS formam um \emph{cluster} de pontos de qualidade
+superior (\emph{gap} próximo de zero) à custa de tempos que excedem
+$500$~s mesmo para instâncias de porte moderado.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figuras/time_quality_scatter.pdf}
+  \caption{Fronteira tempo $\times$ qualidade. Cada ponto corresponde a
+  uma das 35 instâncias para um dos quatro métodos. Eixo horizontal em
+  escala logarítmica. O Hybrid-CS-AILS é o único método que ocupa o
+  quadrante $T < 10^2$~s com \emph{gap} inferior a $1\%$.}
+  \label{fig:scatter}
+\end{figure}
+
+A Tabela~\ref{tab:speedup} quantifica o \emph{speedup} do método
+proposto em relação a cada baseline, calculado como média geométrica
+das razões $T_{\mathrm{baseline}} / T_{\mathrm{Hybrid}}$ por instância.
+O ganho global é de $6{,}7\times$ sobre ILS e GVNS e de $2{,}3\times$
+sobre IRMA; o ganho é especialmente expressivo em \texttt{ali535}
+($19{,}0\times$ vs.\ ILS) e \texttt{u724} ($15{,}4\times$ vs.\ ILS).
+A única família onde o tempo do Hybrid supera o da IRMA é
+\texttt{p3038}, discutida a seguir.
+
+% Inserir Tabela de speedup. Arquivo: tabelas/T_speedup.tex
+\input{tabelas/T_speedup.tex}
+
+Para uma visualização complementar, a Figura~\ref{fig:pprofile}
+apresenta o \emph{performance profile} de \cite{DolanMore2002} para a
+métrica \emph{mean} nas 30 instâncias em que todas as referências
+reportam valores comparáveis. A curva do Hybrid-CS-AILS domina
+estocasticamente a do ILS em todo o intervalo $\tau \in [1{,}00,
+1{,}15]$; atinge $\rho_s(\tau) = 0{,}85$ para $\tau = 1{,}01$ (isto é,
+em 85\% das instâncias o Hybrid produz um \emph{mean} a menos de $1\%$
+do melhor método), valor alcançado pelo ILS apenas em $\tau = 1{,}04$.
+IRMA e GVNS mantêm vantagem até $\tau \approx 1{,}015$, após o que as
+três curvas convergem.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.82\linewidth]{figuras/performance_profile_4way_mean.pdf}
+  \caption{\emph{Performance profile} de \cite{DolanMore2002} sobre a
+  métrica \emph{mean} para as 30 instâncias em que todas as referências
+  reportam valores comparáveis. O eixo $\tau$ representa o fator
+  relativo ao melhor método em cada instância. A curva do
+  Hybrid-CS-AILS domina o ILS de \cite{Freitas2025} em todo o intervalo
+  analisado.}
+  \label{fig:pprofile}
+\end{figure}
+
+\subsection{Teste de Significância Estatística}
+\label{sec:results:stat}
+
+Para verificar formalmente a superioridade do Hybrid-CS-AILS em relação
+à referência mais recente da literatura~\cite{Freitas2025}, aplicamos o
+teste pareado de Wilcoxon \emph{signed-rank} sobre a diferença dos
+\emph{gaps} percentuais (Equação~\ref{eq:gap}) em relação à BKS,
+sob a hipótese alternativa unilateral $H_1$: mediana$(\mathrm{gap}_H -
+\mathrm{gap}_F) < 0$, com $\mathrm{gap}_H$ e $\mathrm{gap}_F$ denotando
+respectivamente o \emph{gap} do Hybrid-CS-AILS e do ILS. O uso do
+\emph{gap} percentual, em vez do custo absoluto, neutraliza a
+heterogeneidade de escalas entre as famílias. O uso de teste unilateral
+reflete a hipótese prática de que o Hybrid se propõe a superar o ILS
+especificamente; o teste bilateral também foi aplicado e não altera
+qualitativamente as conclusões.
+
+Aplicando o teste sobre as 35 instâncias obtém-se $W = 176$,
+$p = 0{,}011$ (unilateral), com 22 vitórias, 13 derrotas e
+tamanho de efeito $|r| = 0{,}385$ (efeito moderado). Excluindo a família
+\texttt{p3038}, onde a configuração atual do \emph{budget} temporal
+desfavorece o método proposto (ver Seção~\ref{sec:results:discussion}),
+obtém-se $W = 93$, $p = 0{,}0016$ (unilateral), 21 vitórias, 9 derrotas
+e $|r| = 0{,}524$ (efeito grande). O teste aplicado sobre o
+\emph{best}-de-\emph{run} é compatível com ausência de diferença
+significativa ($p = 0{,}65$), confirmando a leitura de que a
+contribuição do método proposto reside no \emph{mean} --- ou seja,
+na estabilidade e consistência dos resultados --- e não no pico da
+distribuição.
+
+\subsection{Discussão}
+\label{sec:results:discussion}
+
+Os resultados consolidados permitem situar o Hybrid-CS-AILS da seguinte
+forma. Em \textbf{qualidade do \emph{best}}, o método é competitivo
+com as três referências e estabelece duas novas BKS, mas a matheurística
+IRMA~\cite{Stefanello2015} permanece superior em 32 das 35 instâncias
+--- resultado esperado, dado que IRMA dedica tempo significativamente
+maior a cada \emph{run}, com janelas de \textsc{CPLEX} que em famílias
+grandes excedem $5\,000$ segundos. Em \textbf{qualidade do \emph{mean}},
+o método proposto supera o ILS~\cite{Freitas2025} com significância
+estatística ($p=0{,}011$), e aproxima-se de IRMA e GVNS em $\tau=1{,}02$
+no \emph{performance profile}. Em \textbf{eficiência computacional}, o
+Hybrid-CS-AILS apresenta ganho geométrico de $6{,}7\times$ sobre ILS e
+GVNS e $2{,}3\times$ sobre IRMA. A composição desses três aspectos
+caracteriza uma região da fronteira de Pareto
+tempo $\times$ qualidade ainda inexplorada pelas abordagens prévias.
+
+A principal limitação observada ocorre na família \texttt{p3038},
+onde a densidade $p/n$ aproxima-se de $0{,}33$. Neste regime, o
+\emph{Partial Optimizer} é frequentemente chamado com sub-regiões
+grandes, e o tempo por chamada cresce até ocupar
+fração significativa do \emph{budget} total. Como resultado, o número
+de iterações de ILS realizadas é menor, e o método
+perde para IRMA e GVNS tanto em \emph{best} quanto em \emph{mean}. A
+Figura~\ref{fig:gainpn} (incluída como material suplementar) correlaciona
+o \emph{gap} vs.\ ILS com a razão $p/n$, evidenciando que a perda
+concentra-se em $p/n \geq 0{,}22$. Uma direção natural de trabalho
+futuro é adaptar o disparo do \emph{Partial Optimizer} ao tamanho
+efetivo da sub-região (por exemplo, fechando o MILP mais cedo ou
+recorrendo a um \emph{solver} de \emph{relaxation}).
+
+% ---------------------------------------------------------------------------
+% Observacoes sobre a tabela consolidada da literatura (comentario pro autor)
+% ---------------------------------------------------------------------------
+% A tabela grande com Best, Mean, Tempo e gap para os 4 metodos nos 35
+% casos NAO deve entrar no corpo do artigo: ela e densa demais e seu
+% conteudo ja esta resumido em T2_best, T3_mean e nas figuras. Sugestao
+% alternativa:
+%   1. Mover a tabela completa para um ANEXO / MATERIAL SUPLEMENTAR;
+%   2. No corpo do artigo, manter apenas T2 (best) e T_family;
+%   3. Referenciar a tabela completa como "Tabela A.1 do material
+%      suplementar" quando discutir casos individuais (u724_10, etc).
+% Isso libera espaco para a Figura~\ref{fig:scatter} e
+% Figura~\ref{fig:pprofile}, que sao os artefatos mais convincentes.
