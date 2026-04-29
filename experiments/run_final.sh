@@ -21,7 +21,7 @@ CONSTRUCTION_MAX_TRIES=1000
 # NumIterMax e time_limit sao adaptativos dentro do binario.
 
 NUM_SEEDS=10
-SEED_BASE=${SEED_START:-1}
+SEED_BASE=${SEED_START:-100}
 RUN_TIMEOUT=7200s
 
 mkdir -p "$RESULT_DIR"
