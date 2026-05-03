@@ -102,22 +102,13 @@ Capacitated p-Median Problem; Matheuristics; Clustering Search; Iterated Local S
 
 Problemas de localização de facilidades desempenham um papel central em diversos sistemas reais, incluindo logística urbana, planejamento de serviços de saúde, distribuição de recursos e redes de transporte \citep{drezner1996facility, revelle1996plant, owen1998strategic}. Nessas aplicações, decisões relacionadas à localização de instalações e à alocação de demanda impactam a eficiência operacional, os custos e a qualidade do serviço oferecido \citep{ullah2025optimizing}. 
 
-Dentro desse contexto, o Problema das p-Medianas (PPM), originalmente introduzido por \cite{hakimi1964optimum}, destaca-se como um dos modelos fundamentais para problemas de localização e agrupamento. Este problema consiste, basicamente, em selecionar $p$ instalações (medianas) dentre um conjunto de candidatos e alocar os clientes a essas instalações, minimizando a soma das distâncias entre os clientes e suas respectivas medianas. Uma extensão desta modelagem original e de grande relevância prática é o Problema das p-Medianas Capacitado (PPMC), no qual cada instalação possui uma capacidade limitada de atendimento \citep{mulvey1984solving, pirkul1987efficient}.
+Dentro desse contexto, o Problema das p-Medianas (PPM), originalmente introduzido por \cite{hakimi1964optimum}, destaca-se como um dos principais modelos para problemas de localização e agrupamento. Este problema consiste, basicamente, em selecionar $p$ instalações (medianas) dentre um conjunto de candidatos e alocar os clientes a essas instalações, minimizando a soma das distâncias entre os clientes e suas respectivas medianas. Uma extensão desta modelagem original e de grande relevância prática é o Problema das p-Medianas Capacitado (PPMC), no qual cada instalação possui uma capacidade limitada de atendimento \citep{mulvey1984solving, pirkul1987efficient}.
 
 Do ponto de vista computacional, o PPMC é um problema NP-difícil \citep{garey1990guide}, o que inviabiliza o uso de métodos exatos para instâncias de grande escala em tempo computacional condizente com aplicações práticas. Dessa forma, a literatura deste problema tem explorado o uso de heurísticas, metaheurísticas e, mais recentemente, matheurísticas para obter soluções de alta qualidade em tempos computacionais reduzidos.
 
 Diversas abordagens têm sido propostas para o PPMC, incluindo métodos exatos baseados em branch-and-bound, branch-and-cut e geração de colunas \citep{mulvey1984solving, lorena2004column, boccia2008cut}, bem como abordagens inspiradas em metaheurísticas clássicas como GRASP, algoritmos genéticos, busca tabu e Variable Neighborhood Search (VNS) \citep{osman1994capacitated,correa2004genetic, diaz2006hybrid,fleszar2008effective}. Mais recentemente, abordagens híbridas, conhecidas como matheurísticas, têm se destacado ao combinar estratégias de busca com modelos de programação matemática, permitindo explorar de forma mais eficiente regiões do espaço de soluções conforme feito por  \cite{stefanello2015matheuristics}.
 
-Apesar dos avanços recentes em matheurísticas para o PPMC, ainda permanece um desafio importante: decidir quando e onde aplicar mecanismos exatos de intensificação sem comprometer a eficiência computacional do método. Neste contexto, este trabalho propõe uma matheurística híbrida denominada Hybrid-CS-AILS, cuja principal contribuição é um mecanismo de intensificação seletiva orientado pela densidade de ótimos locais observados durante a busca. A proposta integra um Adaptive Iterated Local Search (AILS) \citep{lourenco2003iterated} com uma estratégia de Clustering Search \cite{oliveira2013clustering} capaz de identificar regiões promissoras do espaço de soluções. Deste modo, as principais contribuições deste trabalho são:
-
-\begin{enumerate}
-\item uma estratégia de intensificação guiada por densidade de ótimos locais obtidos durante a busca;
-
-\item a integração entre Clustering Search e Adaptive Iterated Local Search como mecanismo de decisão para chamada de modelo de programação inteira mista;
-
-\item um modelo baseado em subproblemas reduzidos adaptativamente definidos de acordo com o estado da busca;
-
-\end{enumerate}
+Apesar dos avanços recentes em matheurísticas para o PPMC, ainda permanece um desafio importante: decidir quando e onde aplicar mecanismos exatos de intensificação sem comprometer a eficiência computacional do método. Neste contexto, este trabalho propõe uma matheurística híbrida denominada Hybrid-CS-AILS, cuja principal contribuição é um mecanismo de intensificação seletiva orientado pela densidade de ótimos locais observados durante a busca. A proposta integra um Adaptive Iterated Local Search (AILS) \citep{lourenco2003iterated} com uma estratégia de Clustering Search \cite{oliveira2013clustering} capaz de identificar regiões promissoras do espaço de soluções. Deste modo, as principais contribuições deste trabalho são: uma estratégia de intensificação guiada por densidade de ótimos locais obtidos durante a busca; a integração entre Clustering Search e Adaptive Iterated Local Search como mecanismo de decisão para chamada de modelo de programação inteira mista e um modelo baseado em subproblemas reduzidos adaptativamente definidos de acordo com o estado da busca. 
 
 A estrutura deste artigo está organizada da seguinte forma: a Seção \ref{secRelated} apresenta os trabalhos relacionados; a Seção \ref{secDef} descreve o Problema das p-Medianas Capacitado e sua formulação matemática; a Seção \ref{secMet} detalha o método proposto e seus componentes; os experimentos computacionais e a análise dos resultados são apresentados na Seção \ref{secExp}; por fim, a Seção \ref{secCon} apresenta as conclusões e direções para trabalhos futuros.
 
@@ -125,41 +116,14 @@ A estrutura deste artigo está organizada da seguinte forma: a Seção \ref{secR
 \section{Trabalhos Relacionados}
 \label{secRelated}
 
-Desde sua proposição como extensão do problema clássico das p-medianas
-\cite{hakimi1964optimum}, o PPMC tem sido estudado tanto por métodos
-exatos quanto por abordagens heurísticas, motivado por aplicações em
-planejamento de saúde, logística urbana e alocação de recursos
-\citep{revelle1996plant, drezner1996facility}. Métodos exatos,
-incluindo enumeração implícita~\cite{mulvey1984solving},
-\textit{branch-and-cut} e geração de colunas
-\cite{lorena2004column, ceselli2005branch, boccia2008cut}, garantem
-otimalidade, mas têm custo computacional proibitivo em instâncias de
-porte médio a grande, o que motivou o desenvolvimento de abordagens
-heurísticas e metaheurísticas como GRASP~\cite{resende2002grasp},
-algoritmos genéticos~\cite{correa2004genetic} e busca
+Desde sua proposição como extensão do problema clássico das p-medianas \cite{hakimi1964optimum}, o PPMC tem sido estudado tanto por métodos exatos quanto por abordagens heurísticas, motivado por aplicações em planejamento de saúde, logística urbana e alocação de recursos \citep{revelle1996plant, drezner1996facility}. Métodos exatos, incluindo enumeração implícita~\cite{mulvey1984solving}, \textit{branch-and-cut} e geração de colunas \cite{lorena2004column, ceselli2005branch, boccia2008cut}, garantem otimalidade, mas têm custo computacional proibitivo em instâncias de porte médio a grande, o que motivou o desenvolvimento de abordagens heurísticas e metaheurísticas como GRASP~\cite{resende2002grasp}, algoritmos genéticos~\cite{correa2004genetic} e busca
 tabu~\cite{osman1994capacitated}.
 
-Entre as técnicas que servem de base ao método aqui proposto destaca-se
-o \textit{Clustering Search}~\cite{chaves2008clustering}, que agrupa
-soluções de alta qualidade para guiar a intensificação a regiões
-promissoras do espaço de busca, e as abordagens híbridas que combinam
-metaheurísticas com modelos de programação inteira (matheurísticas).
+Diferentemente da aplicação clássica de \textit{Clustering Search} ao 
+PPMC, como em \cite{chaves2008clustering}, nas quais o CS atua como mecanismo de agrupamento e intensificação sobre regiões promissoras, em nosso trabalho o CS é usado como critério de acionamento para uma fase de intensificação da busca, através do uso do modelo de programação matemática. Assim, o CS deixa de ser apenas uma estratégia de organização da busca e passa a controlar seletivamente o uso de otimização exata dentro do framework principal.
 
-Nessa linha, \cite{stefanello2015matheuristics} propõem o
-\textit{Iterated Reduction Matheuristic Algorithm} (IRMA), baseado na
-redução do espaço de busca e resolução de subproblemas via programação
-inteira, e \cite{vasconcelos2021algoritmo} aplicam o \textit{General
-Variable Neighborhood Search} (GVNS) ao PPMC, combinando múltiplas
-estruturas de vizinhança em um esquema sistemático. Mais recentemente,
-\cite{freitas2025ils_pmediana} descrevem uma metaheurística baseada em
-\textit{Iterated Local Search} voltada especificamente ao PPMC, que
-constitui o comparativo direto deste trabalho por se tratar da
-contribuição mais recente da literatura e por operar no mesmo regime
-de tempo-qualidade visado pela abordagem proposta. A contribuição
-deste trabalho é a integração de \textit{Clustering Search},
-\textit{Adaptive ILS} e intensificação via chamadas de programação
-inteira mista em um único framework, equilibrando diversificação e
-intensificação ao longo da busca.
+Na linha de abordagens híbridas, existe o trabalho de \cite{stefanello2015matheuristics} que propõe o \textit{Iterated Reduction Matheuristic Algorithm} (IRMA), baseado na redução do espaço de busca e resolução de subproblemas via programação inteira e \cite{vasconcelos2021algoritmo} aplicam o \textit{General Variable Neighborhood Search} (GVNS) ao PPMC, explorando múltiplas
+estruturas de vizinhança sistematicamente. Mais recentemente, \cite{freitas2025ils_pmediana} descrevem uma metaheurística baseada em \textit{Iterated Local Search} voltada especificamente ao PPMC, que constitui o comparativo direto deste trabalho por se tratar da contribuição mais recente da literatura e por operar no mesmo regime de tempo-qualidade da abordagem proposta. A contribuição deste trabalho é a integração de \textit{Clustering Search}, \textit{Adaptive ILS} e intensificação via chamadas de programação inteira mista em um único framework, equilibrando diversificação e intensificação ao longo da busca.
 
 
 \section{Definição do Problema}
@@ -327,15 +291,15 @@ Se, em uma dada tentativa, algum cliente não encontra mediana viável durante o
 
 A solução produzida pela fase construtiva é refinada por meio de uma busca local fundamentada no \textit{Variable Neighborhood Descent (VND)} \citep{mladenovic1997variable, freitas2025ils_pmediana}, que explora sistematicamente múltiplas estruturas de vizinhança até atingir um ótimo local em todas elas, adotando-se uma estratégia de \textit{best-improvement}. As quatro vizinhanças implementadas  são definidas a seguir.
 
-\paragraph{M1 --- Realocação de cliente.} Move um cliente $j \in M$ de sua mediana atual $r_1 = v_a(j)$ para outra mediana aberta $r_2 \in V_m \setminus \{r_1\}$, isto é, altera apenas os valores de $x_{r_1 j}$ e $x_{r_2 j}$. 
+\paragraph{M1: Realocação de cliente.} Move um cliente $j \in M$ de sua mediana atual $r_1 = v_a(j)$ para outra mediana aberta $r_2 \in V_m \setminus \{r_1\}$, isto é, altera apenas os valores de $x_{r_1 j}$ e $x_{r_2 j}$. 
 
-\paragraph{M2 --- Substituição intra-cluster.} Substitui uma mediana $r_1 \in V_m$ por um candidato $r_2 \in C_{r_1} \setminus V_m$, mantendo os clientes do cluster realocados a $r_2$. Em termos das variáveis da formulação, alteram-se $y_{r_1}$ de $1$ para $0$, $y_{r_2}$ de $0$ para $1$. 
-
-
-\paragraph{M3 --- Substituição inter-cluster.} Substitui uma mediana $r_1 \in V_m$ por um candidato $r_2 \in N \setminus V_m$ pertencente a um cluster distinto, isto é, com $v_a(r_2) \neq r_1$. Após a substituição, o novo conjunto de medianas é $V_m' = (V_m \setminus \{r_1\}) \cup \{r_2\}$, e todos os clientes originalmente atribuídos a $r_1$ são realocados gulosamente às medianas remanescentes com capacidade residual suficiente. 
+\paragraph{M2: Substituição intra-cluster.} Substitui uma mediana $r_1 \in V_m$ por um candidato $r_2 \in C_{r_1} \setminus V_m$, mantendo os clientes do cluster realocados a $r_2$. Em termos das variáveis da formulação, alteram-se $y_{r_1}$ de $1$ para $0$, $y_{r_2}$ de $0$ para $1$. 
 
 
-\paragraph{M4 --- Troca entre clientes.} Permuta as atribuições de dois clientes $j_1, j_2 \in M$ alocados a medianas distintas, $r_1 = v_a(j_1)$ e $r_2 = v_a(j_2)$ com $r_1 \neq r_2$. 
+\paragraph{M3: Substituição inter-cluster.} Substitui uma mediana $r_1 \in V_m$ por um candidato $r_2 \in N \setminus V_m$ pertencente a um cluster distinto, isto é, com $v_a(r_2) \neq r_1$. Após a substituição, o novo conjunto de medianas é $V_m' = (V_m \setminus \{r_1\}) \cup \{r_2\}$, e todos os clientes originalmente atribuídos a $r_1$ são realocados gulosamente às medianas remanescentes com capacidade residual suficiente. 
+
+
+\paragraph{M4: Troca entre clientes.} Permuta as atribuições de dois clientes $j_1, j_2 \in M$ alocados a medianas distintas, $r_1 = v_a(j_1)$ e $r_2 = v_a(j_2)$ com $r_1 \neq r_2$. 
 
 A ordem $\mathrm{M1} \to \mathrm{M2} \to \mathrm{M3} \to \mathrm{M4}$ foi escolhida visando movimentos de menor custo computacional e maior efeito local (realocações e trocas simples), deixando as substituições estruturais de medianas, que alteram a estrutura da solução, como vizinhanças de maior impacto e maior custo. 
 
@@ -371,7 +335,7 @@ O \textit{Adaptive Iterated Local Search (AILS)}~\cite{lourenco2003iterated} atu
 
 A adaptação em relação ao ILS clássico baseia-se em dois mecanismos. O primeiro é a intensidade variável da perturbação, controlada por um nível $\lambda \in \{1, \ldots, 5\}$ que escala conforme a estagnação observada. O segundo é o acoplamento com o \textit{Clustering Search} (Seção~\ref{subsec:cs}): a cada iteração, $s'$ é observada pelo CS, que pode disparar uma etapa de intensificação exata via \textit{Partial Optimizer} (Seção~\ref{subsec:po}); quando essa etapa produz uma solução estritamente melhor que $s$, ela se torna a nova solução corrente. 
 
-A perturbação adaptativa combina dois tipos de movimento. O primeiro é uma substituição de medianas: sorteia-se $r_1 \in V_m$ para ser fechada e $r_2 \in N \setminus V_m$ para ser aberta; os clientes originalmente atribuídos a $r_1$ são realocados por um procedimento guloso baseado em \textit{regret}, análogo ao da fase construtiva. O segundo é uma troca entre dois clientes de clusters distintos, sorteada uniformemente. A composição da perturbação em função do nível $\lambda$ segue o esquema: $\lambda{=}1$ aplica uma vez o primeiro mecanismo; $\lambda{=}2$, duas vezes o primeiro mecanismo; $\lambda{=}3$, duas vezes o primeiro mecanismo e uma vez o segundo; $\lambda{=}4$, três vezes o primeiro mecanismo; $\lambda{=}5$, três vezes o segundo mecanismo e uma vez o segundo. 
+A perturbação adaptativa combina dois tipos de movimento. O primeiro é uma substituição de medianas: sorteia-se $r_1 \in V_m$ para ser fechada e $r_2 \in N \setminus V_m$ para ser aberta; os clientes originalmente atribuídos a $r_1$ são realocados por um procedimento guloso baseado em \textit{regret}, análogo ao da fase construtiva. O segundo é uma troca entre dois clientes de clusters distintos, sorteada uniformemente. A composição da perturbação em função do nível $\lambda$ segue o esquema: $\lambda{=}1$ aplica uma vez o primeiro mecanismo; $\lambda{=}2$, duas vezes o primeiro mecanismo; $\lambda{=}3$, duas vezes o primeiro mecanismo e uma vez o segundo; $\lambda{=}4$, três vezes o primeiro mecanismo; $\lambda{=}5$, três vezes o segundo mecanismo e uma vez o primeiro. 
 
 O nível parte de $\lambda = 1$ e evolui segundo a seguinte regra: a cada iteração sem melhora, $\lambda$ é incrementado até atingir $\lambda = 3$; avanços para $\lambda \in \{4, 5\}$ só ocorrem após a estagnação ultrapassar metade do orçamento de iterações (\texttt{NumIterMax}$/2$), sinalizando que as perturbações padrão não estão mais conduzindo a novas bacias de atração. Quando $s'$ apresenta custo estritamente menor que $s$ após o VND, o nível é reiniciado em $\lambda = 1$ e o contador de estagnação é zerado. A ideia discutida acima fica melhor formalizada no Algoritmo~\ref{alg:ails}. 
 
@@ -386,7 +350,7 @@ O nível parte de $\lambda = 1$ e evolui segundo a seguinte regra: a cada itera�
 \State $s^{\star} \gets s$;\ $\lambda \gets 1$;\ $k \gets 0$
 \While{$k < \texttt{NumIterMax}$ \textbf{e} tempo $< T_{\max}$}
     \State $s' \gets \mathrm{Perturb}(s, \lambda)$
-    \State $s' \gets \mathrm{VND}(s')$ \Comment{Algoritmo~\ref{alg:vnd}}
+    \State $s' \gets \mathrm{VND}(s')$ \Comment{Seção~\ref{subsec:vnd}}
     \State CS.\textsc{Observe}$(s',\, s^{\star},\, s)$ \Comment{Seção~\ref{subsec:cs}}
     \If{$s$ foi promovida pelo \textit{Partial Optimizer}}
         \State $\lambda \gets 1$;\ $k \gets 0$;\ atualizar $s^{\star}$ se melhor
@@ -404,7 +368,7 @@ O nível parte de $\lambda = 1$ e evolui segundo a seguinte regra: a cada itera�
 \subsection{Clustering Search}
 \label{subsec:cs}
 
-O \textit{Clustering Search (CS)}~\cite{oliveira2013clustering} agrega os ótimos locais observados pelo AILS em um conjunto de $\gamma$ grupos de similaridade (\textit{clusters}). O objetivo é identificar regiões promissoras do espaço de soluções visitadas com frequência pela metaheurística, sobre as quais vale a pena investir uma etapa de intensificação mais custosa.
+O \textit{Clustering Search (CS)}~\cite{oliveira2013clustering, souto2021hybrid} agrega os ótimos locais observados pelo AILS em um conjunto de $\gamma$ grupos de similaridade (\textit{clusters}). O objetivo é identificar regiões promissoras do espaço de soluções visitadas com frequência pela metaheurística, sobre as quais vale a pena investir uma etapa de intensificação mais custosa.
 
 Pensando nisso, a cada iteração do AILS, a solução $s'$ obtida após o VND é observada pelo CS. Calcula-se $\delta(s', c)$ para cada cluster ativo e seleciona-se o mais próximo $c^{\star}$. Além disso, define-se a distância entre duas soluções $a$ e $b$ como
 \begin{equation}
@@ -450,22 +414,24 @@ A partir de $r_{\mathrm{ref}}$, constrói-se a \emph{vizinhança espacial} $\mat
 \section{Experimentos Computacionais}
 \label{secExp}
 
-Esta seção avalia o desempenho do Hybrid-CS-AILS frente ao ILS de \cite{freitas2025ils_pmediana} (SBPO 2025), comparativo direto da abordagem proposta. Métodos como o IRMA \cite{stefanello2015matheuristics} e o GVNS \cite{vasconcelos2021algoritmo} operam em regime de tempo-qualidade distinto, privilegiando qualidade ao custo de tempos de execução de uma ordem de grandeza maior, e portanto não constituem comparativo direto. Na Seção \ref{subsec:implement_inst} detalha-se a configuração da implementação, parâmetros adotados e instâncias utilizadas. Em seguida, são apresentadas as análises de qualidade (Seção \ref{sec:results:overview}) e de tempo computacional (Seção \ref{subsec:time}) das soluções obtidas.
+Esta seção avalia o desempenho do Hybrid-CS-AILS frente ao ILS de \cite{freitas2025ils_pmediana} (SBPO 2025), comparativo direto da abordagem proposta.  Na Seção \ref{subsec:implement_inst} detalha-se a configuração da implementação, parâmetros adotados e instâncias utilizadas. Em seguida, são apresentadas as análises de qualidade (Seção \ref{sec:results:overview}) e de tempo computacional (Seção \ref{subsec:time}) das soluções obtidas.
 
 \subsection{Ambiente e Protocolo Experimental}
 \label{subsec:implement_inst}
 
-Os experimentos foram executados em uma máquina com processador Intel Core i7-11800H (4,60 GHz) com 16 GB de RAM, sob sistema operacional Linux. O solver MILP utilizado no \emph{Partial Optimizer} foi implementado no \textsc{IBM CPLEX}~\textit{22.11}. O algoritmo foi implementado em C++17 e compilado com \texttt{-O3}. 
+Os experimentos foram executados em uma máquina com processador Intel Core i7-11800H (4,60 GHz) com 16 GB de RAM, sob sistema operacional Linux. O solver MILP utilizado no \emph{Partial Optimizer} foi implementado no \textsc{IBM CPLEX}~\textit{22.1.1}. O algoritmo foi implementado em C++17 e compilado com \texttt{-O3}. O executável e os resultados detalhados estão disponíveis no repositório: \url{https://github.com/anonymous/Hybrid_CS_AILS} .
 
 O método foi avaliado sobre as 35 instâncias benchmark utilizadas em~\cite{stefanello2015matheuristics}, organizadas em 7 famílias, \texttt{lin318}, \texttt{ali535}, \texttt{u724}, \texttt{rl1304},
 \texttt{pr2392}, \texttt{fnl4461} e \texttt{p3038}, com 5 valores
-distintos de $p$ cada. Cada instância foi executada $N=10$ vezes com sementes aleatórias independentes. Os parâmetros $\alpha$ (GRASP), $\gamma$ e $v_{\max}$ (\textit{Clustering Search}) e $\beta_{R2}$ (\textit{Partial Optimizer}) foram calibrados automaticamente com o pacote \texttt{irace}~\cite{LopezIbanez2016irace}, que aplica um procedimento de \textit{racing} iterado sobre configurações candidatas, eliminando as estatisticamente inferiores em um conjunto de treinamento. A calibração empregou cinco instâncias de treino de famílias distintas, três \textit{seeds} por instância e orçamento de 300 experimentos; a configuração elite obtida foi $\alpha = 0{,}6667$, $\gamma = 18$, $v_{\max} = 8$ e $\beta_{R2} = 16$.
+distintos de $p$ cada. Cada instância foi executada $N=10$ vezes com sementes aleatórias independentes. Os parâmetros $\alpha$ (GRASP), $\gamma$ e $v_{\max}$ (\textit{Clustering Search}) e $\beta_{R2}$ (\textit{Partial Optimizer}) foram calibrados automaticamente com o pacote \texttt{irace}~\cite{LopezIbanez2016irace}, que aplica um procedimento de \textit{racing} iterado sobre configurações candidatas, eliminando as estatisticamente inferiores em um conjunto de treinamento. A calibração empregou cinco instâncias de treino de famílias de instâncias distintas, três \textit{seeds} por instância e orçamento de 300 experimentos; a configuração elite obtida foi $\alpha = 0{,}6667$, $\gamma = 18$, $v_{\max} = 8$ e $\beta_{R2} = 16$. Após a calibração, todos os experimentos finais foram executados com $\texttt{NumIterMax}=60$. 
 
 
-Para cada instância, denotamos por $Z^{\star}_{\mathrm{ILS}}$ o melhor
-custo reportado pelo ILS \cite{freitas2025ils_pmediana} entre suas
-execuções. A qualidade de uma solução $Z$ obtida pelo Hybrid-CS-AILS é
-medida pelo \emph{gap} percentual relativo a essa referência:
+Os valores de custo e de tempo médio de execução do ILS utilizados nas
+comparações são os reportados pelos autores na publicação
+original~\cite{freitas2025ils_pmediana}. Para cada instância, denotamos por $Z^{\star}_{\mathrm{ILS}}$
+o melhor custo reportado pelo ILS entre suas execuções. A qualidade de
+uma solução $Z$ obtida pelo Hybrid-CS-AILS é medida pelo \emph{gap}
+percentual relativo a essa referência:
 \begin{equation}
   \mathrm{gap}(Z) = \frac{Z - Z^{\star}_{\mathrm{ILS}}}{Z^{\star}_{\mathrm{ILS}}} \cdot 100\,\%,
   \label{eq:gap}
@@ -477,35 +443,28 @@ métrica considerada.
 \label{sec:results:overview}
 
 Para cada instância, denotamos por $Z_{\mathrm{best}}$ o menor custo
-obtido entre as $N=10$ execuções e por $Z_{\mathrm{mean}}$ o custo
+obtido entre as $N=20$ execuções e por $Z_{\mathrm{mean}}$ o custo
 médio, e reportamos os \emph{gaps} percentuais correspondentes em
-relação ao ILS (Equação~\ref{eq:gap}).
-
-A Tabela~\ref{tab:family} consolida o desempenho do Hybrid-CS-AILS por
-família. O coeficiente de variação médio (CV\%), que mede a dispersão
+relação ao ILS (Equação~\ref{eq:gap}). A Tabela~\ref{tab:family} consolida o desempenho do Hybrid-CS-AILS por
+família de instâncias. O coeficiente de variação médio (CV\%), que mede a dispersão
 relativa dos custos entre as 10 execuções, permanece abaixo de
-$0{,}45\%$ em todas as sete famílias, indicando elevada estabilidade do
+$0{,}45\%$ em todas as sete famílias de instâncias, indicando estabilidade do
 método. Em termos de $Z_{\mathrm{mean}}$, o Hybrid-CS-AILS supera o ILS
-em seis das sete famílias --- com $\overline{\mathrm{gap}}_{\mathrm{mean}}$
-negativo em todas elas exceto \texttt{p3038} ---, e o ganho global é
+em seis das sete famílias, com $\overline{\mathrm{gap}}_{\mathrm{mean}}$
+negativo em todas elas exceto \texttt{p3038}, e o ganho global é
 de $-0{,}788\%$, com 22 vitórias contra 13 nas 35 instâncias avaliadas.
 
 \begin{table}[!htb]
 \centering
-\caption{Resultados agregados por família, com \emph{gaps} percentuais
-calculados em relação ao ILS de \cite{freitas2025ils_pmediana}
-(Equação~\ref{eq:gap}); valores negativos indicam que o
-Hybrid-CS-AILS supera o ILS. \emph{CV\%} é o coeficiente de variação
-médio dos custos entre as 10 execuções; \emph{wins/losses} compara o
-$Z_{\mathrm{mean}}$ do Hybrid-CS-AILS com o custo médio reportado pelo
-ILS.}
+\caption{Resultados agregados por família de instâncias, com \emph{gaps} percentuais calculados em relação ao ILS de \cite{freitas2025ils_pmediana}
+(Equação~\ref{eq:gap})}
 \label{tab:family}
 \small
 \begin{tabular}{lcccccc}
 \hline
 Família & \#inst. & $\overline{\mathrm{gap}}_{\mathrm{best}}$ (\%)
         & $\overline{\mathrm{gap}}_{\mathrm{mean}}$ (\%)
-        & CV (\%) & wins/losses & Tempo (h) \\
+        & CV (\%) & ganhos/perdas & Tempo (h) \\
 \hline
 \texttt{lin318}  & 5 & $-0{,}129$ & $-0{,}210$ & $0{,}215$ & 3/2 &  3{,}15 \\
 \texttt{ali535}  & 5 & $-0{,}339$ & $-2{,}788$ & $0{,}344$ & 5/0 &  4{,}03 \\
@@ -528,9 +487,7 @@ proposto: rejeita-se a hipótese nula ao nível $\alpha = 0{,}05$ ($p =
 distribuição dos \emph{gaps} ao longo das 35 instâncias evidencia que,
 em $Z_{\mathrm{best}}$, os dois métodos são equivalentes em qualidade
 (mediana próxima de zero), enquanto, em $Z_{\mathrm{mean}}$, o
-Hybrid-CS-AILS apresenta variabilidade entre execuções
-substancialmente menor, traduzindo-se em soluções médias mais
-consistentes que as do ILS.
+Hybrid-CS-AILS apresenta variabilidade menor entre execuções, traduzindo-se em soluções médias mais consistentes que as do ILS.
 
 
 
@@ -538,48 +495,74 @@ consistentes que as do ILS.
 \label{subsec:time}
 
 A contribuição central do Hybrid-CS-AILS se evidencia quando qualidade
-e tempo de execução são avaliados juntos. A Figura~\ref{fig:scatter}
-apresenta, em escala logarítmica no eixo horizontal, o tempo médio
-versus o custo médio relativo (normalizado pelo melhor valor entre os
+e tempo de execução são avaliados juntos. Na Figura~\ref{fig:scatter}
+apresentamos, em escala logarítmica no eixo horizontal, o tempo médio
+versus o custo médio (normalizado pelo melhor valor entre os
 dois métodos) para cada uma das 35 instâncias do Hybrid-CS-AILS e do
-ILS de \cite{freitas2025ils_pmediana}. O Hybrid-CS-AILS \emph{Pareto}-domina
+ILS de \cite{freitas2025ils_pmediana}. O Hybrid-CS-AILS domina
 o ILS em praticamente toda a extensão do gráfico: para cada ponto do
-ILS existe um ponto do Hybrid-CS-AILS com tempo menor \emph{e}
-qualidade melhor.
+ILS existe um ponto do Hybrid-CS-AILS melhor em qualidade e tempo. 
 
 \begin{figure}[!htb]
   \centering
   \includegraphics[width=0.78\linewidth]{figuras/time_quality_scatter.pdf}
   \caption{Fronteira tempo $\times$ qualidade entre Hybrid-CS-AILS e
-  ILS \cite{freitas2025ils_pmediana} sobre as 35 instâncias.}
+  ILS \cite{freitas2025ils_pmediana} sobre as 35 instâncias. Cada
+  ponto representa o tempo médio por execução de uma instância;
+  para o ILS, os valores são os reportados na publicação original.
+  O eixo $y$ é o \emph{gap} percentual do custo médio em relação ao
+  melhor entre os dois métodos em cada instância.}
   \label{fig:scatter}
 \end{figure}
 
-A magnitude do ganho temporal é quantificada pela média geométrica
-das razões $T_{\mathrm{ILS}} / T_{\mathrm{Hybrid}}$ por instância,
-agregada na Tabela~\ref{tab:speedup}. Globalmente, o Hybrid-CS-AILS é
-$6{,}7\times$ mais rápido que o ILS, com ganhos particularmente
-expressivos em \texttt{ali535} ($19{,}0\times$) e \texttt{u724}
-($15{,}4\times$). A única família em que o ganho é modesto é
-\texttt{p3038}, em que a razão $p/n \geq 0{,}3$ leva o \textit{Partial
-Optimizer} a um regime degradado.
+
+
+% O ganho em tempo foi quantificado pela média geométrica das razões
+% $T_{\mathrm{ILS}}/T_{\mathrm{Hybrid}}$ por instância
+% \citep{fleming1986not}. Sem normalização de hardware, o Hybrid-CS-AILS é
+% $6{,}7\times$ mais rápido que o ILS; aplicando uma correção conservadora
+% baseada no \emph{Single Thread Rating} dos processadores reportados
+% (Intel Core i5-7200U para o ILS e Intel Core i7-11800H neste trabalho),
+% esse ganho permanece em aproximadamente $3{,}8\times$. A Tabela~\ref{tab:speedup}
+% consolida os resultados por família, com maiores ganhos em
+% \texttt{ali535} e \texttt{u724}, enquanto \texttt{p3038} apresenta ganho
+% mais modesto devido ao maior esforço do \textit{Partial Optimizer} quando
+% $p/n \geq 0{,}3$.
+
+
+
+O \emph{ganho} em tempo foi quantificado pela razão entre o tempo médio
+reportado para o ILS e o tempo médio obtido pelo Hybrid-CS-AILS em cada
+família de instâncias, conforme consolidado na Tabela~\ref{tab:speedup}.
+De modo geral, o Hybrid-CS-AILS é $3{,}3\times$ mais rápido que o ILS,
+com ganhos expressivos em \texttt{rl1304} ($8{,}4\times$),
+\texttt{ali535} ($7{,}9\times$) e \texttt{u724} ($7{,}9\times$).
+A única família de instâncias em que o ganho é menor é na família de instâncias \texttt{p3038},
+em que a razão $p/n \geq 0{,}3$ leva o \textit{Partial Optimizer} a
+consumir mais tempo computacional.
+
+
+
 
 \input{tabelas/T_speedup.tex}
 
-A combinação dos dois resultados --- qualidade média superior e tempo
-de execução de uma ordem de grandeza menor --- caracteriza uma região
-da fronteira tempo $\times$ qualidade ainda não explorada pelas
-abordagens previamente reportadas para o PPMC.
+A combinação de qualidade superior e tempo de execução de uma ordem de grandeza menor deixa evidente um espaço de melhoria ainda não explorado pela abordagem do ILS de \cite{freitas2025ils_pmediana} (SBPO 2025) reportadas para o PPMC.
 
 
 \section{Conclusão}
 \label{secCon}
 
-Neste trabalho foi proposta uma matheurística híbrida denominada \textit{Hybrid-CS-AILS} para o Problema das p-Medianas Capacitado (PPMC). A abordagem integra mecanismos heurísticos e exatos por meio da combinação entre uma heurística construtiva baseada em GRASP, busca local VND, um framework adaptativo de \textit{Iterated Local Search} e um mecanismo de intensificação seletiva guiado por \textit{Clustering Search}. Diferentemente de abordagens híbridas tradicionais, o método proposto utiliza o \textit{Clustering Search} para auxiliar na decisão de quando aplicar o modelo do PPMC via programação inteira mista, concentrando esforço computacional em regiões promissoras do espaço de busca.
+Portanto, neste trabalho foi proposta uma matheurística híbrida denominada \textit{Hybrid-CS-AILS} para o Problema das p-Medianas Capacitado (PPMC). A abordagem integra mecanismos heurísticos e exatos por meio da combinação entre uma heurística construtiva baseada em GRASP, busca local VND, um framework adaptativo de \textit{Iterated Local Search} e um mecanismo de intensificação seletiva guiado por \textit{Clustering Search}. Diferentemente de abordagens híbridas tradicionais, o método proposto utiliza o \textit{Clustering Search} para auxiliar na decisão de quando aplicar o modelo do PPMC via programação inteira mista, concentrando esforço computacional em regiões promissoras do espaço de busca.
 
 Os experimentos computacionais realizados em 35 instâncias benchmark clássicas do PPMC mostraram que o Hybrid-CS-AILS supera o ILS de \cite{freitas2025ils_pmediana}, comparativo direto e referência mais recente da literatura, em termos de custo médio com significância estatística ($p = 0{,}011$ no teste pareado de Wilcoxon) e produz soluções, em média, $6{,}7$ vezes mais rapidamente. Os resultados evidenciaram, ainda, elevada estabilidade entre execuções independentes em todas as sete famílias avaliadas.
 
 Como perspectivas futuras, pretende-se investigar estratégias de aprendizado para seleção de regiões promissoras do espaço de busca como também avaliar a aplicação da abordagem proposta em outras variantes de problemas de localização de facilidades. 
+
+% % ============================================================
+% \section*{Agradecimentos}
+% % ============================================================
+
+% Os autores agradecem ao Programa de Engenharia de Sistemas e Computação (PESC/COPPE/UFRJ) pelo suporte institucional, e às agências de fomento FAPERJ: E-26/204.211/2025, CNPq: 304043/2025-7, UFRJ ALV Grant: 23079.227622/2023-70 pelo financiamento parcial desta pesquisa.
 
 ~\\
 \bibliographystyle{sbpo}
